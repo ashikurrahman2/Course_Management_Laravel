@@ -14,7 +14,7 @@ class UserController extends Controller
     protected $toastr;
     public function __construct(ToastrInterface $toastr)
     {
-        // $this->middleware('auth');
+      
         $this->toastr = $toastr;
     }
     /**
