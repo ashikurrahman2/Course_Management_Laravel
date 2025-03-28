@@ -7,7 +7,7 @@
             <a href="{{ route('admin.dashboard') }}" class="b-brand text-primary">
                 <!-- Change your logo from here -->
                 <img src="{{ url($setting->logo) }}" alt="logo image" class="logo-lg" style="max-width: 150px; max-height: 50px;">
-                <span class="badge bg-primary rounded-pill ms-2 theme-version">Jomijoma Limited</span>
+                <span class="badge bg-primary rounded-pill ms-2 theme-version">ShikhboAmi</span>
             </a>
         </div>
 
@@ -44,7 +44,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-settings"></i></span>
-                            <span class="pc-mtext">Jomijoma History</span>
+                            <span class="pc-mtext">ShikhboAmi History</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
 
@@ -59,13 +59,13 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-settings"></i></span>
-                            <span class="pc-mtext">Category</span>
+                            <span class="pc-mtext">Courses</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
 
                     <ul class="pc-submenu">
                         <li class="pc-item"><a class="pc-link"
-                            href="{{route('category.index')}}">Category list</a>
+                            href="{{route('courses.index')}}">Courses list</a>
                         </li>
                   
                     </ul>
