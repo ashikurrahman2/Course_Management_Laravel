@@ -87,7 +87,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title h4" id="myLargeModalLabel">Add New Land</h5>
+                <h5 class="modal-title h4" id="myLargeModalLabel">Add New Course</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('courses.store')}}" method="post" id="add-form" enctype="multipart/form-data">
@@ -95,16 +95,81 @@
               <div class="modal-body">
               
                 <div class="form-group">
-                    <label for="category_name" class="col-form-label pt-0">Category Name<sup class="text-size-20 top-1">*</sup></label>
-                      <input type="text" class="form-control" id="category_name" name="category_name" required>
-                      <small id="emailHelp" class="form-text text-muted">This is your land category</small>
+                    <label for="course_title" class="col-form-label pt-0">Course Title<sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="course_title" name="course_title" required>
+                      <small id="emailHelp" class="form-text text-muted">This is your course name</small>
                   </div>
 
                   <div class="col-md-12">
-                    <label for="category_image" class="col-form-label pt-0">Category Image<sup class="text-size-20 top-1">*</sup></label>
-                    <input type="file" class="dropify" data-height="200" name="category_image"  required />
-                    <small id="imageHelp" class="form-text text-muted">Maximum image size 5 MB</small>
+                    <label for="course_image" class="col-form-label pt-0">Course Image<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="file" class="dropify" data-height="200" name="course_image"  required />
+                    <small id="imageHelp" class="form-text text-muted">Maximum image size 2 MB</small>
                 </div>
+
+                <div class="form-group">
+                  <label for="course_category" class="col-form-label pt-0">Course Category<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="course_category" name="course_category" required>
+                    <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
+                </div>
+
+                
+                <div class="form-group">
+                  <label for="course_price" class="col-form-label pt-0">Course Price<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="course_price" name="course_price" required>
+                    <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="course_teacher" class="col-form-label pt-0">Course Teacher<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="course_teacher" name="course_teacher" required>
+                    <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="course_lavel" class="col-form-label pt-0">Course Lavel<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="course_lavel" name="course_lavel" required>
+                    <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="course_duration" class="col-form-label pt-0">Course Duration<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="course_duration" name="course_duration" required>
+                    <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="mb-3">
+                      <label class="form-label">Course Learn</label>
+                      <textarea class="form-control textarea" name="course_learn" id="summernote" rows="4" >{{old('course_learn')}}</textarea> 
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label for="course_content_title" class="col-form-label pt-0">Course Content Question<sup class="text-size-20 top-1">*</sup></label>
+                  <input type="text" class="form-control" id="course_content_title" name="course_content_title" required>
+                  <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
+              </div>
+
+              <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Course Content Answer</label>
+                    <textarea class="form-control textarea" name="course_content_answer" id="summernote1" rows="4" >{{old('course_content_answer')}}</textarea> 
+                </div>
+            </div>
+
+              <div class="col-md-12">
+                <div class="mb-3">
+                    <label class="form-label">Course Requirement</label>
+                    <textarea class="form-control textarea" name="course_content_requirement" id="summernote2" rows="4" >{{old('course_content_requirement')}}</textarea> 
+                </div>
+            </div>
+
+                <div class="col-md-12">
+                  <div class="mb-3">
+                      <label class="form-label">Course Audience</label>
+                      <textarea class="form-control textarea" name="course_audience" id="summernote3" rows="4" >{{old('course_audience')}}</textarea> 
+                  </div>
+              </div>
            
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-primary"> <span class="d-none"> loading ......</span> Submit</button>
@@ -120,7 +185,7 @@
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="editModalLabel">Edit Category</h5>
+              <h5 class="modal-title" id="editModalLabel">Edit Course</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -161,6 +226,62 @@
         let id = $(this).data('id');
         $.get("courses/" + id + "/edit", function(data) {
             $('.modal-body').html(data);
+        });
+    });
+
+      // Summernote script
+  $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 200,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    // Strip HTML tags for plain text
+                    let textOnly = $('<div>').html(contents).text();
+                    $('#summernote').val(textOnly);
+                }
+            }
+        });
+    });
+
+       // Summernote script
+  $(document).ready(function() {
+        $('#summernote1').summernote({
+            height: 200,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    // Strip HTML tags for plain text
+                    let textOnly = $('<div>').html(contents).text();
+                    $('#summernote1').val(textOnly);
+                }
+            }
+        });
+    });
+
+           // Summernote script
+  $(document).ready(function() {
+        $('#summernote2').summernote({
+            height: 200,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    // Strip HTML tags for plain text
+                    let textOnly = $('<div>').html(contents).text();
+                    $('#summernote2').val(textOnly);
+                }
+            }
+        });
+    });
+
+               // Summernote script
+  $(document).ready(function() {
+        $('#summernote3').summernote({
+            height: 200,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    // Strip HTML tags for plain text
+                    let textOnly = $('<div>').html(contents).text();
+                    $('#summernote3').val(textOnly);
+                }
+            }
         });
     });
   </script>
