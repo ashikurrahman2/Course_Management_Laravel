@@ -13,20 +13,26 @@ class Course extends Model
 
     private static $image, $imageName, $directory, $imageUrl;
         // Fillable fields to allow mass assignment
+        // protected $fillable = [
+        //     'course_title',
+        //     'course_category',
+        //     'course_price',
+        //     'course_teacher',
+        //     'course_lavel',
+        //     'course_duration',
+        //     'course_learn',
+        //     'course_content_title',
+        //     'course_content_answer',
+        //     'course_content_requirement',
+        //     'course_audience',
+        //     'course_image',
+        // ];
         protected $fillable = [
-            'course_title',
-            'course_category',
-            'course_price',
-            'course_teacher',
-            'course_lavel',
-            'course_duration',
-            'course_learn',
-            'course_content_title',
-            'course_content_answer',
-            'course_content_requirement',
-            'course_audience',
-            'course_image',
+            'course_title', 'course_category', 'course_price', 'course_teacher',
+            'course_lavel', 'course_duration', 'course_learn', 'course_content_title',
+            'course_content_answer', 'course_content_requirement', 'course_audience', 'course_image'
         ];
+        
     // Function to upload and resize image
     private static function getImageUrl($request)
 {
@@ -53,54 +59,54 @@ class Course extends Model
     {
         self::$imageUrl = $request->file('course_image') ? self::getImageUrl($request) : '';
 
-        $course = new self();
-        self::saveBasicInfo($course, $request, self::$imageUrl);
+        $courses = new self();
+        self::saveBasicInfo($courses, $request, self::$imageUrl);
     }
 
         // Update an existing About entry
 public static function updateCourse($request, $id)
 {
  // Fetch the team record using the ID
- $course = self::findOrFail($id);
+ $courses = self::findOrFail($id);
 
     if ($request->file('course_image')) {
-        if (file_exists($course->course_image)) {
-            unlink($course->course_image);
+        if (file_exists($courses->course_image)) {
+            unlink($courses->course_image);
         }
         self::$imageUrl = self::getImageUrl($request);
     } else {
-        self::$imageUrl = $course->course_image;
+        self::$imageUrl = $courses->course_image;
     }
 
-    self::saveBasicInfo($course, $request, self::$imageUrl);
+    self::saveBasicInfo($courses, $request, self::$imageUrl);
     }
 
     // Save or update basic info in the database
-   private static function saveBasicInfo($course, $request, $imageUrl)
+   private static function saveBasicInfo($courses, $request, $imageUrl)
    {
-       $course->course_image                         = $imageUrl;
-       $course->course_title                         = $request->course_title;
-       $course->course_category                      = $request->course_category;
-       $course->course_price                         = $request->course_price;
-       $course->course_teacher                       = $request->course_teacher;
-       $course->course_lavel                         = $request->course_lavel;
-       $course->course_duration                      = $request->course_duration;
-       $course->course_learn                         = $request->course_learn;
-       $course->course_content_title                 = $request->course_content_title;
-       $course->course_content_answer                = $request->course_content_answer;
-       $course->course_content_requirement           = $request->course_content_requirement;
-       $course->course_audience                      = $request->course_audience;
-       $course->save();
+       $courses->course_image                         = $imageUrl;
+       $courses->course_title                         = $request->course_title;
+       $courses->course_category                      = $request->course_category;
+       $courses->course_price                         = $request->course_price;
+       $courses->course_teacher                       = $request->course_teacher;
+       $courses->course_lavel                         = $request->course_lavel;
+       $courses->course_duration                      = $request->course_duration;
+       $courses->course_learn                         = $request->course_learn;
+       $courses->course_content_title                 = $request->course_content_title;
+       $courses->course_content_answer                = $request->course_content_answer;
+       $courses->course_content_requirement           = $request->course_content_requirement;
+       $courses->course_audience                      = $request->course_audience;
+       $courses->save();
    }
 
    
         // Delete an Property entry
-        public static function deleteCourse($course)
+        public static function deleteCourse($courses)
         {
-            if (file_exists($course->course_image)) {
-                unlink($course->course_image);
+            if (file_exists($courses->course_image)) {
+                unlink($courses->course_image);
             }
             
-            $course->delete();
+            $courses->delete();
         }
 }

@@ -23,8 +23,8 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $course = Course::all();
-            return DataTables::of($course)
+            $courses = Course::all();
+            return DataTables::of($courses)
                 ->addIndexColumn() 
                 ->addColumn('course_image', function ($row) {
                     if ($row->course_image) {
@@ -98,7 +98,7 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
+    public function show(Course $courses)
     {
         //
     }
@@ -108,77 +108,50 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::findOrFail($id);
-        return view('admin.pages.courses.edit', compact('course'));
+        $courses = Course::findOrFail($id);
+        return view('admin.pages.courses.edit', compact('courses'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, $id)
     {
-            // Validate the incoming request
-            $validated = $request->validate([
-                'course_title' => 'required|string|max:500',
-                'course_category' => 'required|string|max:500',
-                'course_price' => 'required|string|max:500',
-                'course_teacher' => 'required|string|max:500',
-                'course_lavel' => 'required|string|max:500',
-                'course_duration' => 'required|string|max:500',
-                'course_learn' => 'required|string|max:500',
-                'course_content_title' => 'required|string|max:500',
-                'course_content_answer' => 'required|string|max:500',
-                'course_content_requirement' => 'required|string|max:500',
-                'course_audience' => 'required|string|max:500',
-                'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-
-                 // Check if a new image file is uploaded
-        if ($request->hasFile('course_image')) {
-            // Delete the old image if exists
-            if ($course->course_image && file_exists(public_path($course->course_image))) {
-                unlink(public_path($course->course_image));
-            }
-
-            // Upload the new image
-            $image = $request->file('course_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = 'uploads/courses/';
-            $image->move(public_path($imagePath), $imageName);
-
-            // Update the image path
-            $course->course_image = $imagePath . $imageName;
-        }
-
-        
-        // Update the rest of the fields
-        $course->update([
-            'course_title'                          => $validated['course_title'],
-            'course_category'                       => $validated['course_category'],
-            'course_price'                          => $validated['course_price'],
-            'course_teacher'                        => $validated['course_teacher'],
-            'course_image'                          => $validated['course_image'],
-            'course_lavel'                          => $validated['course_lavel'],
-            'course_duration'                       => $validated['course_duration'],
-            'course_learn'                          => $validated['course_learn'],
-            'course_content_title'                  => $validated['course_content_title'],
-            'course_content_answer'                 => $validated['course_content_answer'],
-            'course_content_requirement'            => $validated['course_content_requirement'],
-            'course_audience'                       => $validated['course_audience'],
+        // Validate the incoming request
+        $request->validate([
+            'course_title' => 'required|string|max:500',
+            'course_category' => 'required|string|max:500',
+            'course_price' => 'required|string|max:500',
+            'course_teacher' => 'required|string|max:500',
+            'course_lavel' => 'required|string|max:500',
+            'course_duration' => 'required|string|max:500',
+            'course_learn' => 'required|string|max:500',
+            'course_content_title' => 'required|string|max:500',
+            'course_content_answer' => 'required|string|max:500',
+            'course_content_requirement' => 'required|string|max:500',
+            'course_audience' => 'required|string|max:500',
+            'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        
+        // Fetch Data 
+        Course::updateCourse($request, $id);
+        
         // Success Message
         $this->toastr->success('Course updated successfully!');
         return back();
     }
+    
+    
+    
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $course = Course::findOrFail($id);
-        $course->delete();
+        $courses = Course::findOrFail($id);
+        $courses->delete();
         $this->toastr->success('Course Deleted successfully!');
         return back();
     }

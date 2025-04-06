@@ -229,6 +229,7 @@
         });
     });
 
+
       // Summernote script
   $(document).ready(function() {
         $('#summernote').summernote({
