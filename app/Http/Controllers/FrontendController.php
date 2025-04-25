@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 // use App\Models\Property;
 // use App\Models\Rent;
-// use App\Models\About;
+use App\Models\About;
 // use App\Models\Land;
 // use App\Models\setting;
 // use App\Models\Agent;
 // use App\Models\Sell;
 // use App\Models\Partner;
-// use App\Models\News;
+use App\Models\Course;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -27,14 +27,10 @@ class FrontendController extends Controller
 
     public function index()
     {
-        // $properties = Property::all();
-        // $abouts = About::get();
-        // $newses = News::all();
-        // $agents = Agent::all();
-        // $settings = setting::get();
-        // $partners = Partner::paginate(10);
-        // $rents = Rent::all();
-        return view('frontend.pages.index');   
+        $courses = Course::all();
+          $abouts = About::all();
+        // $course = null;
+        return view('frontend.pages.index', compact('courses', 'abouts'));   
     }
 
 
@@ -45,14 +41,37 @@ class FrontendController extends Controller
 
     public function About()
     {
-        $abouts = About::get(); // Retrieve the first record
+        $abouts = About::all(); // Retrieve the first record
         return view('frontend.pages.about', compact('abouts'));
     }
 
      public function allCourse(){
-
-        return view('frontend.pages.courses');
+        $courses = Course::all();
+        return view('frontend.pages.courses', compact('courses'));
      }
+
+    //  public function courseByCategory($category)
+    //  public function courseByCategory()
+    //  {
+    //      $courses = Course::where('course_category')->get();
+    //     //  $courses = Course::all();
+    //      return view('frontend.pages.courses', compact('courses'));
+    //  }
+     
+
+     public function coursesByCategory($id)
+{
+    // $courses = Course::where('category_id', $id)->paginate(6);
+    $courses = Course::where('course_category', $id)->paginate(6);
+    return view('frontend.pages.courses', compact('courses'));
+}
+
+public function details($id)
+{
+    $course = Course::findOrFail($id);
+    return view('frontend.pages.courses', compact('course'));
+}
+
 
     public function Communication(){
         $abouts = About::get();

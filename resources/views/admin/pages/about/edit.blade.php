@@ -19,33 +19,21 @@
 
       <div class="col-md-12">
         <label for="photo" class="col-form-label pt-0">Image<sup class="text-size-20 top-1">*</sup></label>
-        <input type="file" class="dropify" data-height="200" name="photo" value="{{ $about->photo }}"  required />
+        <input type="file" class="dropify" data-height="200" name="photo" value="{{ $about->photo }}" />
         <small id="imageHelp" class="form-text text-muted">This is your about image</small>
     </div>
-
-    <div class="form-group">
-        <label for="signature" class="col-form-label pt-0">Current about Logo</label>
-        <br>
-        @if($about->signature)
-        <img src="{{ asset($about->signature) }}" alt="signature" class="img-fluid" style="max-width: 100px;">
-        @else
-        <p>No logo uploaded.</p>
-        @endif
-    </div>
-
-    <div class="col-md-12">
-      <label for="signature" class="col-form-label pt-0">Signature<sup class="text-size-20 top-1">*</sup></label>
-      <input type="file" class="dropify" data-height="200" name="signature" value="{{ $about->signature }}"  required />
-      <small id="imageHelp" class="form-text text-muted">This is your Property signature</small>
-  </div>
-
    
-  <div class="col-md-12">
-      <div class="mb-3">
-          <label class="form-label">Description</label>
-          <textarea class="form-control textarea" name="description" id="summernote" rows="4" >{{$about->description}}</textarea> 
-      </div>
-  </div>
+    <div class="form-group">
+                  <label for="our_mission" class="col-form-label pt-0">Our mission<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="our_mission" name="our_mission" value="{{ $about->our_mission }}" required>
+                    <small id="emailHelp" class="form-text text-muted">Company Title</small>
+                </div>
+
+                     <div class="form-group">
+                  <label for="our_vision" class="col-form-label pt-0">Our vision<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="our_vision" name="our_vision" value="{{ $about->our_vision }}" required>
+                    <small id="emailHelp" class="form-text text-muted">Company Title</small>
+                </div>
 
         
  

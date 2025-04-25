@@ -17,8 +17,8 @@ class About extends Model
     protected $fillable = [
         'title',
         'photo',
-        'signature',
-        'description',
+        'our_mission',
+        'our_vision',
     ];
 
     // Function to upload and resize image
@@ -44,10 +44,9 @@ class About extends Model
     public static function newAbout($request)
     {
         $photoUrl = $request->file('photo') ? self::getImageUrl($request->file('photo'), "upload/about-photos/") : '';
-        $signatureUrl = $request->file('signature') ? self::getImageUrl($request->file('signature'), "upload/about-signatures/") : '';
 
         $about = new self();
-        self::saveBasicInfo($about, $request, $photoUrl, $signatureUrl);
+        self::saveBasicInfo($about, $request, $photoUrl);
     }
 
     // Update an existing About entry
@@ -64,25 +63,16 @@ class About extends Model
             $photoUrl = $about->photo;
         }
 
-        if ($request->file('signature')) {
-            if (file_exists($about->signature)) {
-                unlink($about->signature);
-            }
-            $signatureUrl = self::getImageUrl($request->file('signature'), "upload/about-signatures/");
-        } else {
-            $signatureUrl = $about->signature;
-        }
-
-        self::saveBasicInfo($about, $request, $photoUrl, $signatureUrl);
+        self::saveBasicInfo($about, $request, $photoUrl);
     }
 
     // Save or update basic info in the database
-    private static function saveBasicInfo($about, $request, $photoUrl, $signatureUrl)
+    private static function saveBasicInfo($about, $request, $photoUrl)
     {
         $about->title       = $request->title;
         $about->photo       = $photoUrl;
-        $about->signature   = $signatureUrl;
-        $about->description = $request->description;
+        $about->our_mission = $request->our_mission;
+        $about->our_vision = $request->our_vision;
         $about->save();
     }
 
@@ -91,9 +81,6 @@ class About extends Model
     {
         if (file_exists($about->photo)) {
             unlink($about->photo);
-        }
-        if (file_exists($about->signature)) {
-            unlink($about->signature);
         }
 
         $about->delete();

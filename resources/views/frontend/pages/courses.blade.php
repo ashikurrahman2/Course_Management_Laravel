@@ -18,7 +18,7 @@
               <h1 class="display-2 text-white">Courses</h1>
               <nav aria-label="breadcrumb mt-0">
                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Courses</li>
                  </ol>
               </nav>
@@ -248,11 +248,12 @@
                     </div>
                  </div>
               </div> <!-- Course Filter End -->
-              <div class="course-lists row gy-4 mt-3">
+              {{-- <div class="course-lists row gy-4 mt-3">
+               @foreach($courses as $course)
                  <div class="col-xl-6 col-md-6" data-aos="fade" data-aos-delay="200">
                     <div class="course-entry-3 card rounded-2 bg-white border">
                        <div class="card-media position-relative">
-                          <a href="single-course.html"><img class="card-img-top" src="{{ asset('/') }}frontend/assets/images/course6.jpg"
+                          <a href="single-course.html"><img class="card-img-top" src="{{ asset($course->course_image) }}"
                                 alt="Course"></a>
                           <a href="#" class="action-wishlist position-absolute text-white icon-xs rounded-circle"><img
                                 src="{{ asset('/') }}frontend/assets/images/icons/heart-fill.svg" alt="Wishlist"></a>
@@ -269,7 +270,7 @@
                                       class="feather-icon icon-bookmark"></i></a></span>
                           </div>
                           <h3 class="sub-title mb-0">
-                             <a href="single-course.html">Comprehensive Introduction to Programming</a>
+                             <a href="single-course.html">{{ $course->course_title }}</a>
                           </h3>
                           <div class="author-meta small d-flex pt-2 justify-content-between align-items-center mb-3">
                              <span>By: <a href="#" class="text-reset">Brad Traversy</a></span>
@@ -278,11 +279,15 @@
                           <div class="course-footer d-flex align-items-center justify-content-between pt-3">
                              <div class="price">$20.00<del>$35.00</del></div>
                              <a href="{{ route('details') }}">Enroll Now <i class="feather-icon icon-arrow-right"></i></a>
-                             {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now <i class="feather-icon icon-arrow-right"></i></a> --}}
+                           
+
+                       
+                          
                           </div>
                        </div>
                     </div> <!-- Course Entry End -->
                  </div>
+                 @endforeach
 
 
                  <!-- Pager Start -->
@@ -298,7 +303,65 @@
                        </a>
                     </div>
                  </div>
-              </div>
+              </div>  --}}
+
+
+              <div class="course-lists row gy-4 mt-3">
+               @foreach($courses as $course)
+                 <div class="col-xl-6 col-md-6" data-aos="fade" data-aos-delay="200">
+                   <div class="course-entry-3 card rounded-2 bg-white border">
+                     <div class="card-media position-relative">
+                       <a href="{{ route('course.details', $course->id) }}">
+                         <img class="card-img-top" src="{{ asset($course->course_image) }}" alt="Course">
+                       </a>
+                       <a href="#" class="action-wishlist position-absolute text-white icon-xs rounded-circle">
+                         <img src="{{ asset('frontend/assets/images/icons/heart-fill.svg') }}" alt="Wishlist">
+                       </a>
+                     </div>
+                     <div class="card-body">
+                       <div class="course-meta d-flex justify-content-between align-items-center mb-2">
+                         <div class="d-flex align-items-center">
+                           <img src="{{ asset('images/icons/star.png') }}" alt="">
+                           <strong>4.5</strong>
+                           <span class="rating-count d-none d-xl-block">(1k reviews)</span>
+                         </div>
+                         <span><i class="feather-icon icon-video me-2"></i>25 hours 22m</span>
+                         <span class="lead">
+                           <a href="#" class="text-reset">
+                             <i class="feather-icon icon-bookmark"></i>
+                           </a>
+                         </span>
+                       </div>
+                       <h3 class="sub-title mb-0">
+                         <a href="{{ route('course.details', $course->id) }}">{{ $course->course_title }}</a>
+                       </h3>
+                       <div class="author-meta small d-flex pt-2 justify-content-between align-items-center mb-3">
+                         <span>By: <a href="#" class="text-reset">{{ $course->instructor ?? 'Unknown' }}</a></span>
+                         <span>{{ $course->students ?? '0' }} Students</span>
+                       </div>
+                       <div class="course-footer d-flex align-items-center justify-content-between pt-3">
+                         <div class="price">${{ $course->discount_price ?? '20.00' }} 
+                           @if($course->original_price)
+                             <del>${{ $course->original_price }}</del>
+                           @endif
+                         </div>
+                         <a href="{{ route('course.details', $course->id) }}">
+                           Enroll Now <i class="feather-icon icon-arrow-right"></i>
+                         </a>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               @endforeach
+             
+               <!-- Pagination -->
+               <div class="col-lg-12" data-aos="fade-in" data-aos-delay="200">
+                 <div class="pager text-center mt-5">
+                   {{ $courses->links('pagination::bootstrap-5') }}
+                 </div>
+               </div>
+             </div>
+             
            </div>
         </div>
      </div>

@@ -37,8 +37,8 @@
                       <th>SL</th>
                         <th>Title</th>
                         <th>Image</th>
-                        <th>Signature</th>
-                        <th>Description</th>
+                        <th>Our mission</th>
+                        <th>Our vision</th>
                         <th>Action</th>
                     </tr>
                   </thead>
@@ -50,8 +50,8 @@
                         <th>SL</th>
                         <th>Title</th>
                         <th>Image</th>
-                        <th>Signature</th>
-                        <th>Description</th>
+                        <th>Our mission</th>
+                        <th>Our vision</th>
                         <th>Action</th>
                     </tr>
                   </tfoot>
@@ -77,30 +77,28 @@
               @csrf
               <div class="modal-body">
                 <div class="form-group">
-                  <label for="title" class="col-form-label pt-0">Title<sup class="text-size-20 top-1">*</sup></label>
-                    <input type="text" class="form-control" id="title" name="title" required>
+                  <label for="title" class="col-form-label pt-0">Title<sup class="text-size-20 top-1"></sup></label>
+                    <input type="text" class="form-control" id="title" name="title">
                     <small id="emailHelp" class="form-text text-muted">Company Title</small>
                 </div>
           
                 <div class="col-md-12">
-                  <label for="photo" class="col-form-label pt-0">Image<sup class="text-size-20 top-1">*</sup></label>
-                  <input type="file" class="dropify" data-height="200" name="photo"  required />
+                  <label for="photo" class="col-form-label pt-0">Image<sup class="text-size-20 top-1"></sup></label>
+                  <input type="file" class="dropify" data-height="200" name="photo" />
                   <small id="imageHelp" class="form-text text-muted">Maximum image size 5 MB</small>
               </div>
-
-              <div class="col-md-12">
-                <label for="signature" class="col-form-label pt-0">Signature<sup class="text-size-20 top-1">*</sup></label>
-                <input type="file" class="dropify" data-height="200" name="signature"  required />
-                <small id="imageHelp" class="form-text text-muted">Maximum signature photo size 2 MB</small>
-            </div>
-
              
-            <div class="col-md-12">
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-control textarea" name="description" id="summernote" rows="4" >{{old('description')}}</textarea> 
+             <div class="form-group">
+                  <label for="our_mission" class="col-form-label pt-0">Our mission<sup class="text-size-20 top-1">*</sup></label>
+                    <input type="text" class="form-control" id="our_mission" name="our_mission" />
+                    <small id="emailHelp" class="form-text text-muted">Company Title</small>
                 </div>
-            </div>
+
+                     <div class="form-group">
+                  <label for="our_vision" class="col-form-label pt-0">Our vision<sup class="text-size-20 top-1"></sup></label>
+                    <input type="text" class="form-control" id="our_vision" name="our_vision" />
+                    <small id="emailHelp" class="form-text text-muted">Company Title</small>
+                </div>
 
                   
            
@@ -141,8 +139,8 @@
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'title', name: 'title' },
                 { data: 'photo', name: 'photo' },
-                { data: 'signature', name: 'signature' },
-                { data: 'description', name: 'description' },
+                { data: 'our_mission', name: 'our_mission' },
+                { data: 'our_vision', name: 'our_vision' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
       });
@@ -152,20 +150,6 @@
         let id = $(this).data('id');
         $.get("about/" + id + "/edit", function(data) {
             $('.modal-body').html(data);
-        });
-    });
-
-  // Summernote script
-  $(document).ready(function() {
-        $('#summernote').summernote({
-            height: 200,
-            callbacks: {
-                onChange: function(contents, $editable) {
-                    // Strip HTML tags for plain text
-                    let textOnly = $('<div>').html(contents).text();
-                    $('#summernote').val(textOnly);
-                }
-            }
         });
     });
  
