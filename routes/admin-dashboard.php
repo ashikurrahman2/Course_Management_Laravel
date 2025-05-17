@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SellformController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -31,6 +32,7 @@ Route::prefix('admin')->middleware('auth:admin', 'role:super-admin|admin')->grou
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     //Website route
     Route::resource('about',AboutController::class);
+    Route::resource('banner', BannerController::class);
     Route::resource('courses', CourseController::class);
     Route::patch('sell-applications/{id}/approve', [SellformController::class, 'approve'])->name('sell.approve');
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');

@@ -1180,12 +1180,12 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string|null $banner_author
-     * @property string|null $banner_description
-     * @property string|null $banner_image
+     * @property string|null $sub_title
+     * @property string|null $title
      * @property int $id
      * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereBannerImage($value)
-     * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereBannerDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereTitle($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereSubTitle($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereBannerAuthor($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Banner>|Banner whereUpdatedAt($value)
