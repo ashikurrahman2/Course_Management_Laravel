@@ -9,7 +9,7 @@ use App\Models\About;
 // use App\Models\setting;
 // use App\Models\Agent;
 // use App\Models\Sell;
-// use App\Models\Partner;
+use App\Models\Banner;
 use App\Models\Course;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
@@ -29,8 +29,8 @@ class FrontendController extends Controller
     {
         $courses = Course::all();
           $abouts = About::all();
-        // $course = null;
-        return view('frontend.pages.index', compact('courses', 'abouts'));   
+          $banners = Banner::all();
+        return view('frontend.pages.index', compact('courses', 'abouts', 'banners'));   
     }
 
 

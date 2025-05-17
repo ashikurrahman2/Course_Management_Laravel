@@ -14,14 +14,15 @@
  <section class="banner-3 position-relative overflow-hidden">
     <div class="container">
       <div class="row align-items-center">
+        @foreach ($banners as $banner)
         <div class="col-xl-6 col-md-7 order-2 order-md-1">
           <div class="banner-content">
             <div class="banner-meta rounded-2 overflow-hidden text-dark fw-bold">
               <span><img src="{{ asset('/') }}frontend/assets/images/icons/open-book.svg" alt="" /></span>Learn Today – Lead Tomorrow
             </div>
-            <h1>Best Learning Future Starts From Here</h1>
+            <h1>{{ $banner->title }}</h1>
             <p class="lead-sm my-4">
-              Education is a key to success and freedom from all the forces. Learn today for a better tomorrow.
+              {{ $banner->sub_title }}
             </p>
             <div class="banner-cta d-lg-flex align-items-center pt-4">
               <a href="{{ route('course') }}" class="btn btn-primary shadow">Browse Our Courses</a>
@@ -43,6 +44,7 @@
             <img src="{{ asset('/') }}frontend/assets/images/banner-3.png" alt="Banner" class="img-fluid" />
           </figure>
         </div>
+        @endforeach
       </div>
     </div>
   </section>
