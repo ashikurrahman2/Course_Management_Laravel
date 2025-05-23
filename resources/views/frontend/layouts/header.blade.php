@@ -145,7 +145,7 @@
                     aria-expanded="false">Courses</a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('course') }}">All Courses</a></li>
-                    <li><a class="dropdown-item" href="courses-list.html">Courses List</a></li>
+                    <li><a class="dropdown-item" href="{{ route('courselist') }}">Courses List</a></li>
                     <li><a class="dropdown-item" href="lesson.html">Course Lesson</a></li>
                   </ul>
                 </li>

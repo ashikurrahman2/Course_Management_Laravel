@@ -5,13 +5,10 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\User\SellController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 // Website route
 Route::get('/', [FrontendController:: class, 'index'])->name('index');
-Route::get('/about', [FrontendController:: class, 'About'])->name('about');
  Route::get('/courses', [FrontendController:: class, 'allCourse'])->name('course');
+ Route::get('/courses-list', [FrontendController:: class, 'ListCourse'])->name('courselist');
 //  Route::get('/courses/category/{category}', [FrontendController::class, 'courseByCategory'])->name('courses.byCategory');
  Route::get('/course-details', [FrontendController:: class, 'CourseDetail'])->name('details');
  Route::get('/courses/category/{id}', [FrontendController::class, 'coursesByCategory'])->name('courses.byCategory');
