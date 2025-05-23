@@ -119,8 +119,8 @@
             @endauth
             {{-- <a href="{{ route('login') }}" class="btn d-none d-sm-block btn-primary shadow border-0 rounded-2">Enroll Now</a> --}}
             @guest
-    <a href="{{ route('login') }}" class="btn d-none d-sm-block btn-primary shadow border-0 rounded-2">Enroll Now</a>
-@endguest
+          <a href="{{ route('login') }}" class="btn d-none d-sm-block btn-primary shadow border-0 rounded-2">Enroll Now</a>
+          @endguest
           </div>
           <button class="navbar-toggler offcanvas-nav-btn" type="button">
             <span class="feather-icon icon-menu"></span>
