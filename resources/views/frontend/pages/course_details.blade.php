@@ -24,11 +24,10 @@
                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
                 </div>
                 <div class="card-body">
-                    {{-- <h2>Online Web Design & Development + Freelancing Course</h2> --}}
                     <h2>{{ $course->course_title }}</h2>
-                    <p class="text-muted">By <strong>MDB IT Institute</strong> | Category: Web Development</p>
-                    <h4 class="text-danger">ওয়েবসাইট তৈরি করতে চান?</h4>
-                    <p>এই কোর্সটি আপনাকে শেখাবে কিভাবে ওয়েব ডিজাইন এবং ডেভেলপমেন্ট করা যায়।</p>
+                    <p class="text-muted">By <strong>MDB IT Institute</strong> | Category: {{ $course->course_category }}</p>
+                    <h4 class="text-danger">{{ $course->course_content_title }}</h4>
+                    <p>{{ $course->course_content_answer }}</p>
                 </div>
             </div>
         </div>
