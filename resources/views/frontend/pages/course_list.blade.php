@@ -276,7 +276,7 @@
                             <a href="single-course.html">{{ $course->course_title }}</a>
                             </h3>
                             <div class="author-meta small d-flex pt-2 justify-content-between align-items-center mb-3">
-                            <span>By: <a href="#" class="text-reset">Brad Traversy</a></span>
+                            <span>By: <a href="#" class="text-reset">{{ $course->course_teacher }}</a></span>
                             <span>12,580 Students</span>
                             </div>
                             <div class="course-footer d-flex align-items-center justify-content-between pt-3">
@@ -289,7 +289,6 @@
                 @endforeach
             </div>
 
-                 <!-- Pager Start -->
                  <!-- Pagination -->
                <div class="col-lg-12" data-aos="fade-in" data-aos-delay="200">
                  <div class="pager text-center mt-5">

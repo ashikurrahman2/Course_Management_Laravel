@@ -27,27 +27,22 @@ class FrontendController extends Controller
         return view('frontend.pages.index', compact('courses', 'abouts', 'banners'));   
     }
 
-
-    public function CourseDetail(){
-  
-        return view('frontend.pages.course_details');
-    }
-
-
      public function allCourse(){
-        $courses = Course::paginate(10);
+        // $courses = Course::paginate(10);
+           $courses = Course::latest()->paginate(10);
         return view('frontend.pages.courses', compact('courses'));
+     }
+
+    //  Course Details
+          public function details($id)
+     {
+        $course = Course::findOrFail($id);
+        return view('frontend.pages.course_details', compact('course'));
      }
 
        public function ListCourse(){
         $courses = Course::paginate(8);
         return view('frontend.pages.course_list', compact('courses'));
      }
-
-    public function details($id)
-    {
-        $course = Course::findOrFail($id);
-        return view('frontend.pages.courses', compact('course'));
-    }
 
 }
