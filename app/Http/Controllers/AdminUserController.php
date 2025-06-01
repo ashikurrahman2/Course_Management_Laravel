@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use app\Models\Admin;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 // use Spatie\Permission\Models\Permission;
 
 class AdminUserController extends BaseController
@@ -131,5 +132,28 @@ class AdminUserController extends BaseController
         $this->toastr->success('User deleted successfully!');
         return redirect()->route('users.index');
     }
+
+    public function PassChange(){
+
+        return view('admin.pages.adminchange_password');
+    }
+
+    public function UpdatePassword(Request $request) {
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|min:6|confirmed',
+    ]);
+
+    $admin = Auth::user(); // assuming admin is logged in
+
+    if (!Hash::check($request->current_password, $admin->password)) {
+        return back()->with('error', 'Current password is incorrect.');
+    }
+
+    $admin->password = Hash::make($request->new_password);
+    $admin->save();
+
+    return back()->with('success', 'Password changed successfully.');
+}
 
 }

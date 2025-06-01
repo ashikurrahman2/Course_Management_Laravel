@@ -234,11 +234,11 @@
                                         </div>
                                     </li>
                                     <li class="list-group-item">
-                                        {{-- <a href="{{ route('admin.password.change') }}" class="dropdown-item">
+                                        <a href="{{ route('change.password') }}" class="dropdown-item">
                                             <span class="d-flex align-items-center"><i class="ph-duotone ph-key"></i>
                                                 <span>Change password</span>
                                             </span>
-                                        </a> --}}
+                                        </a>
                                         {{-- <a href="#" class="dropdown-item">
                                             <span class="d-flex align-items-center"><i class="ph-duotone ph-envelope-simple"></i>
                                                 <span>Recently mail</span>

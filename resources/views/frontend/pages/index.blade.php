@@ -105,7 +105,7 @@
       <div class="row row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-4">
         <!-- Category End -->
         @foreach ($courses as $course) 
-        <a href="{{ route('courses.byCategory', $course->id) }}" class="category-entry2 text-center" data-aos="fade" data-aos-delay="300">
+        <a href="{{ route('course', $course->id) }}" class="category-entry2 text-center" data-aos="fade" data-aos-delay="300">
           <span class="cat-icon shadow-sm rounded-3">
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
               <path

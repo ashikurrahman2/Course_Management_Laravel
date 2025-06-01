@@ -137,7 +137,7 @@
                               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flex5">
                               <label class="form-check-label" for="flex5">
                                  <div class="ratings">
-                                    <img src="images/icons/star.png" alt="Rating">
+                                    <img src="{{ asset('/') }}frontend/assets/images/icons/star.png" alt="Rating">
                                     <img src="images/icons/star-nil.png" alt="Rating">
                                     <img src="images/icons/star-nil.png" alt="Rating">
                                     <img src="images/icons/star-nil.png" alt="Rating">
@@ -229,7 +229,7 @@
             <div class="col-lg-8 order-1 order-lg-1">
                <div class="course-filters d-flex justify-content-between align-items-center">
                   <div class="result d-sm-flex align-items-center">
-                     <p class="m-0">Showing Result: 1-8 of 24 results</p>
+                    <p class="m-0">Showing Result: {{ $courses->firstItem() }}-{{ $courses->lastItem() }} of {{ $courses->total() }} results</p>
                   </div>
                   <div class="filter d-flex align-items-center">
                      <select id="product-select" name="shop-result">
@@ -241,9 +241,9 @@
                      </select>
 
                      <div class="d-none d-sm-flex ms-3">
-                        <a href="courses.html" class="icon border rounded-1 bg-primary me-3 text-white"><i
+                        <a href="{{ route('course') }}" class="icon border rounded-1 bg-primary me-3 text-white"><i
                               class="feather-icon icon-grid"></i></a>
-                        <a href="courses-list.html" class="icon border rounded-1 bg-secondary text-white"><i
+                        <a href="{{ route('courselist') }}" class="icon border rounded-1 bg-secondary text-white"><i
                               class="feather-icon icon-list"></i></a>
                      </div>
                   </div>

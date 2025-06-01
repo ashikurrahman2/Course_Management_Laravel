@@ -24,6 +24,11 @@ Route::prefix('admin')->middleware('auth:admin', 'role:super-admin|admin')->grou
     Route::put('roles/{id}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('roles.update-permissions');
 
     Route::resource('users',AdminUserController::class);
+ Route::get('change-password', [AdminUserController::class, 'PassChange'])->name('change.password');
+Route::post('update-password', [AdminUserController::class, 'UpdatePassword'])->name('update.password');
+Route::patch('update-password', [AdminUserController::class, 'UpdatePassword'])->name('update.password');
+
+
 
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('admin.dashboard');
     Route::get('logout', [LoginController::class, 'destroy'])->name('admin.logout');
