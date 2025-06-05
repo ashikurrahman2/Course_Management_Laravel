@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-
-@section('title', 'Land Category')
+@section('title', 'Category')
 @section('admin_content')
 <div class="pc-container">
     <div class="pc-content">
@@ -28,7 +27,7 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header table-card-header">
-              <h5>All Course category list here</h5>
+              <h5>All category list here</h5>
             </div>
             <div class="card-body">
               <div class="dt-responsive table-responsive">
@@ -37,7 +36,6 @@
                     <tr>
                         <th>SL</th>
                         <th>Category Name</th>
-                        <th>Category Image</th>
                         <th>Action</th>
                     </tr>
                   </thead>
@@ -48,7 +46,6 @@
                     <tr>
                         <th>SL</th>
                         <th>Category Name</th>
-                        <th>Category Image</th>
                         <th>Action</th>
                     </tr>
                   </tfoot>
@@ -70,7 +67,7 @@
                 <h5 class="modal-title h4" id="myLargeModalLabel">Add New Land</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('category.store')}}" method="post" id="add-form" enctype="multipart/form-data">
+            <form action="{{route('categories.store')}}" method="post" id="add-form">
               @csrf
               <div class="modal-body">
               
@@ -80,11 +77,7 @@
                       <small id="emailHelp" class="form-text text-muted">This is your land category</small>
                   </div>
 
-                  <div class="col-md-12">
-                    <label for="category_image" class="col-form-label pt-0">Category Image<sup class="text-size-20 top-1">*</sup></label>
-                    <input type="file" class="dropify" data-height="200" name="category_image"  required />
-                    <small id="imageHelp" class="form-text text-muted">Maximum image size 5 MB</small>
-                </div>
+              
            
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-primary"> <span class="d-none"> loading ......</span> Submit</button>
@@ -112,15 +105,14 @@
   <!-- Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script type="text/javascript">
-    $(function category(){
+    $(function categories(){
       var table=$('.ytable').DataTable({
         processing: true,
             serverSide: true,
-            ajax: "{{ route('category.index') }}",
+            ajax: "{{ route('categories.index') }}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'category_name', name: 'category_name' },
-                { data: 'category_image', name: 'category_image' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
       });
@@ -128,7 +120,7 @@
 // For Edit Category 
     $('body').on('click', '.edit', function() {
         let id = $(this).data('id');
-        $.get("category/" + id + "/edit", function(data) {
+        $.get("categories/" + id + "/edit", function(data) {
             $('.modal-body').html(data);
         });
     });

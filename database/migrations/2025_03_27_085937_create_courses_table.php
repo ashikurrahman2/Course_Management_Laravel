@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('course_title')->nullable();
             $table->string('course_image')->nullable();
             $table->string('course_video')->nullable();
-            $table->string('course_category')->nullable();
             $table->string('course_price')->nullable();
             $table->string('course_teacher')->nullable();
             $table->string('course_lavel')->nullable();

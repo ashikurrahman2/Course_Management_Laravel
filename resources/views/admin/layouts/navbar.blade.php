@@ -234,7 +234,7 @@
                                         </div>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="{{ route('change.password') }}" class="dropdown-item">
+                                        <a href="{{ route('password.change') }}" class="dropdown-item">
                                             <span class="d-flex align-items-center"><i class="ph-duotone ph-key"></i>
                                                 <span>Change password</span>
                                             </span>

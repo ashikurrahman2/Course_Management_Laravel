@@ -1,74 +1,102 @@
 @extends('layouts.admin')
 
-@section('title', 'Password Changes')
-
 @section('admin_content')
- <section class="pc-container">
-      <div class="pc-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-          <div class="page-block">
-            <div class="row align-items-center justify-content-between">
-              <div class="col-sm-auto">
-                <div class="page-header-title">
-                  <h5 class="mb-0">Password Changes</h5>
+
+    <div class="pc-container">
+        <div class="pc-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-sm-auto">
+                            <div class="page-header-title">
+                                <h5 class="mb-0">Admin Dashboard</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-auto">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('admin.dashboard') }}"><i
+                                            class="ph-duotone ph-house"></i></a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0)">Home</a></li>
+                                <li class="breadcrumb-item" aria-current="page">Password Change</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- [ breadcrumb ] end -->
+            <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="mb-0">Change Your Password</h5>
+                    </div>
+                    <div class="card-body">
+                      <form role="form" action="{{ route('password.update') }}" method="post">
+                          @csrf
+                          @method('PATCH') <!-- Spoofing PATCH method as expected -->
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="mb-3">
+                                      <label class="form-label">Current Password</label>
+                                      <div class="input-group">
+                                          <input id="old_password" type="password" name="old_password" class="form-control" placeholder="Old Password">
+                                          <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('#old_password')">
+                                              <i class="fa fa-eye"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-12">
+                                  <div class="mb-3">
+                                      <label class="form-label">New Password</label>
+                                      <div class="input-group">
+                                          <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="New Password">
+                                          <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('#password')">
+                                              <i class="fa fa-eye"></i>
+                                          </button>
+                                      </div>
+                                      @error('password')
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+                                  </div>
+                              </div>
+
+                              <div class="col-md-12">
+                                  <div class="mb-3">
+                                      <label class="form-label">Confirm Password</label>
+                                      <div class="input-group">
+                                          <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+                                          <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('#password_confirmation')">
+                                              <i class="fa fa-eye"></i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-12 text-end">
+                                  <button class="btn btn-primary">Update Password</button>
+                              </div>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-sm-auto">
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a
-                      href="http://html.phoenixcoded.net/flatable/navigation/index.html"
-                      ><i class="ph-duotone ph-house"></i
-                    ></a>
-                  </li>
-                  <li class="breadcrumb-item">
-                    <a href="javascript: void(0)">Forms</a>
-                  </li>
-                  <li class="breadcrumb-item" aria-current="page">
-                    Form Option
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
-        <!-- [ breadcrumb ] end --><!-- [ Main Content ] start -->
-  <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6 mt-5">
-      <!-- Basic Inputs -->
-      <div class="card">
-        <div class="card-header"><h5>Change password form</h5></div>
-        <div class="card-body">
-            <form action="{{ route('update.password') }}" method="POST">
-            @csrf
-            @method('PATCH')
-
-            <div class="form-group">
-                <label class="form-label">Current Password</label>
-                <input type="password" name="current_password" class="form-control" placeholder="Enter current password">
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">New Password</label>
-                <input type="password" name="new_password" class="form-control" placeholder="Enter new password">
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Change Password</button>
-        </form>
-
-
-        </div>
-        {{-- <div class="card-footer pt-0">
-          <button class="btn btn-primary me-2">Submit</button>
-        </div> --}}
-      </div>
     </div>
-  </div>
-</div>
-<!-- [ Main Content ] end -->
-      </div>
-    </section>
+{{-- to view password  --}}
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            const field = document.querySelector(fieldId);
+            if (field.type === "password") {
+                field.type = "text";
+            } else {
+                field.type = "password";
+            }
+        }
+    </script>
 @endsection

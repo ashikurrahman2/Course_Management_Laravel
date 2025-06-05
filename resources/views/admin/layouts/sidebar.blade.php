@@ -85,20 +85,20 @@
                     </ul>
                 </li>
 
-                {{-- <li class="pc-item pc-hasmenu">
+                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-settings"></i></span>
-                            <span class="pc-mtext">Sell form</span>
+                            <span class="pc-mtext">Category</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
 
                     <ul class="pc-submenu">
                         <li class="pc-item"><a class="pc-link"
-                            href="{{route('sells.index')}}">sell list</a>
+                            href="{{route('categories.index')}}">category list</a>
                         </li>
                   
                     </ul>
-                </li> --}}
+                </li> 
 {{--                 
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">

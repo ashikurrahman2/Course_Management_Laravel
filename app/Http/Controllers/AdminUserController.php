@@ -133,27 +133,31 @@ class AdminUserController extends BaseController
         return redirect()->route('users.index');
     }
 
-    public function PassChange(){
+public function passwordChange() {
+    return view('admin.pages.adminchange_password');
+}
 
-        return view('admin.pages.adminchange_password');
-    }
-
-    public function UpdatePassword(Request $request) {
+// Handle password update
+public function passwordUpdate(Request $request) {
     $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|min:6|confirmed',
+        'old_password' => 'required',
+        'password' => 'required|min:8|confirmed',
     ]);
 
-    $admin = Auth::user(); // assuming admin is logged in
+    $current_password = Auth::user()->password;
 
-    if (!Hash::check($request->current_password, $admin->password)) {
-        return back()->with('error', 'Current password is incorrect.');
+    if (Hash::check($request->old_password, $current_password)) {
+        $user = Admin::findOrFail(Auth::id());
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Auth::logout();
+        $this->toastr->success('Your password has been changed!');
+        return redirect()->route('admin.login');
+    } else {
+        $this->toastr->error('Old Password does not match!');
+        return redirect()->back();
     }
-
-    $admin->password = Hash::make($request->new_password);
-    $admin->save();
-
-    return back()->with('success', 'Password changed successfully.');
 }
 
 }

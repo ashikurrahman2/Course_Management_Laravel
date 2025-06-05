@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SellformController;
 use App\Http\Controllers\PermissionController;
@@ -24,9 +25,14 @@ Route::prefix('admin')->middleware('auth:admin', 'role:super-admin|admin')->grou
     Route::put('roles/{id}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('roles.update-permissions');
 
     Route::resource('users',AdminUserController::class);
- Route::get('change-password', [AdminUserController::class, 'PassChange'])->name('change.password');
-Route::post('update-password', [AdminUserController::class, 'UpdatePassword'])->name('update.password');
-Route::patch('update-password', [AdminUserController::class, 'UpdatePassword'])->name('update.password');
+//  Route::get('change-password', [AdminUserController::class, 'PassChange'])->name('change.password');
+//   Route::get('/password/change', [AdminUserController::class, 'passwordChange'])->name('password.change');
+        // Route::post('/password/update', [AdminUserController::class, 'passwordUpdate'])->name('password.update');
+        // Route::patch('/password/update', [AdminUserController::class, 'passwordUpdate'])->name('password.update');
+        Route::get('/password/change', [AdminUserController::class, 'passwordChange'])->name('password.change');
+
+// Expect PATCH method for update
+Route::patch('/password/update', [AdminUserController::class, 'passwordUpdate'])->name('password.update');
 
 
 
@@ -39,6 +45,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::resource('about',AboutController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('courses', CourseController::class);
+    Route::resource('categories', CategoryController::class);
     Route::patch('sell-applications/{id}/approve', [SellformController::class, 'approve'])->name('sell.approve');
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');
    
