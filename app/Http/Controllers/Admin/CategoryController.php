@@ -23,8 +23,8 @@ class CategoryController extends Controller
        public function index(Request $request)
     {
         if ($request->ajax()) {
-            $category= Category::all();
-            return DataTables::of($category)
+            $categories= Category::all();
+            return DataTables::of($categories)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $actionbtn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm me-1 edit" data-id="' . $row->id . '" data-bs-toggle="modal" data-bs-target="#editModal">
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             ->make(true);
     }
 
-    return view('admin.pages.category.index');
+    return view('admin.pages.category.index',compact('categories'));
 
 }
 
@@ -75,7 +75,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $categories)
     {
         //
     }
@@ -85,8 +85,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        return view('admin.pages.category.edit', compact('category'));
+        $categories = Category::findOrFail($id);
+        return view('admin.pages.category.edit', compact('categories'));
     }
 
     /**
@@ -113,8 +113,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $categories = Category::findOrFail($id);
+        $categories->delete();
         $this->toastr->success('Category Deleted successfully!');
         return back();
     }

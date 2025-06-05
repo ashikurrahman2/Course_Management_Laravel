@@ -14,12 +14,9 @@
                 <div class="d-flex align-items-center">
                   <span class="ms-2"><img src="{{ asset('/') }}frontend/assets/images/icons/list.svg" alt="List" /></span>
                   <select name="category-search" id="select-category">
-                    <option value="1">Lifestyle & Beauty</option>
-                    <option value="2">Finance & Accounting</option>
-                    <option value="3">Health & Fitness</option>
-                    <option value="4">Digital Marketing</option>
-                    <option value="5">Office Productivity</option>
-                    <option value="6">Design</option>
+                  @foreach ($categories as $category)
+                  <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                @endforeach
                   </select>
                 </div>
                 <div class="search-group position-relative">

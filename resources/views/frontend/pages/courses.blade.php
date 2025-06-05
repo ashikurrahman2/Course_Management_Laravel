@@ -37,28 +37,23 @@
                  <div class="widget">
                     <h3 class="widget-title">Categories</h3>
                     <div class="widget-inner">
-                       <ul>
-                          <li>
-                             <input id="art" class="checkbox-custom" name="checkbox-3" type="checkbox">
-                             <label for="art" class="checkbox-custom-label">Art & Design</label>
-                             <span class="count">(12)</span>
-                          </li>
-                          <li>
-                             <input id="dev" class="checkbox-custom" name="checkbox-3" type="checkbox">
-                             <label for="dev" class="checkbox-custom-label">Technology</label>
-                             <span class="count">(10)</span>
-                          </li>
-                          <li>
-                             <input id="info" class="checkbox-custom" name="checkbox-3" type="checkbox">
-                             <label for="info" class="checkbox-custom-label">Development</label>
-                             <span class="count">(09)</span>
-                          </li>
-                          <li>
-                             <input id="checkbox-3" class="checkbox-custom" name="checkbox-3" type="checkbox">
-                             <label for="checkbox-3" class="checkbox-custom-label">Development</label>
-                             <span class="count">(12)</span>
-                          </li>
-                       </ul>
+                     <ul>
+                        @foreach($categories as $category)
+                           <li>
+                                 <input id="cat-{{ $category->id }}"
+                                       class="checkbox-custom category-filter"
+                                       name="categories[]"
+                                       type="checkbox"
+                                       value="{{ $category->id }}">
+
+                                 <label for="cat-{{ $category->id }}" class="checkbox-custom-label">
+                                    {{ $category->category_name }}
+                                 </label>
+
+                                 <span class="count">({{ $category->courses_count }})</span>
+                           </li>
+                        @endforeach
+                     </ul>
                     </div>
                  </div> <!-- Widget End -->
                  <div class="widget">
@@ -311,4 +306,28 @@
      </div>
   </section>
   <!-- Courses Section End -->
+
+
+  <script>
+document.querySelectorAll('.category-filter').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        let selected = [];
+        document.querySelectorAll('.category-filter:checked').forEach(cb => {
+            selected.push(cb.value);
+        });
+
+        fetch(`/filter-courses?categories[]=` + selected.join('&categories[]='), {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            // এখানে AJAX response দিয়ে কোর্স শো করবেন
+            console.log(data); // বা DOM update
+        });
+    });
+});
+</script>
+
 @endsection

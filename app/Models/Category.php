@@ -12,7 +12,7 @@ class Category extends Model
 
     // Fillable fields to allow mass assignment
        protected $fillable = [
-        'category_id', 'category_name',];
+         'category_name',];
 
         public static function newCategories($request)
         {
@@ -41,4 +41,12 @@ class Category extends Model
         {
             $category->delete();
         }
+
+    public function courses()
+{
+    return $this->hasMany(Course::class, 'cat_id'); // ✅ 'cat_id' foreign key
+}
+
+
+
 }

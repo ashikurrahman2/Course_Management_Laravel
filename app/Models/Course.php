@@ -14,9 +14,9 @@ class Course extends Model
     private static $image, $imageName, $directory, $imageUrl;
         // Fillable fields to allow mass assignment
         protected $fillable = [
-            'course_title', 'course_category', 'course_price', 'course_teacher',
+            'course_title', 'course_price', 'course_teacher',
             'course_lavel', 'course_duration', 'course_learn', 'course_content_title',
-            'course_content_answer', 'course_content_requirement', 'course_audience', 'course_image', 'category_id'
+            'course_content_answer', 'course_content_requirement', 'category_name', 'course_audience','cat_id', 'course_image', 'category_id'
         ];
         
     // Function to upload and resize image
@@ -71,8 +71,8 @@ class Course extends Model
         private static function saveBasicInfo($courses, $request, $imageUrl)
         {
             $courses->course_image                         = $imageUrl;
+            $courses->category_name                                = $request->category_name;
             $courses->course_title                         = $request->course_title;
-            $courses->course_category                      = $request->course_category;
             $courses->course_price                         = $request->course_price;
             $courses->course_teacher                       = $request->course_teacher;
             $courses->course_lavel                         = $request->course_lavel;
@@ -95,8 +95,10 @@ class Course extends Model
             $courses->delete();
         }
 
-        public function courses()
-        {
-            return $this->belongsTo(courses::class, 'category_id');
-        }
+ public function category()
+{
+    return $this->belongsTo(Category::class, 'cat_id'); // ✅ belongsTo ঠিক আছে
+}
+
+
 }

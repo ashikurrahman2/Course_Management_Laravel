@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Category;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -20,37 +21,43 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        if ($request->ajax()) {
-            $courses = Course::all();
-            return DataTables::of($courses)
-                ->addIndexColumn() 
-                ->addColumn('course_image', function ($row) {
-                    if ($row->course_image) {
-                        return '<img src="' . asset($row->course_image) . '" alt="news image" class="img-fluid center-image" style="max-width: 40px; display: block; margin: 0 auto;">';
-                    } else {
-                        return 'No logo uploaded';
-                    }
-                })
-                ->addColumn('action', function ($row) {
-                    $actionbtn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm me-1 edit" data-id="' . $row->id . '" data-bs-toggle="modal" data-bs-target="#editModal">
-                                    <i class="fa fa-edit"></i>
-                                  </a>
-                                    <button class="btn btn-danger btn-sm delete" data-id="' . $row->id . '">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                <form id="delete-form-' . $row->id . '" action="' . route('courses.destroy', $row->id) . '" method="POST" style="display: none;">
-                                    ' . csrf_field() . '
-                                    ' . method_field('DELETE') . '
-                                </form>';
-                    return $actionbtn;
-                })
-                ->rawColumns(['course_image', 'action'])
-                ->make(true);
-        }
-        return view('admin.pages.courses.index');
+public function index(Request $request)
+{
+    $categories = Category::all(); // সব সময়ই ক্যাটাগরি লাগবে
+
+    if ($request->ajax()) {
+        $courses = Course::all();
+
+        return DataTables::of($courses)
+            ->addIndexColumn() 
+            ->addColumn('course_image', function ($row) {
+                if ($row->course_image) {
+                    return '<img src="' . asset($row->course_image) . '" alt="news image" class="img-fluid center-image" style="max-width: 40px; display: block; margin: 0 auto;">';
+                } else {
+                    return 'No logo uploaded';
+                }
+            })
+            ->addColumn('action', function ($row) {
+                $actionbtn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm me-1 edit" data-id="' . $row->id . '" data-bs-toggle="modal" data-bs-target="#editModal">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <button class="btn btn-danger btn-sm delete" data-id="' . $row->id . '">
+                                  <i class="fa fa-trash"></i>
+                              </button>
+                              <form id="delete-form-' . $row->id . '" action="' . route('courses.destroy', $row->id) . '" method="POST" style="display: none;">
+                                  ' . csrf_field() . '
+                                  ' . method_field('DELETE') . '
+                              </form>';
+                return $actionbtn;
+            })
+            ->rawColumns(['course_image', 'action'])
+            ->make(true);
     }
+
+    // Non-AJAX call — শুধু ক্যাটাগরি ভিউতে পাঠান
+    return view('admin.pages.courses.index', compact('categories'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,8 +74,9 @@ class CourseController extends Controller
     {
         $request->validate([
 
+            
             'course_title' => 'required|string|max:500',
-            'course_category' => 'required|string|max:500',
+            'category_name' => 'required|string|max:500',
             'course_price' => 'required|string|max:500',
             'course_teacher' => 'required|string|max:500',
             'course_lavel' => 'required|string|max:500',
@@ -119,8 +127,9 @@ class CourseController extends Controller
     {
         // Validate the incoming request
         $request->validate([
+       
             'course_title' => 'required|string|max:500',
-            'course_category' => 'required|string|max:500',
+            'category_name' => 'required|string|max:500',
             'course_price' => 'required|string|max:500',
             'course_teacher' => 'required|string|max:500',
             'course_lavel' => 'required|string|max:500',

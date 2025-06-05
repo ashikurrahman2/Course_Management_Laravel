@@ -38,8 +38,8 @@
                         <th>SL</th>
                         <th>Course Title</th>
                         <th>Course Image</th>
-                        <th>Course Category</th>
                         <th>Course Price</th>
+                        <th>Course Category</th>
                         <th>Course Teacher</th>
                         <th>Course Lavel</th>
                         <th>Course Duration</th>
@@ -59,8 +59,8 @@
                         <th>SL</th>
                         <th>Course Title</th>
                         <th>Course Image</th>
-                        <th>Course Category</th>
                         <th>Course Price</th>
+                         <th>Course Category</th>
                         <th>Course Teacher</th>
                         <th>Course Lavel</th>
                         <th>Course Duration</th>
@@ -105,19 +105,28 @@
                     <input type="file" class="dropify" data-height="200" name="course_image"  required />
                     <small id="imageHelp" class="form-text text-muted">Maximum image size 2 MB</small>
                 </div>
-
-                <div class="form-group">
-                  <label for="course_category" class="col-form-label pt-0">Course Category<sup class="text-size-20 top-1">*</sup></label>
-                    <input type="text" class="form-control" id="course_category" name="course_category" required>
-                    <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
-                </div>
-
                 
                 <div class="form-group">
                   <label for="course_price" class="col-form-label pt-0">Course Price<sup class="text-size-20 top-1">*</sup></label>
                     <input type="text" class="form-control" id="course_price" name="course_price" required>
                     <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
                 </div>
+
+                <div class="form-group">
+    <label for="cat_id" class="col-form-label pt-0">
+       Course Category <sup class="text-size-20 top-1">*</sup>
+    </label>
+    
+    <select class="form-control" id="category_name" name="category_name" required>
+        <option value="" disabled selected>-- Select Category --</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+        @endforeach
+    </select>
+
+    <small class="form-text text-muted">This is your course category</small>
+</div>
+
 
                 <div class="form-group">
                   <label for="course_teacher" class="col-form-label pt-0">Course Teacher<sup class="text-size-20 top-1">*</sup></label>
@@ -206,8 +215,8 @@
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'course_title', name: 'course_title' },
                 { data: 'course_image', name: 'course_image' },
-                { data: 'course_category', name: 'course_category' },
                 { data: 'course_price', name: 'course_price' },
+                { data: 'category_name', name: 'category_name' },
                 { data: 'course_teacher', name: 'course_teacher' },
                 { data: 'course_lavel', name: 'course_lavel' },
                 { data: 'course_duration', name: 'course_duration' },

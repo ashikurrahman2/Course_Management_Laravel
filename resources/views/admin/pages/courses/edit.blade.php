@@ -24,13 +24,6 @@
             <input type="file" class="dropify" data-height="200" name="course_image" value="{{ $courses->course_image }}" />
             <small id="imageHelp" class="form-text text-muted">Maximum image size 2 MB</small>
         </div>
-
-        <div class="form-group">
-          <label for="course_category" class="col-form-label pt-0">Course Category<sup class="text-size-20 top-1">*</sup></label>
-            <input type="text" class="form-control" id="course_category" name="course_category" value= "{{ $courses->course_category }}" required>
-            <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
-        </div>
-
         
         <div class="form-group">
           <label for="course_price" class="col-form-label pt-0">Course Price<sup class="text-size-20 top-1">*</sup></label>

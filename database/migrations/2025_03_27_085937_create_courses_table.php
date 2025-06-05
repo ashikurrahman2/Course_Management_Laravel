@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('course_content_answer')->nullable();
             $table->string('course_content_requirement')->nullable();
             $table->string('course_audience')->nullable();
+            $table->unsignedBigInteger('cat_id');
+            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
