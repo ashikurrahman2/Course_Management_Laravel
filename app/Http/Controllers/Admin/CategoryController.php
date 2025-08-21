@@ -11,7 +11,7 @@ use Yajra\DataTables\DataTables;
 class CategoryController extends Controller
 {
 
-     protected $toastr;
+    protected $toastr;
 
     public function __construct(ToastrInterface $toastr)
     {
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             ->make(true);
     }
 
-    return view('admin.pages.category.index',compact('categories'));
+    return view('admin.pages.category.index');
 
 }
 
@@ -64,6 +64,7 @@ class CategoryController extends Controller
             $request->validate([
 
             'category_name' => 'required|string|max:500',
+            'icon' => 'required|string|max:500',
         ]);
 
           // Fetch data from database 
@@ -94,10 +95,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-         // Validation process
+            // Validation process
             $request->validate([
 
             'category_name' => 'required|string|max:500',
+            'icon' => 'required|string|max:500',
         ]);
 
            // Fetch Data 

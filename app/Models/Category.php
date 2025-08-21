@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -12,41 +13,29 @@ class Category extends Model
 
     // Fillable fields to allow mass assignment
        protected $fillable = [
-         'category_name',];
+         'category_name', 'icon', 'category_slug'];
 
         public static function newCategories($request)
-        {
-            $category = new self();
-            self::saveBasicInfo($category, $request);
-        }
-    
-      // Static method to handle category updates
-      public static function updateCategories($request, $id)
-      {
-          // Find the category by ID
-          $category = self::findOrFail($id);
-  
-          // Save the updated data
-          self::saveBasicInfo($category, $request);
-      }
-  
-      // Private method to save basic info
-      private static function saveBasicInfo($category, $request)
-      {
-          $category->category_name = $request->category_name;
-          $category->save();
-      }
-    
-        public static function deleteCategory($category)
-        {
-            $category->delete();
-        }
+    {
+        $category = new self();
+        self::saveBasicInfo($category, $request);
+    }
 
-    public function courses()
-{
-    return $this->hasMany(Course::class, 'cat_id'); // ✅ 'cat_id' foreign key
-}
+    public static function updateCategories($request, $category)
+    {
+        self::saveBasicInfo($category, $request);
+    }
 
+    private static function saveBasicInfo($category, $request)
+    {
+        $category->category_name  = $request->category_name;
+        $category->icon  = $request->icon;
+        $category->category_slug  = Str::slug($request->category_name, '-');
+        $category->save();
+    }
 
-
+    public static function deleteCategory($category)
+    {
+        $category->delete();
+    }
 }

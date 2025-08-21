@@ -244,7 +244,7 @@
                  </div>
               </div> 
               <!-- Course Filter End -->
-             
+           
               <div class="course-lists row gy-4 mt-3">
                @foreach($courses as $course)
                  <div class="col-xl-6 col-md-6" data-aos="fade" data-aos-delay="200">
@@ -300,6 +300,15 @@
                  </div>
                </div>
              </div>
+
+
+
+
+
+
+
+
+
              
            </div>
         </div>

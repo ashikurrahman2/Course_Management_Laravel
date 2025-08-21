@@ -71,9 +71,11 @@
     <div class="footer-bottom bg-blue py-3 mt-5">
       <div class="copy-right text-center">
         <p class="m-0">
-          © 2025 Design by <a class="text-secondary" href="https://www.theme-village.com/">Themevillage</a>. All
-          Rights Reserved.
-        </p>
+        © {{ date('Y') }} Design by 
+        <a class="text-secondary" href="https://www.theme-village.com/">Themevillage</a>. 
+        All Rights Reserved.
+    </p>
+
       </div>
     </div>
   </footer>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SellformController;
@@ -45,6 +46,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::resource('about',AboutController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('courses', CourseController::class);
+    Route::resource('courses-details', CourseDetailController::class);
     Route::resource('categories', CategoryController::class);
     Route::patch('sell-applications/{id}/approve', [SellformController::class, 'approve'])->name('sell.approve');
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');

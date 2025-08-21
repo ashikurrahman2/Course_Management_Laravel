@@ -10,10 +10,11 @@
             <div class="dash-cover-bg rounded-3" style="background-image: url('{{ asset('/') }}frontend/assets/images/student_bg.jpg');"></div>
             <div class="dash-cover-info d-sm-flex justify-content-between align-items-center">
                <div class="ava-wrap d-flex align-items-center">
-                  <div class="avatar me-3 rounded-circle"><img width="150" src="{{ asset('/') }}frontend/assets/images/avatar.png"
+                  <div class="avatar me-3 rounded-circle">
+                     <img width="150" src="{{ asset('/') }}frontend/assets/images/avatar.png"
                         class="rounded-circle" alt="Avatar"></div>
                   <div class="ava-info">
-                     <h4 class="display-5 text-white mb-0">Maria Carey Mc.</h4>
+                     <h4 class="display-5 text-white mb-0">{{ auth()->user()->name }}</h4>
                      <div class="ava-meta text-white mt-1">
                         <span><i class="feather-icon icon-book"></i> 6 Courses Enrolled </span>
                         <span><i class="feather-icon icon-award"></i>3 cerficates</span>

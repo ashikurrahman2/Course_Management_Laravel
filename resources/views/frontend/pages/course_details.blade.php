@@ -3,144 +3,629 @@
 @section('title', 'Course Details')
 
 @section('content')
+	<!-- Promo Section Start -->
+	<section class="promo-sec2">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7">
+					<nav aria-label="breadcrumb mt-0">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+                                <a href="/">Home</a>
+                            </li>
+							<li class="breadcrumb-item active" aria-current="page">Single Course</li>
+						</ol>
+					</nav>
+					<div class="course-intro">
+						<h1>Front End Development from Beginner to Advance</h1>
+						<p class="lead">Learn Front End, javascript online and supercharge your web design with this
+							Javascript for beginners training
+							course.</p>
 
-<style>
-         body {
-            background-color: #f8f9fa;
-        }
-        .course-sidebar {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-</style>
-<div class="container mt-5">
-    <div class="row">
-        <!-- Left Side: Course Video & Details -->
-        <div class="col-md-8">
-            <div class="card">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                </div>
-                <div class="card-body">
-                    <h2>{{ $course->course_title }}</h2>
-                    <p class="text-muted">By <strong>MDB IT Institute</strong> | Category: {{ $course->course_category }}</p>
-                    <h4 class="text-danger">{{ $course->course_content_title }}</h4>
-                    <p>{{ $course->course_content_answer }}</p>
-                </div>
-            </div>
-        </div>
+						<div class="d-flex align-items-center mb-3">
+							<span><i class="feather-icon icon-user"></i> <a class="text-reset" href="#review">
+									John Doe
+								</a></span>
+							<span><i class="feather-icon icon-award"></i><a class="text-reset"
+									href="#review">
+									<img src="images/icons/ratings.svg" alt="ratings">
+									(4.8)
+								</a></span>
+								<span class="enrollment"><i class="feather-icon icon-users"></i> Students: 2392 </span>
+								<span class="last-update"><i class="feather-icon icon-calendar"></i> Updated: 24 Aug,
+									2024</span>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Promo Section End -->
 
-        <!-- Right Side: Course Info -->
-        <div class="col-md-4">
-            <div class="card p-3">
-                <h3 class="text-primary">৳ 20,000</h3>
-                <button class="btn btn-primary w-100">Add to cart</button>
-                <hr>
-                <ul class="list-unstyled">
-                    <li><strong>Level:</strong> Intermediate</li>
-                    <li><strong>Total Enrolled:</strong> 3</li>
-                    <li><strong>Duration:</strong> 84 hours</li>
-                    <li><strong>Last Updated:</strong> November 25, 2024</li>
-                </ul>
-            </div>
-            <div class="card mt-3 p-3">
-                <h5>Course by</h5>
-                <p><strong>MDB IT Institute</strong></p>
-                <small>Graphic Design | Web Development | Digital Marketing</small>
-            </div>
-        </div>
-    </div>
-</div>
+	<!-- Course Details Start -->
+	<section class="course-details-sec">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<article class="course-details pe-lg-4">
+						<img class="rounded-3 img-fluid" src="images/course-details.jpg" alt="Course">
+						<div class="course-details-meta d-sm-flex align-items-center justify-content-between">
+							<div class="d-flex">
+								<div class="avatar">
+									<img width="56" class="rounded-circle" src="images/avatar2.png" alt="avatar">
+								</div>
+								<div class="avatar-info ms-3">
+									<h5 class="display-5 fw-bold m-0">Charlotte Wilson</h5>
+									<span class="mute-alt">Technology Facilitator</span>
+								</div>
+							</div>
+							<div class="course-reviews">
+								<h6>Reviews</h6>
+								<div class="d-flex align-items-center">
+									<div class="ratings">
+										<img src="images/icons/star.png" alt="">
+										<img src="images/icons/star.png" alt="">
+										<img src="images/icons/star.png" alt="">
+										<img src="images/icons/star.png" alt="">
+										<img src="images/icons/star.png" alt="">
+									</div>
+									<span>(03 Reviews)</span>
+								</div>
+							</div>
+							<div class="course-cat">
+								<h6>Categories</h6>
+								<span class="mute-alt">UI/UX Design</span>
+							</div>
+						</div>
+						<!-- Course Tabs Start -->
 
-<div class="container mt-4">
-    <div class="row">
-        <!-- Course Content -->
-        <div class="col-md-8">
-            <h3>What Will You Learn?</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <ul>
-                        <li>HTML</li>
-                        <li>JavaScript</li>
-                        <li>Bootstrap 5</li>
-                        <li>WordPress Theme Development</li>
-                        <li>Ecommerce Project</li>
-                        <li>Freelancing</li>
-                        <li>Upwork</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul>
-                        <li>CSS</li>
-                        <li>PHP</li>
-                        <li>PHP for WordPress Development</li>
-                        <li>Admin Panel</li>
-                        <li>SQL Database</li>
-                        <li>Fiverr</li>
-                        <li>All About WordPress</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Course Content</h3>
-            <div class="accordion" id="courseAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#module1">
-                            Orientation Class
-                        </button>
-                    </h2>
-                    <div id="module1" class="accordion-collapse collapse show" data-bs-parent="#courseAccordion">
-                        <div class="accordion-body">
-                            <span class="text-danger">Online Orientation</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#module2">
-                            HTML 5
-                        </button>
-                    </h2>
-                    <div id="module2" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
-                        <div class="accordion-body">
-                            Introduction to HTML 5
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+						<div class="course-nav">
+							<nav id="navbar-example2" class="bg-white sticky-top">
+								<ul class="nav nav-pills">
+									<li class="nav-item">
+										<a class="nav-link" href="#overview"><i class="feather-icon icon-bookmark"></i>
+											Overview</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#course"><i class="feather-icon icon-box"></i> Curriculum</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#instructor"><i class="feather-icon icon-user"></i>
+											Instructor</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#review"><i class="feather-icon icon-star"></i>Review</a>
+									</li>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Requirements</h3>
-                <ul>
-                    <li>HTML</li>
-                    <li>JavaScript</li>
-                    <li>Bootstrap 5</li>
-                    <li>WordPress Theme Development</li>
-                    <li>Ecommerce Project</li>
-                    <li>Freelancing</li>
-                    <li>Upwork</li>
-                </ul>
-            </div>
-    
-            <div class="col-md-6">   
-                <h3>Audience</h3>
-                <ul>
-                    <li>HTML</li>
-                    <li>JavaScript</li>
-                    <li>Bootstrap 5</li>
-                    <li>WordPress Theme Development</li>
-                    <li>Ecommerce Project</li>
-                    <li>Freelancing</li>
-                    <li>Upwork</li>
-                </ul>
-            </div>
-        </div>
-    </div>  
-</div>
+								</ul>
+							</nav>
+							<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0"
+								class="scrollspy-example" tabindex="0">
+								<div class="inner-sec" id="overview">
+									<h2 class="display-4 fw-bold">
+										Course Overview
+									</h2>
+									<p>Acknowledge any challenges or concerns related to implementing in education. Discuss
+										possible solutions or
+										ways to address these challenges, emphasizing the importance of perseverance in adopting
+										innovative educational
+										approaches. Speculate on the future implications and developments related to your chosen
+										topic. Consider how it might
+										evolve and continue to shape the education landscape</p>
+									<ul>
+										<li>Energy-efficient designs are also gaining momentum</li>
+										<li>The construction industry is increasingly leveraging smart technologies</li>
+										<li>Embracing these trends not only aligns with global environmental goals</li>
+									</ul>
+									<h3 class="display-5 my-4">Fundamentals of UI/UX Design</h3>
+									<p>Acknowledge any challenges or concerns related to implementing in education. Discuss
+										possible solutions or
+										ways to address these challenges, emphasizing the importance of perseverance in adopting
+										innovative educational
+										approaches. Speculate on the future implications and developments related to your chosen
+										topic. Consider how it might
+										evolve and continue to shape the education landscape</p>
+								</div>
+								<div class="inner-sec" id="course">
+									<h2 class="display-4 fw-bold">
+										Course Content
+									</h2>
+									<div class="accordion-2" id="accordion-course">
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="headingOne">
+												<button class="accordion-button" type="button" data-bs-toggle="collapse"
+													data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+													Understanding UI and UX Design <sub class="ms-2">/ 2 hours 30min</sub>
+												</button>
+											</h2>
+											<div id="collapseOne" class="accordion-collapse collapse show"
+												aria-labelledby="headingOne" data-bs-parent="#accordion-course">
+												<div class="accordion-body">
+													<div class="lesson-items">
+														<ul class="list-unstyled">
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		51.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		User Research
+																	</span>
+																	<span>
+																		3.32
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		2.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="heading2">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+													data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+													Roles in UI/UX Design <sub class="ms-2">/ 3 hours 10min</sub>
+												</button>
+											</h2>
+											<div id="collapse2" class="accordion-collapse collapse " aria-labelledby="heading2"
+												data-bs-parent="#accordion-course">
+												<div class="accordion-body">
+													<div class="lesson-items">
+														<ul class="list-unstyled">
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		User Research
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="heading3">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+													data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+													Principles UI/UX Design <sub class="ms-2">/ 3 hours 10min</sub>
+												</button>
+											</h2>
+											<div id="collapse3" class="accordion-collapse collapse " aria-labelledby="heading3"
+												data-bs-parent="#accordion-course">
+												<div class="accordion-body">
+													<div class="lesson-items">
+														<ul class="list-unstyled">
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		User Research
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="heading4">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+													data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+													User Research Techniques <sub class="ms-2">/ 3 hours 10min</sub>
+												</button>
+											</h2>
+											<div id="collapse4" class="accordion-collapse collapse " aria-labelledby="heading4"
+												data-bs-parent="#accordion-course">
+												<div class="accordion-body">
+													<div class="lesson-items">
+														<ul class="list-unstyled">
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		User Research
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="heading5">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+													data-bs-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
+													Creating User Personal <sub class="ms-2">/ 3 hours 10min</sub>
+												</button>
+											</h2>
+											<div id="collapse5" class="accordion-collapse collapse " aria-labelledby="heading5"
+												data-bs-parent="#accordion-course">
+												<div class="accordion-body">
+													<div class="lesson-items">
+														<ul class="list-unstyled">
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		User Research
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="heading6">
+												<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+													data-bs-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+													User Research Techniques <sub class="ms-2">/ 3 hours 10min</sub>
+												</button>
+											</h2>
+											<div id="collapse6" class="accordion-collapse collapse " aria-labelledby="heading6"
+												data-bs-parent="#accordion-course">
+												<div class="accordion-body">
+													<div class="lesson-items">
+														<ul class="list-unstyled">
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		User Research
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+															<li><a href="#" class="d-flex justify-content-between align-items-center">
+																	<span class="lesson-title">
+																		<img src="images/icons/video.png" alt="Video">
+																		Persona Development
+																	</span>
+																	<span>
+																		3.08
+																		<img src="images/icons/lock.png" alt="Lock">
+																	</span>
+																</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div> <!-- Accordion Item End -->
+									</div><!-- Accordion Wrap End -->
+								</div><!-- Tab Item End -->
+								<div class="inner-sec" id="instructor">
+									<h2 class="display-4">Instructor</h2>
+									<div class="author-card d-md-flex align-items-center border rounded-2 bg-shade p-3">
+										<div class="author-img">
+											<img src="images/instructor-lg.jpg" alt="Instructor" class="img-fluid rounded-3">
+										</div>
+										<div class="author-text">
+											<h4>Maria Rivera, M.A.</h4>
+											<small class="text-mute">Arts Instructor</small>
+											<p>This is a comprehensive outline, and the actual content and duration of each module
+												may vary based on the course
+												format
+												and duration. Hands-on activities, case studies, and real-world projects should be
+												integrated throughout the course
+												to
+												enhance practical skills.</p>
+											<div class="social-share white mt-3">
+												<a href="#"><i class="feather-icon icon-facebook"></i></a>
+												<a href="#"><i class="feather-icon icon-twitter"></i></a>
+												<a href="#"><i class="feather-icon icon-youtube"></i></a>
+												<a href="#"><i class="feather-icon icon-linkedin"></i></a>
+											</div>
+										</div>
+									</div>
+								</div><!-- Tab Item End -->
+								<div class="inner-sec" id="review">
+									<h2 class="display-4">Reviews (02)</h2>
+									<div class="entry-comments mt-5">
+										<div class="post-comments">
+											<ol class="comment-list list-unstyled">
+												<li>
+													<article class="comment-entry">
+														<div class="d-sm-flex align-items-top">
+															<div class="comment-thumb">
+																<img width="80" class="img-fluid rounded-circle"
+																	src="images/avatar5.png" alt="Comments">
+															</div>
+															<div class="commentor ms-lg-4 bg-shade p-4 rounded-2">
+																<div class="d-flex justify-content-between mb-3">
+																	<div class="comment-head">
+																		<h4 class="display-5 mb-0">Johnathon Smith</h4>
+																		<small class="text-muted">Nov 12, 2022 at 12:12 am</small>
+																	</div>
+																	<div class="ratings pt-2">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																	</div>
+																</div>
+																<p>Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia
+																	nulla. Aliquam quis purus in justo pulvinar tempor.</p>
+															</div>
+														</div>
+													</article>
+													<ol class="children">
+														<li>
+															<article class="comment-entry">
+																<div class="d-sm-flex align-items-top">
+																	<div class="comment-thumb">
+																		<img width="80" class="img-fluid rounded-circle"
+																			src="images/avatar3.png" alt="Comments">
+																	</div>
+																	<div class="commentor ms-lg-4 bg-shade p-4 rounded-2">
+																		<div class="d-flex justify-content-between mb-3">
+																			<div class="comment-head">
+																				<h4 class="display-5 mb-0">Andrew Dian</h4>
+																				<small class="text-muted">Nov 12, 2022 at 12:12 am</small>
+																			</div>
+																			<div class="ratings pt-2">
+																				<img src="images/icons/star.png" alt="Star">
+																				<img src="images/icons/star.png" alt="Star">
+																				<img src="images/icons/star.png" alt="Star">
+																				<img src="images/icons/star.png" alt="Star">
+																				<img src="images/icons/star-half.png" alt="Star">
+																			</div>
+																		</div>
+																		<p>Mauris non dignissim purus, ac commodo diam. Donec sit amet
+																			lacinia nulla. Aliquam quis purus in justo
+																			pulvinar tempor.</p>
+																	</div>
+																</div>
+															</article>
+														</li>
+													</ol>
+												</li>
+												<li>
+													<article class="comment-entry">
+														<div class="d-sm-flex align-items-top">
+															<div class="comment-thumb">
+																<img width="80" class="img-fluid rounded-circle"
+																	src="images/avatar4.png" alt="Comments">
+															</div>
+															<div class="commentor ms-lg-4 bg-shade p-4 rounded-2">
+																<div class="d-flex justify-content-between mb-3">
+																	<div class="comment-head">
+																		<h4 class="display-5 mb-0">Mc Donald</h4>
+																		<small class="text-muted">Nov 12, 2022 at 12:12 am</small>
+																	</div>
+																	<div class="ratings pt-2">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star.png" alt="Star">
+																		<img src="images/icons/star-half.png" alt="Star">
+																	</div>
+																</div>
+																<p>Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia
+																	nulla. Aliquam quis purus in justo
+																	pulvinar tempor.</p>
+															</div>
+														</div>
+													</article>
+												</li>
+											</ol>
+										</div>
+										<div class="comment-form mt-5">
+											<h3 class="display-4">Add a Review</h3>
+											<div class="d-flex align-items-center">
+												<span>Rate This Course:</span>
+												<div class="ratings ms-2">
+													<img src="images/icons/star-nil.png" alt="Star">
+													<img src="images/icons/star-nil.png" alt="Star">
+													<img src="images/icons/star-nil.png" alt="Star">
+													<img src="images/icons/star-nil.png" alt="Star">
+													<img src="images/icons/star-nil.png" alt="Star">
+												</div>
+											</div>
+											<form action="#" class="row gy-3 mt-4">
+												<div class="col-lg-6 form-group">
+													<input type="text" placeholder="Your Name">
+												</div>
+												<div class="col-lg-6 form-group">
+													<input type="text" placeholder="Email Address">
+												</div>
+												<div class="col-lg-12 form-group">
+													<textarea name="message" id="message" rows="8" placeholder="Comment"></textarea>
+												</div>
+												<div class="form-group">
+													<input type="checkbox" id="check">
+													<label for="check">Save my name, email, and website in this browser for the next
+														time I comment.</label>
+												</div>
+												<div class="col-lg-12">
+													<button class="btn btn-primary mt-4">Leave a Review</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div><!-- Tab Item End -->
+							</div>
+						</div>
+					</article>
+				</div> <!-- Course Details End -->
+				<div class="col-lg-4">
+					<aside class="sidebar sticky-top widget-top">
+						<div class="widget price-widget bg-white border p-3 rounded-3">
+							<div class="course-preview mb-3">
+								<img src="images/course2.jpg" alt="Course preview" class="img-fluid">
+								<div class="video-block-sm">
+									<div class="waves wave-1"></div>
+									<div class="waves wave-2"></div>
+									<div class="waves wave-3"></div>
+									<a class="cover-video" href="https://www.youtube.com/watch?v=tUP5S4YdEJo"><img
+											src="images/icons/play.png" alt=""></a>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between align-items-center">
+								<h3 class="display-4">$19.99 <del>$36.99</del></h3>
+								<span class="badge bg-danger"><i class="feather-icon icon-clock me-1"></i>5 days left!</span>
+							</div>
+							<div class="btn-cta mt-4">
+								<a href="#" class="btn btn-primary rounded-2 w-100">Add to Cart</a>
+								<a href="#" class="mt-3 btn btn-outline-primary rounded-2 w-100">Enroll Now</a>
+							</div>
+							<div class="price-widget-inner">
+								<ul>
+									<li><i class="feather-icon icon-calendar"></i>Published <span>28 Sep 2024</span></li>
+									<li><i class="feather-icon icon-user"></i>Instructor <span>Daniel Smith</span></li>
+									<li><i class="feather-icon icon-clipboard"></i>Lectures <span>24</span></li>
+									<li><i class="feather-icon icon-film"></i>Duration <span>22Hr 36Minutes</span></li>
+									<li><i class="feather-icon icon-users"></i>Enrolled <span>2k Students</span></li>
+									<li><i class="feather-icon icon-award"></i>Course level <span>Intermediate</span></li>
+									<li><i class="feather-icon icon-globe"></i>Language <span>English</span></li>
+									<li><i class="feather-icon icon-anchor"></i>Certificate <span>English</span></li>
+									<li><i class="feather-icon icon-gift"></i>Pass Percentage <span>89%</span></li>
+								</ul>
+							</div>
+							<div class="card bg-shade p-3 text-center mt-4">
+								<h6>Share It On</h6>
+								<div class="social-share white my-3 border-bottom pb-3">
+									<a href="#"><i class="feather-icon icon-facebook"></i></a>
+									<a href="#"><i class="feather-icon icon-linkedin"></i></a>
+									<a href="#"><i class="feather-icon icon-youtube"></i></a>
+									<a href="#"><i class="feather-icon icon-twitter"></i></a>
+									<a href="#"><i class="feather-icon icon-instagram"></i></a>
+								</div>
+								<div class="coupon-form">
+									<form action="#" class="position-relative">
+										<input type="text" placeholder="Coupon">
+										<button class="btn btn-secondary text-info position-absolute right-0">Apply</button>
+									</form>
+								</div>
+							</div>
+						</div> <!-- Widget End -->
+					</aside>
+				</div> <!-- Sidebar End -->
+			</div>
+		</div>
+	</section>
+	<!-- Course Details End -->
 @endsection

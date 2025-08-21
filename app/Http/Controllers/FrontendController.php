@@ -20,28 +20,54 @@ class FrontendController extends Controller
         $this->toastr = $toastr;
     }
 
+    // 🔹 সব কোর্স + filter
     public function index()
     {
-        $courses = Course::all();
-          $abouts = About::all();
-          $banners = Banner::all();
-         $categories = Category::all();
-         return view('frontend.pages.index', compact('courses', 'abouts', 'categories', 'banners'));
-  
+        $abouts     = About::all();
+        $banners    = Banner::all();
+        $categories = Category::all();
+         $courses  = Course::all();
+
+        // category slug filter
+        // if ($request->has('category')) {
+        //     $slug     = $request->category;
+        //     $category = Category::where('category_slug', $slug)->firstOrFail();
+        //     $courses  = Course::where('category_id', $category->id)->paginate(6);
+        // } else {
+        //     $courses  = Course::paginate(6);
+        // }
+
+        return view('frontend.pages.index', compact('courses', 'abouts', 'banners', 'categories'));
     }
 
+    // 🔹 নির্দিষ্ট category এর কোর্স
+    // public function categoryCourses($slug)
+    // {
+    //     $categories = Category::all();
+    //     $category   = Category::where('category_slug', $slug)->firstOrFail();
+    //     $courses    = Course::where('category_id', $category->id)->paginate(6);
+
+    //     return view('frontend.pages.courses', compact('courses', 'categories', 'category'));
+    // }
+
+
+
+
+
+
+
      public function allCourse(){
-           $courses = Course::latest()->paginate(10);
+           $courses = Course::paginate(6);
          //   $categories = Category::all();
-           $categories = Category::withCount('courses')->get();
+           $categories = Category::all();
         return view('frontend.pages.courses', compact('courses','categories'));
      }
 
     //  Course Details
           public function details($id)
      {
-        $course = Course::findOrFail($id);
-        return view('frontend.pages.course_details', compact('course'));
+        $courses = Course::findOrFail($id);
+        return view('frontend.pages.course_details', compact('courses'));
      }
 
        public function ListCourse(){
@@ -60,6 +86,12 @@ public function filterCourses(Request $request)
     return response()->json($courses);
 }
 
+
+public function LessonCourse(){
+
+   $categories = Category::all();
+  return view('frontend.pages.course_lesson', compact('categories'));
+}
 
 
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use App\Models\Category;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -23,8 +22,6 @@ class CourseController extends Controller
      */
 public function index(Request $request)
 {
-    $categories = Category::all(); // সব সময়ই ক্যাটাগরি লাগবে
-
     if ($request->ajax()) {
         $courses = Course::all();
 
@@ -54,8 +51,7 @@ public function index(Request $request)
             ->make(true);
     }
 
-    // Non-AJAX call — শুধু ক্যাটাগরি ভিউতে পাঠান
-    return view('admin.pages.courses.index', compact('categories'));
+    return view('admin.pages.courses.index');
 }
 
 
@@ -72,31 +68,14 @@ public function index(Request $request)
      */
     public function store(Request $request)
     {
+        //  Validation check
         $request->validate([
-
-            
             'course_title' => 'required|string|max:500',
-            'category_name' => 'required|string|max:500',
             'course_price' => 'required|string|max:500',
             'course_teacher' => 'required|string|max:500',
-            'course_lavel' => 'required|string|max:500',
-            'course_duration' => 'required|string|max:500',
-            'course_learn' => 'required|string|max:500',
-            'course_content_title' => 'required|string|max:500',
-            'course_content_answer' => 'required|string|max:500',
-            'course_content_requirement' => 'required|string|max:500',
-            'course_audience' => 'required|string|max:500',
             'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         
-          //  Remove HTML tag
-          $request->merge([
-            'course_learn'                  => strip_tags($request->course_learn),
-            'course_content_answer'         => strip_tags($request->course_content_answer),
-            'course_content_requirement'    => strip_tags($request->course_content_requirement),
-            'course_audience'               => strip_tags($request->course_audience),
-        ]);
-
         // Fetch data from database 
          Course::newCourse($request);
          $this->toastr->success('Course created successfully!');
@@ -125,26 +104,16 @@ public function index(Request $request)
      */
     public function update(Request $request, $id)
     {
-        // Validate the incoming request
+       //  Validation check
         $request->validate([
-       
             'course_title' => 'required|string|max:500',
-            'category_name' => 'required|string|max:500',
             'course_price' => 'required|string|max:500',
             'course_teacher' => 'required|string|max:500',
-            'course_lavel' => 'required|string|max:500',
-            'course_duration' => 'required|string|max:500',
-            'course_learn' => 'required|string|max:500',
-            'course_content_title' => 'required|string|max:500',
-            'course_content_answer' => 'required|string|max:500',
-            'course_content_requirement' => 'required|string|max:500',
-            'course_audience' => 'required|string|max:500',
             'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         
         // Fetch Data 
         Course::updateCourse($request, $id);
-        
         // Success Message
         $this->toastr->success('Course updated successfully!');
         return back();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard | @yield('title')</title>
+    <title>Admin Dashboard | @yield('title')</title>
     <!-- [Meta] -->
     @include('admin.layouts.meta')
     <!-- [style] -->

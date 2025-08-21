@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Courses')
+@section('title', 'Course Details')
 @section('admin_content')
 <div class="pc-container">
     <div class="pc-content">
@@ -128,11 +128,11 @@
   <!-- Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script type="text/javascript">
-    $(function courses(){
+    $(function courses-details(){
       var table=$('.ytable').DataTable({
         processing: true,
             serverSide: true,
-            ajax: "{{ route('courses.index') }}",
+            ajax: "{{ route('courses-details.index') }}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'course_title', name: 'course_title' },
@@ -147,7 +147,7 @@
     // For Edit courses 
     $('body').on('click', '.edit', function() {
         let id = $(this).data('id');
-        $.get("courses/" + id + "/edit", function(data) {
+        $.get("courses-details/" + id + "/edit", function(data) {
             $('.modal-body').html(data);
         });
     });

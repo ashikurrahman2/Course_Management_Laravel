@@ -14,9 +14,7 @@ class Course extends Model
     private static $image, $imageName, $directory, $imageUrl;
         // Fillable fields to allow mass assignment
         protected $fillable = [
-            'course_title', 'course_price', 'course_teacher',
-            'course_lavel', 'course_duration', 'course_learn', 'course_content_title',
-            'course_content_answer', 'course_content_requirement', 'category_name', 'course_audience','cat_id', 'course_image', 'category_id'
+            'course_title', 'course_price', 'course_teacher', 'course_image',
         ];
         
     // Function to upload and resize image
@@ -71,17 +69,9 @@ class Course extends Model
         private static function saveBasicInfo($courses, $request, $imageUrl)
         {
             $courses->course_image                         = $imageUrl;
-            $courses->category_name                                = $request->category_name;
             $courses->course_title                         = $request->course_title;
             $courses->course_price                         = $request->course_price;
             $courses->course_teacher                       = $request->course_teacher;
-            $courses->course_lavel                         = $request->course_lavel;
-            $courses->course_duration                      = $request->course_duration;
-            $courses->course_learn                         = $request->course_learn;
-            $courses->course_content_title                 = $request->course_content_title;
-            $courses->course_content_answer                = $request->course_content_answer;
-            $courses->course_content_requirement           = $request->course_content_requirement;
-            $courses->course_audience                      = $request->course_audience;
             $courses->save();
         }
 
@@ -94,11 +84,5 @@ class Course extends Model
             
             $courses->delete();
         }
-
- public function category()
-{
-    return $this->belongsTo(Category::class, 'cat_id'); // ✅ belongsTo ঠিক আছে
-}
-
 
 }

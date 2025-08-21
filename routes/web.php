@@ -8,12 +8,17 @@ use Illuminate\Support\Facades\Route;
 // Website route
 Route::get('/', [FrontendController:: class, 'index'])->name('index');
  Route::get('/courses', [FrontendController:: class, 'allCourse'])->name('course');
+
+
+// নির্দিষ্ট category এর কোর্স দেখানোর জন্য
+// Route::get('/category/{slug}', [FrontendController::class, 'categoryCourses'])->name('courses.byCategory');
  Route::get('/courses-list', [FrontendController:: class, 'ListCourse'])->name('courselist');
 //  Route::get('/courses/category/{category}', [FrontendController::class, 'courseByCategory'])->name('courses.byCategory');
 //  Route::get('/course-details', [FrontendController:: class, 'CourseDetail'])->name('details');
 //  Route::get('/courses/category/{id}', [FrontendController::class, 'coursesByCategory'])->name('courses.byCategory');
 Route::get('/course/details/{id}', [FrontendController::class, 'details'])->name('course.details');
 Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name('courses.filter');
+Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
 
 
 

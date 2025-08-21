@@ -13,22 +13,10 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id')->nullable();
             $table->string('course_title')->nullable();
             $table->string('course_image')->nullable();
-            $table->string('course_video')->nullable();
             $table->string('course_price')->nullable();
             $table->string('course_teacher')->nullable();
-            $table->string('course_lavel')->nullable();
-            $table->string('course_enrolled')->nullable();
-            $table->string('course_duration')->nullable();
-            $table->string('course_learn')->nullable();
-            $table->string('course_content_title')->nullable();
-            $table->string('course_content_answer')->nullable();
-            $table->string('course_content_requirement')->nullable();
-            $table->string('course_audience')->nullable();
-            $table->unsignedBigInteger('cat_id');
-            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

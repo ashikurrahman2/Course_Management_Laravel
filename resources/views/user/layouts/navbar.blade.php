@@ -143,61 +143,8 @@
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Courses</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('course') }}">All Courses</a></li>
-                    <li><a class="dropdown-item" href="courses-list.html">Courses List</a></li>
-                    <li class="dropdown-submenu dropend">
-                      <a class="dropdown-item dropdown-toggle" href="#">Course Details</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-header">Single Course</li>
-                        <li>
-                          <a class="dropdown-item" href="single-course.html">Course Details 01</a>
-                          <a class="dropdown-item" href="single-course-2.html">Course Details 02</a>
-                        </li>
-                      </ul>
-                    </li>
+                    <li><a class="dropdown-item" href="{{ route('courses.index') }}">All Courses</a></li>
                     <li><a class="dropdown-item" href="lesson.html">Course Lesson</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Dashboard</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-submenu dropend">
-                      <a class="dropdown-item dropdown-toggle" href="#">Instructor Dashboard</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-header">Instructor</li>
-                        <li>
-                          <a class="dropdown-item" href="instructor-dashboard.html">Dashbaord</a>
-                          <a class="dropdown-item" href="instructor-profile.html">Profile</a>
-                          <a class="dropdown-item" href="instructor-enrolled-courses.html">Enrolled Courses</a>
-                          <a class="dropdown-item" href="instructor-wishlist.html">Wishlist</a>
-                          <a class="dropdown-item" href="instructor-reviews.html">Reviews</a>
-                          <a class="dropdown-item" href="instructor-my-quiz-attempts.html">My Quiz Attempts</a>
-                          <a class="dropdown-item" href="instructor-order-history.html">Order History</a>
-                          <a class="dropdown-item" href="instructor-courses.html">My Course</a>
-                          <a class="dropdown-item" href="instructor-announcements.html">Announcements</a>
-                          <a class="dropdown-item" href="instructor-quiz-attemps.html">Quiz Attempts</a>
-                          <a class="dropdown-item" href="instructor-assignments.html">Assignments</a>
-                          <a class="dropdown-item" href="instructor-settings.html">Settings</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu dropend">
-                      <a class="dropdown-item dropdown-toggle" href="#">Student Dashboard</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-header">Student</li>
-                        <li>
-                          <a class="dropdown-item" href="student-dashboard.html">Dashbaord</a>
-                          <a class="dropdown-item" href="student-profile.html">Profile</a>
-                          <a class="dropdown-item" href="student-enrolled-courses.html">Enrolled Courses</a>
-                          <a class="dropdown-item" href="student-wishlist.html">Wishlist</a>
-                          <a class="dropdown-item" href="student-reviews.html">Reviews</a>
-                          <a class="dropdown-item" href="student-order-history.html">Order History</a>
-                          <a class="dropdown-item" href="student-my-quiz-attempts.html">My Quiz Attempts</a>
-                          <a class="dropdown-item" href="student-settings.html">Settings</a>
-                        </li>
-                      </ul>
-                    </li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown dropdown-fullwidth">

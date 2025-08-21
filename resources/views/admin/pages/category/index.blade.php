@@ -36,6 +36,8 @@
                     <tr>
                         <th>SL</th>
                         <th>Category Name</th>
+                        <th>Category Icon</th>
+                        <th>Category Slug</th>
                         <th>Action</th>
                     </tr>
                   </thead>
@@ -46,6 +48,8 @@
                     <tr>
                         <th>SL</th>
                         <th>Category Name</th>
+                          <th>Category Icon</th>
+                          <th>Category Slug</th>
                         <th>Action</th>
                     </tr>
                   </tfoot>
@@ -77,13 +81,35 @@
                       <small id="emailHelp" class="form-text text-muted">This is your land category</small>
                   </div>
 
-              
+                      <div class="form-group">
+                    <label for="icon" class="col-form-label pt-0">Category Icon<sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="icon" name="icon" required>
+                      <small id="emailHelp" class="form-text text-muted">This is your land category</small>
+                  </div>
+
+                      <div class="form-group">
+                    <label for="category_slug" class="col-form-label pt-0">Category Slug<sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="category_slug" name="category_slug" required>
+                      <small id="emailHelp" class="form-text text-muted">This is your land category</small>
+                  </div>
            
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-primary"> <span class="d-none"> loading ......</span> Submit</button>
                 </div>
               </div>
             </form>
+
+            <!-- Script -->
+<script>
+    document.getElementById('category_name').addEventListener('keyup', function () {
+        let name = this.value;
+        // Make slug 
+        let slug = name.toLowerCase()
+                       .replace(/ /g, '-')       // space → hyphen
+                       .replace(/[^\w-]+/g, ''); // special char
+        document.getElementById('category_slug').value = slug;
+    });
+</script>
         </div>
     </div>            
 </div>
@@ -113,6 +139,8 @@
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'category_name', name: 'category_name' },
+                { data: 'icon', name: 'icon' },
+                { data: 'category_slug', name: 'category_slug' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
       });
