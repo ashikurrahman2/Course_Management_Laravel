@@ -67,12 +67,14 @@ class FrontendController extends Controller
           public function details($id)
      {
         $courses = Course::findOrFail($id);
-        return view('frontend.pages.course_details', compact('courses'));
+           $categories = Category::all();
+        return view('frontend.pages.course_details', compact('courses', 'categories'));
      }
 
        public function ListCourse(){
         $courses = Course::paginate(8);
-        return view('frontend.pages.course_list', compact('courses'));
+        $categories = Category::all();
+        return view('frontend.pages.course_list', compact('courses', 'categories'));
      }
 
 public function filterCourses(Request $request)

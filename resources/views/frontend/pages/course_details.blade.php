@@ -596,12 +596,9 @@
 								<ul>
 									<li><i class="feather-icon icon-calendar"></i>Published <span>28 Sep 2024</span></li>
 									<li><i class="feather-icon icon-user"></i>Instructor <span>Daniel Smith</span></li>
-									<li><i class="feather-icon icon-clipboard"></i>Lectures <span>24</span></li>
 									<li><i class="feather-icon icon-film"></i>Duration <span>22Hr 36Minutes</span></li>
 									<li><i class="feather-icon icon-users"></i>Enrolled <span>2k Students</span></li>
 									<li><i class="feather-icon icon-award"></i>Course level <span>Intermediate</span></li>
-									<li><i class="feather-icon icon-globe"></i>Language <span>English</span></li>
-									<li><i class="feather-icon icon-anchor"></i>Certificate <span>English</span></li>
 									<li><i class="feather-icon icon-gift"></i>Pass Percentage <span>89%</span></li>
 								</ul>
 							</div>

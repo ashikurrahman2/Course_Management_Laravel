@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\User\SellController;
+use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
 // Website route
@@ -21,14 +22,12 @@ Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name(
 Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
 
 
-
-
-// Route::post('/apply-sell', [FrontendController::class, 'applySell'])->name('sell.apply');
-
-
+// User dashboard route
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $courseCount = Course::count(); // Total registration 
+    return view('dashboard', compact('courseCount'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

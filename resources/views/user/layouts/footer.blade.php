@@ -5,7 +5,7 @@
         <div class="col-lg-4 col-sm-6">
           <div class="footer-widget about-footer">
             <div class="f-logo mb-5">
-              <a href="index.html"><img src="images/logo.png" alt="Logo" /></a>
+              <a href="/"><img src="{{ asset($setting->logo) }}" alt="Logo" style="height: 150px; width:150px;" /></a>
             </div>
             <p>
               Education is the most potent weapon change the world give man education and he will build a new world

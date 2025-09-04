@@ -11,6 +11,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/whishlist', [UserController::class, 'Wishlist'])->name('whishlists');
     Route::get('/reviews', [UserController::class, 'Review'])->name('streview');
     Route::get('/anouncement', [UserController::class, 'Anounce'])->name('anounced');
+    Route::get('/assignment', [UserController::class, 'Work'])->name('assigned');
     Route::get('/Order-history', [UserController::class, 'Orderlist'])->name('orderlist');
     Route::get('/settings', [UserController::class, 'Usetting'])->name('stusettings');
     Route::get('/profile-edit', [UserController::class, 'Usetting'])->name('profile.edit');

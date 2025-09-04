@@ -46,6 +46,11 @@ class UserController extends Controller
         return view('user.anouncement');
     }
 
+    // Assignment
+    public function Work(){
+        return view('user.assignment');
+    }
+
     public function Orderlist()
     {
         return view('user.student_order');

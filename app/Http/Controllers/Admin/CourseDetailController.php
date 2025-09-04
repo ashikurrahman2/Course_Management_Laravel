@@ -41,7 +41,7 @@ class CourseDetailController extends Controller
                               <button class="btn btn-danger btn-sm delete" data-id="' . $row->id . '">
                                   <i class="fa fa-trash"></i>
                               </button>
-                              <form id="delete-form-' . $row->id . '" action="' . route('courses-details.destroy', $row->id) . '" method="POST" style="display: none;">
+                              <form id="delete-form-' . $row->id . '" action="' . route('details.destroy', $row->id) . '" method="POST" style="display: none;">
                                   ' . csrf_field() . '
                                   ' . method_field('DELETE') . '
                               </form>';
@@ -65,27 +65,31 @@ class CourseDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+      public function store(Request $request)
     {
-          //  Validation check
-        $request->validate([        
-            'course_overview'                   => 'required|string|max:500',
-            'course_content'                    => 'required|string|max:500',
-            'course_subcontent'                 => 'required|string|max:500',
-            'course_teacherintro'               => 'required|string|max:500',
-            'course_teacherdesignation'         => 'required|string|max:500',
-            'course_teacherphoto'               => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // Validation check
+        $request->validate([
+            'course_overview'           => 'required|string|max:500',
+            'course_content'            => 'required|string|max:500',
+            'course_subcontent'         => 'required|string|max:500',
+            'course_teacherintro'       => 'required|string|max:500',
+            'course_teacherdesignation' => 'required|string|max:500',
+            'pass_parcentage'           => 'required|integer|max:255',
+            'course_level'              => 'required|string|max:255',
+            'course_teacherphoto'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
-           //  Remove HTML tag
-          $request->merge([                 
-            'course_overview'                  => strip_tags($request->course_overview),
-            'course_teacherintro'                  => strip_tags($request->course_teacherintro),
+
+        // Remove HTML tags from specific fields
+        $request->merge([
+            'course_overview'    => strip_tags($request->course_overview),
+            'course_teacherintro'=> strip_tags($request->course_teacherintro),
         ]);
-        // Fetch data from database 
-         coursedetail::newCourseDetail($request);
-         $this->toastr->success('Course Details created successfully!');
-         return back();
+
+        // Save to database
+        coursedetail::newCourseDetail($request);
+
+        $this->toastr->success('Course Details created successfully!');
+        return back();
     }
 
     /**
@@ -117,6 +121,8 @@ class CourseDetailController extends Controller
             'course_subcontent'                 => 'required|string|max:500',
             'course_teacherintro'               => 'required|string|max:500',
             'course_teacherdesignation'         => 'required|string|max:500',
+            'pass_parcentage'                   => 'required|integer|max:255',
+            'course_level'                      => 'required|string|max:255',
             'course_teacherphoto'               => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

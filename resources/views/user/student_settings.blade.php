@@ -56,6 +56,10 @@
                                  class="feather-icon icon-box"></i><span>My
                                  Quiz Attempts</span></a>
                         </li>
+                                  <li>
+                    <a class="nav-link" href="instructor-assignments.html"><i
+                        class="feather-icon icon-briefcase"></i><span>Assignments</span></a>
+                  </li>
                         <li><a class="nav-link" href="{{ route('orderlist') }}"><i
                                  class="feather-icon icon-shopping-bag"></i><span>Order
                                  History</span></a></li>

@@ -85,7 +85,29 @@
                            <li class="pc-item"><a class="pc-link"
                             href="{{route('categories.index')}}">Course Category</a>
                         </li>
+
+                            <li class="pc-item"><a class="pc-link"
+                            href="{{route('details.index')}}">Course Details</a>
+                        </li>
                   
+                    </ul>
+                </li>
+
+                      <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-settings"></i></span>
+                            <span class="pc-mtext">Assignment</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link"
+                            href="{{route('assignment.index')}}">Create Assignment</a>
+                        </li>
+
+                           <li class="pc-item"><a class="pc-link"
+                            href="{{route('assignments.index')}}">Show Assignment info</a>
+                        </li>
                     </ul>
                 </li>
 {{--                 

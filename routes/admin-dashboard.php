@@ -44,9 +44,11 @@ Route::patch('/password/update', [AdminUserController::class, 'passwordUpdate'])
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     //Website route
     Route::resource('about',AboutController::class);
+    Route::resource('assignment',AssignmentController::class);
+    Route::resource('assignments',AssignmentController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('courses', CourseController::class);
-    Route::resource('courses-details', CourseDetailController::class);
+    Route::resource('details', CourseDetailController::class);
     Route::resource('categories', CategoryController::class);
     Route::patch('sell-applications/{id}/approve', [SellformController::class, 'approve'])->name('sell.approve');
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');

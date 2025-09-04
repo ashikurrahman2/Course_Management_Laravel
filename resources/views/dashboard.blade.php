@@ -54,6 +54,10 @@
                                  class="feather-icon icon-box"></i><span>My
                                  Quiz Attempts</span></a>
                         </li>
+                           <li>
+                    <a class="nav-link" href="{{ route('assigned') }}"><i
+                        class="feather-icon icon-briefcase"></i><span>Assignments</span></a>
+                  </li>
                         <li><a class="nav-link" href="{{ route('orderlist') }}"><i
                                  class="feather-icon icon-shopping-bag"></i><span>Order
                                  History</span></a></li>
@@ -86,37 +90,19 @@
                <div class="row g-4">
                   <div class="col-lg-4">
                      <div class="stat-counter d-flex align-items-center shadow-1 rounded-3">
-                        <div class="stat-info">
-                           <h4 class="display-4 fw-bold mb-0"><span data-purecounter-start="0"
-                                 data-purecounter-end="15" class="purecounter">15</span></h4>
-                           <p>Enrolled Courses</p>
-                        </div>
-                        <span class="icon-lg shadow-sm ms-auto rounded-circle"><img src="images/icons/book-lg.svg"
+                   <div class="stat-info">
+                     <h4 class="display-4 fw-bold mb-0">
+                     <span data-purecounter-start="0"
+                        data-purecounter-end="{{ $courseCount }}"
+                           class="purecounter">{{ $courseCount }}</span>
+                     </h4>
+                     <p>Enrolled Courses</p>
+                     </div>
+
+                        <span class="icon-lg shadow-sm ms-auto rounded-circle"><img src="{{ asset('/') }}frontend/images/icons/book-lg.svg"
                               alt=""></span>
                      </div>
                   </div>
-                  {{-- <div class="col-lg-4">
-                     <div class="stat-counter d-flex align-items-center shadow-1 rounded-3">
-                        <div class="stat-info">
-                           <h4 class="display-4 fw-bold mb-0"><span data-purecounter-start="0"
-                                 data-purecounter-end="24" class="purecounter">24</span>K</h4>
-                           <p>Enrolled Students</p>
-                        </div>
-                        <span class="icon-lg shadow-sm ms-auto rounded-circle"><img src="images/icons/art.svg"
-                              alt=""></span>
-                     </div>
-                  </div> --}}
-                  {{-- <div class="col-lg-4">
-                     <div class="stat-counter d-flex align-items-center shadow-1 rounded-3">
-                        <div class="stat-info">
-                           <h4 class="display-4 fw-bold mb-0"><span data-purecounter-start="0"
-                                 data-purecounter-end="2860" class="purecounter">2860</span>$</h4>
-                           <p>Total Earnings</p>
-                        </div>
-                        <span class="icon-lg shadow-sm ms-auto rounded-circle"><img src="images/icons/calculator.svg"
-                              alt=""></span>
-                     </div>
-                  </div> --}}
                   <div class="col-lg-4">
                      <div class="stat-counter d-flex align-items-center shadow-1 rounded-3">
                         <div class="stat-info">
@@ -133,21 +119,10 @@
                         <div class="stat-info">
                            <h4 class="display-4 fw-bold mb-0"><span data-purecounter-start="0"
                                  data-purecounter-end="27" class="purecounter">27</span>+</h4>
-                           <p>Global Leader</p>
+                           <p>Assignments</p>
                         </div>
                         <span class="icon-lg shadow-sm ms-auto rounded-circle"><img src="images/icons/learning.png"
                               alt=""></span>
-                     </div>
-                  </div>
-                  <div class="col-lg-4">
-                     <div class="stat-counter d-flex align-items-center shadow-1 rounded-3">
-                        <div class="stat-info">
-                           <h4 class="display-4 fw-bold mb-0"><span data-purecounter-start="0"
-                                 data-purecounter-end="15" class="purecounter">15</span>+</h4>
-                           <p>Assignments</p>
-                        </div>
-                        <span class="icon-lg shadow-sm ms-auto rounded-circle"><img
-                              src="images/icons/graduate-lg.svg" alt=""></span>
                      </div>
                   </div>
                </div>

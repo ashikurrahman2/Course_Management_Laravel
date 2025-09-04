@@ -6,7 +6,7 @@
     <div class="header-nav-wrapper header-sticky">
       <nav class="navbar navbar-expand-xl border-bottom">
         <div class="container-fluid px-lg-5 px-3">
-          <a class="navbar-brand" href="index.html"><img src="{{ asset('/') }}frontend/assets/images/logo.png" alt="Logo" /></a>
+          <a class="navbar-brand" href="/"><img src="{{ asset('/') }}frontend/assets/images/logo.png" alt="Logo" /></a>
           <div
             class="header-actions d-none d-sm-flex position-relative order-xl-3 d-flex align-items-center justify-content-between">
             <div class="category-search d-none d-md-block">
@@ -54,13 +54,10 @@
                         class="feather-icon icon-home"></i><span>Dashboard</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-profile.html"><i class="feather-icon icon-user"></i><span>My
+                    <a class="nav-link" href="{{ route('profile') }}"><i class="feather-icon icon-user"></i><span>My
                         Profile</span></a>
                   </li>
-                  <li>
-                    <a class="nav-link" href="instructor-enrolled-courses.html"><i
-                        class="feather-icon icon-book-open"></i><span>Enrolled Courses</span></a>
-                  </li>
+            
                   <li>
                     <a class="nav-link" href="instructor-wishlist.html"><i
                         class="feather-icon icon-gift"></i><span>Wishlist</span></a>
@@ -72,10 +69,6 @@
                   </li>
 
                   <li>
-                    <a class="nav-link" href="instructor-my-quiz-attempts.html"><i
-                        class="feather-icon icon-box"></i><span>My Quiz Attempts</span></a>
-                  </li>
-                  <li>
                     <a class="nav-link" href="instructor-order-history.html"><i
                         class="feather-icon icon-shopping-bag"></i><span>Order History</span></a>
                   </li>
@@ -85,20 +78,12 @@
                         class="feather-icon icon-book"></i><span>My Courses</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-assignments.html"><i
-                        class="feather-icon icon-briefcase"></i><span>Assignments</span></a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="instructor-quiz-attemps.html"><i
-                        class="feather-icon icon-cpu"></i><span>Quiz Attempts</span></a>
-                  </li>
-                  <li>
                     <a class="nav-link" href="instructor-announcements.html"><i
                         class="feather-icon icon-bell"></i><span>Announcements</span></a>
                   </li>
                   <li class="border-bottom"></li>
                   <li>
-                    <a class="nav-link" href="instructor-settings.html"><i
+                    <a class="nav-link" href="{{ route('stusettings') }}"><i
                         class="feather-icon icon-settings"></i><span>Settings</span></a>
                   </li>
                   <li>

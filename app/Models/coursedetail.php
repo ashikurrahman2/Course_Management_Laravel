@@ -75,7 +75,6 @@ class coursedetail extends Model
             $courses_details->course_content                          = $request->course_content;
             $courses_details->course_subcontent                       = $request->course_subcontent;
             $courses_details->course_teacherintro                     = $request->course_teacherintro;
-            $courses_details->course_teacherdesignation               = $request->course_teacherdesignation;
             $courses_details->save();
         }
 
