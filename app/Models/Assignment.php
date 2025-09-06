@@ -15,11 +15,11 @@ class Assignment extends Model
 
     protected $fillable = [
         'course_name', 
+        'exp_name', 
         'total_marks', 
         'deadline', 
         'assigned_date',
         'assignment_file',
-        'status',
     ];
 
     /**
@@ -86,10 +86,10 @@ class Assignment extends Model
     {
         $assignment->assignment_file   = $fileUrl;
         $assignment->course_name       = $request->course_name;
+        $assignment->exp_name          = $request->exp_name;
         $assignment->total_marks       = $request->total_marks;
         $assignment->deadline          = $request->deadline;
         $assignment->assigned_date     = $request->assigned_date;
-        $assignment->status            = $request->status ?? 'pending';
         $assignment->save();
     }
 
@@ -103,24 +103,5 @@ class Assignment extends Model
         }
         $assignment->delete();
     }
-
-    /**
-     * Approve Assignment
-     */
-    public static function approveAssignment($id)
-    {
-        $assignment = self::findOrFail($id);
-        $assignment->status = 'approved';
-        $assignment->save();
-    }
-
-    /**
-     * Deny Assignment
-     */
-    public static function denyAssignment($id)
-    {
-        $assignment = self::findOrFail($id);
-        $assignment->status = 'denied';
-        $assignment->save();
-    }
+   
 }

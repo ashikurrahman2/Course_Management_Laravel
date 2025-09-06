@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Assignment;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Flasher\Toastr\Prime\ToastrInterface;
@@ -48,7 +49,11 @@ class UserController extends Controller
 
     // Assignment
     public function Work(){
-        return view('user.assignment');
+
+      // কোর্সের নামগুলো ডাটাবেস থেকে distinct করে আনা
+        $courses = Assignment::select('exp_name')->distinct()->get();
+        $assignments = Assignment::all();
+        return view('user.assignment', compact('assignments','courses'));
     }
 
     public function Orderlist()

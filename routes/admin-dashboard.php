@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
@@ -26,10 +27,9 @@ Route::prefix('admin')->middleware('auth:admin', 'role:super-admin|admin')->grou
     Route::put('roles/{id}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('roles.update-permissions');
 
     Route::resource('users',AdminUserController::class);
-//  Route::get('change-password', [AdminUserController::class, 'PassChange'])->name('change.password');
-//   Route::get('/password/change', [AdminUserController::class, 'passwordChange'])->name('password.change');
-        // Route::post('/password/update', [AdminUserController::class, 'passwordUpdate'])->name('password.update');
-        // Route::patch('/password/update', [AdminUserController::class, 'passwordUpdate'])->name('password.update');
+     Route::get('/profile', [AdminUserController::class, 'show'])->name('admin.profile');
+     Route::get('/profile/edit', [AdminUserController::class, 'edit'])->name('admin.profile.edit');
+    Route::put('/profile/update', [AdminUserController::class, 'update'])->name('admin.profile.update');
         Route::get('/password/change', [AdminUserController::class, 'passwordChange'])->name('password.change');
 
 // Expect PATCH method for update

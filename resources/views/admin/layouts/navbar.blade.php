@@ -225,8 +225,13 @@
                                 <ul class="list-group list-group-flush w-100">
                                     <li class="list-group-item">
                                         <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0"><img src="{{asset('/')}}admin/assets/images/user/avatar-2.jpg"
-                                                    alt="user-image" class="wid-50 rounded-circle"></div>
+                                            <div class="flex-shrink-0">
+                                                    <img
+                            src="{{ asset(Auth::user()->image) }}"
+                            alt="user-image"
+                            class="user-avtar rounded-circle"
+                        />
+                                                </div>
                                             <div class="flex-grow-1 mx-3">
                                                 <h5 class="mb-0">{{Auth::user()->name}}</h5><a class="link-primary"
                                                     href="mailto:carson.darrin@company.io">{{Auth::user()->email}}</a>
@@ -239,6 +244,7 @@
                                                 <span>Change password</span>
                                             </span>
                                         </a>
+                                        <a href="{{ route('admin.profile.edit') }}" class="dropdown-item"><span class="d-flex align-items-center"><i class="ph-duotone ph-user-circle"></i> <span>Edit profile</span> </span></a>
                                         {{-- <a href="#" class="dropdown-item">
                                             <span class="d-flex align-items-center"><i class="ph-duotone ph-envelope-simple"></i>
                                                 <span>Recently mail</span>

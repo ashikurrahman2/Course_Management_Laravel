@@ -41,27 +41,17 @@ class AssignmentController extends Controller
                         return 'No file uploaded';
                     }
                 })
-                ->addColumn('status', function ($row) {
-                    if ($row->status == 'pending') {
-                        return '<span class="badge bg-warning">Pending</span>';
-                    } elseif($row->status == 'approved') {
-                        return '<span class="badge bg-success">Approved</span>';
-                    } else {
-                        return '<span class="badge bg-danger">Denied</span>';
-                    }
-                })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="'.route('assignments.approve', $row->id).'" class="btn btn-success btn-sm me-1">Approve</a>
-                            <a href="'.route('assignments.deny', $row->id).'" class="btn btn-danger btn-sm me-1">Deny</a>
+                    $btn = '
                             <a href="javascript:void(0)" class="btn btn-primary btn-sm edit" data-id="'.$row->id.'" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa fa-edit"></i></a>
                             <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'"><i class="fa fa-trash"></i></button>
-                            <form id="delete-form-'.$row->id.'" action="'.route('assignments.destroy', $row->id).'" method="POST" style="display:none;">
+                            <form id="delete-form-'.$row->id.'" action="'.route('assignment.destroy', $row->id).'" method="POST" style="display:none;">
                                 '.csrf_field().'
                                 '.method_field('DELETE').'
                             </form>';
                     return $btn;
                 })
-                ->rawColumns(['assignment_file','status','action'])
+                ->rawColumns(['assignment_file','action'])
                 ->make(true);
         }
 
@@ -75,10 +65,11 @@ class AssignmentController extends Controller
     {
         $request->validate([
             'course_name' => 'required|string|max:500',
+            'exp_name' => 'required|string|max:500',
             'total_marks' => 'required|integer',
             'deadline' => 'nullable|string|max:255',
             'assigned_date' => 'required|date',
-            'assignment_file' => 'nullable|file|mimes:jpg,jpeg,png,webp,pdf|max:5120',
+            // 'assignment_file' => 'nullable|file|mimes:jpg,jpeg,png,webp,pdf|max:5242880',
         ]);
 
         Assignment::newAssignment($request);
@@ -102,10 +93,11 @@ class AssignmentController extends Controller
     {
         $request->validate([
             'course_name' => 'required|string|max:500',
+            'exp_name' => 'required|string|max:500',
             'total_marks' => 'required|integer',
             'deadline' => 'nullable|string|max:255',
             'assigned_date' => 'required|date',
-            'assignment_file' => 'nullable|file|mimes:jpg,jpeg,png,webp,pdf|max:5120',
+            // 'assignment_file' => 'nullable|file|mimes:jpg,jpeg,png,webp,pdf|max:5242880',
         ]);
 
         Assignment::updateAssignment($request, $id);
@@ -121,26 +113,6 @@ class AssignmentController extends Controller
         $assignment = Assignment::findOrFail($id);
         Assignment::deleteAssignment($assignment);
         $this->toastr->success('Assignment deleted successfully!');
-        return back();
-    }
-
-    /**
-     * Approve an assignment.
-     */
-    public function approve($id)
-    {
-        Assignment::approveAssignment($id);
-        $this->toastr->success('Assignment approved!');
-        return back();
-    }
-
-    /**
-     * Deny an assignment.
-     */
-    public function deny($id)
-    {
-        Assignment::denyAssignment($id);
-        $this->toastr->success('Assignment denied!');
         return back();
     }
 }

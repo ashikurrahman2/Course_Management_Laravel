@@ -9,15 +9,15 @@
       <div class="container">
          <div class="row">
             <div class="col-lg-12 position-relative">
-               <div class="dash-cover-bg rounded-3" style="background-image: url('images/student_bg.jpg');"></div>
+               <div class="dash-cover-bg rounded-3" style="background-image: url('{{ asset('/') }}frontend/images/student_bg.jpg');"></div>
                <div class="dash-cover-info d-sm-flex justify-content-between align-items-center">
                   <div class="ava-wrap d-flex align-items-center">
-                     <div class="avatar me-3 rounded-circle"><img width="150" src="images/avatar.png"
+                     <div class="avatar me-3 rounded-circle"><img width="150" src="{{ asset('/') }}frontend/images/avatar.png"
                            class="rounded-circle" alt="Avatar"></div>
                      <div class="ava-info">
-                        <h4 class="display-5 text-white mb-0">Maria Carey Mc.</h4>
+                        <h4 class="display-5 text-white mb-0">{{ Auth::user()->name }}</h4>
                         <div class="ava-meta text-white mt-1">
-                           <span><img width="20" src="images/icons/star.png" alt="">4.8 </span>
+                           <span><img width="20" src="{{ asset('/') }}frontend/images/icons/star.png" alt="">4.8 </span>
                            <span><i class="feather-icon icon-users"></i>25k Students </span>
                         </div>
                      </div>
@@ -88,17 +88,34 @@
                <section class="dashboard-sec">
                   <h2 class="display-5 border-bottom pb-3 mb-4">Assignments</h2>
                   <div class="row announce-filter bg-light rounded-2 px-3 py-4 mx-0 mb-5">
-                     <div class="col-lg-6">
+         
+           <div class="col-lg-6">
                         <div class="text-uppercase small fw-bold">Courses</div>
                         <select name="course" id="select-course">
-                           <option value="1">All</option>
-                           <option value="1">Web Development</option>
-                           <option value="1">Graphic Design</option>
-                           <option value="1">Ui/Ux Design</option>
-                           <option value="1">App Development</option>
-                           <option value="1">Enlish Learning</option>
+                           <option value="all">All</option>
+                            @foreach($courses as $course)
+                              <option value="{{ $course->exp_name }}">{{ $course->exp_name }}</option>
+                        @endforeach
                         </select>
                      </div>
+
+                     {{-- Course Filtering Script --}}
+                     <script>
+                     document.getElementById('select-course').addEventListener('change', function() {
+                        let selectedCourse = this.value.trim().toLowerCase();
+                        let rows = document.querySelectorAll('#assignment-table tr');
+
+                        rows.forEach(row => {
+                           let course = row.getAttribute('data-course').trim().toLowerCase();
+
+                           if (selectedCourse === 'all' || course === selectedCourse) {
+                                 row.style.display = ''; // show
+                           } else {
+                                 row.style.display = 'none'; // hide
+                           }
+                        });
+                     });
+               </script>
                      <div class="col-lg-3">
                         <div class="text-uppercase small fw-bold">Sort by</div>
                         <select name="course" id="product-select">
@@ -108,14 +125,6 @@
                            <option value="1">Trending</option>
                            <option value="1">Price (Low to High)</option>
                            <option value="1">Price (High to Low)</option>
-                        </select>
-                     </div>
-                     <div class="col-lg-3">
-                        <div class="text-uppercase small fw-bold">Price</div>
-                        <select name="course" id="select-price">
-                           <option value="1">Free</option>
-                           <option value="1">Paid</option>
-                           <option value="1">Subscription</option>
                         </select>
                      </div>
                   </div>
@@ -131,30 +140,93 @@
                                  <th>Action</th>
                               </tr>
                            </thead>
-                           <tbody>         
+                           <tbody id="assignment-table">         
                          <!-- Table Row -->
-                        <tr>
+                         @foreach($assignments as $assignment)
+                        <tr data-course="{{ strtolower(trim($assignment->exp_name)) }}">
+                      <td>
+                        <span class="display-6">
+                           {{ date('M d, Y', strtotime($assignment->assigned_date)) }}
+                        </span>
+                        <p class="mb-0 small">
+                           {{ date('h:i A', strtotime($assignment->assigned_date)) }}
+                        </p>
+                     </td>
                            <td>
-                              <span class="display-6">Sep 12, 2024</span>
-                              <p class="mb-0 small">10.00am</p>
+                              <span class="display-6">{{ $assignment->course_name }}</span>
+                              <p class="mb-0 small">Course: {{ $assignment->exp_name }}</p>
                            </td>
-                           <td>
-                              <span class="display-6">Python Programming</span>
-                              <p class="mb-0 small">Course: Fundamentals 101</p>
-                           </td>
-                           <td>80</td>
-                           <td>2</td>
+                           <td>{{ $assignment->total_marks }}</td>
+                          <td>
+                                 <span class="deadline-timer text-success" 
+                                       data-deadline="{{ $assignment->deadline }}" 
+                                       id="deadline-{{ $assignment->id }}">        
+                                 </span>
+                              </td>
                            <td>
                               <!-- Submit Button -->
                               <div class="d-flex justify-content-between">
-                                 <button type="button" class="btn btn-primary shadow" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                                    <i class="feather-icon icon-send"></i> Submit
+                                 <button type="button" 
+                                          class="btn btn-primary shadow submit-btn" 
+                                          data-bs-toggle="modal" 
+                                          data-bs-target="#uploadModal" 
+                                          data-id="{{ $assignment->id }}" 
+                                          id="submit-{{ $assignment->id }}">
+                                       <i class="feather-icon icon-send"></i> Submit
                                  </button>
                               </div>
                            </td>
                         </tr>
+                     @endforeach
 
-               <!-- Modal -->
+                     {{--Assignment Deadline Countdown script --}}
+                     <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                           function startCountdown(element, deadline, button) {
+                              let countDownDate = new Date(deadline).getTime();
+
+                              let timer = setInterval(function () {
+                                    let now = new Date().getTime();
+                                    let distance = countDownDate - now;
+
+                                    if (distance <= 0) {
+                                       clearInterval(timer);
+                                       element.textContent = "Deadline Over";
+                                       element.classList.remove("text-success");
+                                       element.classList.add("text-danger");
+
+                                       // hide button
+                                       button.style.display = "none";
+                                       button.removeAttribute("data-bs-toggle"); 
+                                       button.removeAttribute("data-bs-target"); 
+                                    } else {
+                                       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                       let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                                       element.textContent = 
+                                          (days > 0 ? days + "d " : "") + 
+                                          hours + "h " + 
+                                          minutes + "m " + 
+                                          seconds + "s ";
+                                    }
+                              }, 1000);
+                           }
+
+                           // initialize all timers
+                           document.querySelectorAll(".deadline-timer").forEach(function (el) {
+                              let deadline = el.getAttribute("data-deadline");
+                              let id = el.id.split("-")[1]; // get assignment id
+                              let button = document.getElementById("submit-" + id);
+
+                              startCountdown(el, deadline, button);
+                           });
+                        });
+                        </script>
+
+
+               <!--Assignment submission Modal -->
                   <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
                      <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content border-0 shadow-lg rounded-4">
