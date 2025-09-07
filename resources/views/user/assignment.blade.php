@@ -166,13 +166,15 @@
                            <td>
                               <!-- Submit Button -->
                               <div class="d-flex justify-content-between">
+                              
                                  <button type="button" 
-                                          class="btn btn-primary shadow submit-btn" 
-                                          data-bs-toggle="modal" 
-                                          data-bs-target="#uploadModal" 
-                                          data-id="{{ $assignment->id }}" 
-                                          id="submit-{{ $assignment->id }}">
-                                       <i class="feather-icon icon-send"></i> Submit
+                                    class="btn btn-primary shadow submit-btn" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#uploadModal" 
+                                    data-id="{{ $assignment->id }}" 
+                                    data-expname="{{ $assignment->course_name }}"  
+                                    id="submit-{{ $assignment->id }}">
+                                 <i class="feather-icon icon-send"></i> Submit
                                  </button>
                               </div>
                            </td>
@@ -186,31 +188,32 @@
                               let countDownDate = new Date(deadline).getTime();
 
                               let timer = setInterval(function () {
-                                    let now = new Date().getTime();
-                                    let distance = countDownDate - now;
+                                 let now = new Date().getTime();
+                                 let distance = countDownDate - now;
 
-                                    if (distance <= 0) {
-                                       clearInterval(timer);
-                                       element.textContent = "Deadline Over";
-                                       element.classList.remove("text-success");
-                                       element.classList.add("text-danger");
+                                 if (distance <= 0) {
+                                    clearInterval(timer);
+                                    element.textContent = "Deadline Over";
+                                    element.classList.remove("text-success");
+                                    element.classList.add("text-danger");
 
-                                       // hide button
-                                       button.style.display = "none";
-                                       button.removeAttribute("data-bs-toggle"); 
-                                       button.removeAttribute("data-bs-target"); 
-                                    } else {
-                                       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                       let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                                    // disable button instead of hiding
+                                    button.disabled = true;
+                                    button.textContent = "Deadline Over";
+                                    button.removeAttribute("data-bs-toggle"); 
+                                    button.removeAttribute("data-bs-target"); 
+                                 } else {
+                                    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                                       element.textContent = 
-                                          (days > 0 ? days + "d " : "") + 
-                                          hours + "h " + 
-                                          minutes + "m " + 
-                                          seconds + "s ";
-                                    }
+                                    element.textContent = 
+                                       (days > 0 ? days + "d " : "") + 
+                                       hours + "h " + 
+                                       minutes + "m " + 
+                                       seconds + "s ";
+                                 }
                               }, 1000);
                            }
 
@@ -223,8 +226,7 @@
                               startCountdown(el, deadline, button);
                            });
                         });
-                        </script>
-
+                   </script>
 
                <!--Assignment submission Modal -->
                   <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -242,21 +244,48 @@
                            <!-- Modal Body -->
                            <div class="modal-body p-4">
                               <form>
-                                 <div class="mb-3">
-                                    <label for="courseName" class="form-label fw-semibold">Course</label>
-                                    <input type="text" id="courseName" class="form-control form-control-lg" value="Python Programming - Fundamentals 101" readonly>
-                                 </div>
-                                 <div class="mb-3">
-                                    <label for="dateTime" class="form-label fw-semibold">Date & Time</label>
-                                    <input type="text" id="dateTime" class="form-control form-control-lg" value="Sep 12, 2024 - 10.00am" readonly>
-                                 </div>
-                                 <div class="mb-3">
-                                    <label for="fileUpload" class="form-label fw-semibold">Choose File</label>
-                                    <input class="form-control form-control-lg" type="file" id="fileUpload">
-                                    <small class="text-muted">Accepted formats: PDF, JPG, Png</small>
-                                 </div>
-                              </form>
+                              <div class="mb-3">
+                           <label for="courseName" class="form-label fw-semibold">Experiment Name</label>
+                           <input type="text" id="courseName" class="form-control form-control-lg" value="" readonly>
+                        </div>
+
+                     <script>
+                     document.addEventListener("DOMContentLoaded", function () {
+                        var uploadModal = document.getElementById('uploadModal');
+                        uploadModal.addEventListener('show.bs.modal', function (event) {
+                           var button = event.relatedTarget; // Click the button when I do
+
+                           // Experiment Name
+                           var expName = button.getAttribute('data-expname'); 
+                           var input = uploadModal.querySelector('#courseName');
+                           input.value = expName;
+
+                           // Current Date & Time
+                           var now = new Date();
+                           var options = { year: 'numeric', month: 'short', day: 'numeric' };
+                           var dateStr = now.toLocaleDateString('en-US', options);
+                           var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                           
+                           var dateTimeInput = uploadModal.querySelector('#dateTime');
+                           if (dateTimeInput) {
+                                 dateTimeInput.value = dateStr + " - " + timeStr;
+                           }
+                        });
+                     });
+                     </script>
+                              
+                             <div class="mb-3">
+                              <label for="dateTime" class="form-label fw-semibold">Date & Time</label>
+                              <input type="text" id="dateTime" class="form-control form-control-lg" value="" readonly>
                            </div>
+
+                            <div class="mb-3">
+                              <label for="fileUpload" class="form-label fw-semibold">Choose File</label>
+                              <input class="form-control form-control-lg" type="file" id="fileUpload">
+                              <small class="text-muted">Accepted formats: PDF, JPG, Png</small>
+                           </div>
+                        </form>
+                     </div>
                            
                            <!-- Modal Footer -->
                            <div class="modal-footer bg-light rounded-bottom-4">
@@ -272,8 +301,8 @@
           </table>
        </div>
    </section>
-            </div>
-         </div>
+</div>
+ </div>
       </div>
    </div>
    <!-- Dashboard Cover End -->

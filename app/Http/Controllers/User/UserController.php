@@ -50,10 +50,11 @@ class UserController extends Controller
     // Assignment
     public function Work(){
 
-      // কোর্সের নামগুলো ডাটাবেস থেকে distinct করে আনা
-        $courses = Assignment::select('exp_name')->distinct()->get();
-        $assignments = Assignment::all();
-        return view('user.assignment', compact('assignments','courses'));
+      // Retrive Course namefrom database to do distinct 
+          $courses = Assignment::select('exp_name')->distinct()->get();
+          $experiments = Assignment::select('course_name')->distinct()->get();
+          $assignments = Assignment::all();
+        return view('user.assignment', compact('assignments','courses','experiments'));
     }
 
     public function Orderlist()
