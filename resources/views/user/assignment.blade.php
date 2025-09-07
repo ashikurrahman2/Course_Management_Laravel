@@ -98,39 +98,19 @@
                         @endforeach
                         </select>
                      </div>
-
-                     {{-- Course Filtering Script --}}
-                     <script>
-                     document.getElementById('select-course').addEventListener('change', function() {
-                        let selectedCourse = this.value.trim().toLowerCase();
-                        let rows = document.querySelectorAll('#assignment-table tr');
-
-                        rows.forEach(row => {
-                           let course = row.getAttribute('data-course').trim().toLowerCase();
-
-                           if (selectedCourse === 'all' || course === selectedCourse) {
-                                 row.style.display = ''; // show
-                           } else {
-                                 row.style.display = 'none'; // hide
-                           }
-                        });
-                     });
-               </script>
                      <div class="col-lg-3">
                         <div class="text-uppercase small fw-bold">Sort by</div>
-                        <select name="course" id="product-select">
-                           <option value="1">Default</option>
-                           <option value="1">Latest</option>
-                           <option value="1">Popularity</option>
-                           <option value="1">Trending</option>
-                           <option value="1">Price (Low to High)</option>
-                           <option value="1">Price (High to Low)</option>
+                        <select name="course" id="product-select" class="form-select">
+                           <option value="default">Default</option>
+                           <option value="latest">Latest</option>
+                           <option value="older">Older</option>
                         </select>
                      </div>
+
                   </div>
                   <div class="row">
                      <div class="col-12">
-                        <table class="table table-responsive">
+                        <table class="table table-responsive" id="assignment-table">
                            <thead>
                               <tr>
                                  <th>Date</th>
@@ -180,6 +160,68 @@
                            </td>
                         </tr>
                      @endforeach
+                          {{-- Course Filtering Script --}}
+                     <script>
+                     document.getElementById('select-course').addEventListener('change', function() {
+                        let selectedCourse = this.value.trim().toLowerCase();
+                        let rows = document.querySelectorAll('#assignment-table tr');
+
+                        rows.forEach(row => {
+                           let course = row.getAttribute('data-course').trim().toLowerCase();
+
+                           if (selectedCourse === 'all' || course === selectedCourse) {
+                                 row.style.display = ''; // show
+                           } else {
+                                 row.style.display = 'none'; // hide
+                           }
+                        });
+                     });
+               </script>
+                     {{-- Short by filter script --}}
+                     <script>
+                     window.onload = function() {
+                        const select = document.getElementById('product-select');
+                        const tableBody = document.querySelector('#assignment-table tbody');
+                        const table = document.getElementById('assignment-table');
+                        const emptyMsg = document.getElementById('empty-message');
+
+                        // Save original HTML
+                        const originalRowsHTML = tableBody.innerHTML;
+
+                        select.addEventListener('change', function() {
+                           const value = this.value;
+
+                           if(value === 'default') {
+                                 // Restore original HTML
+                                 tableBody.innerHTML = originalRowsHTML;
+                                 table.style.display = "table";
+                                 emptyMsg.style.display = "none";
+                                 return;
+                           }
+
+                           // Get rows as array
+                           let rows = Array.from(tableBody.querySelectorAll('.assignment-row'));
+
+                           // Sort rows by timestamp
+                           rows.sort((a,b) => {
+                                 let aTime = parseInt(a.dataset.timestamp);
+                                 let bTime = parseInt(b.dataset.timestamp);
+                                 return value === 'latest' ? bTime - aTime : aTime - bTime;
+                           });
+
+                           // Clear table and append sorted rows
+                           tableBody.innerHTML = '';
+                           if(rows.length === 0){
+                                 table.style.display = "none";
+                                 emptyMsg.style.display = "block";
+                           } else {
+                                 rows.forEach(row => tableBody.appendChild(row));
+                                 table.style.display = "table";
+                                 emptyMsg.style.display = "none";
+                           }
+                        });
+                     };
+                     </script>
 
                      {{--Assignment Deadline Countdown script --}}
                      <script>
@@ -228,26 +270,7 @@
                         });
                    </script>
 
-               <!--Assignment submission Modal -->
-                  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-                     <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content border-0 shadow-lg rounded-4">
-                           
-                           <!-- Modal Header -->
-                           <div class="modal-header bg-primary text-white rounded-top-4">
-                              <h5 class="modal-title fw-bold" id="uploadModalLabel">
-                                 <i class="feather-icon icon-upload me-2"></i> Upload Assignment
-                              </h5>
-                              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                           </div>
-                           
-                           <!-- Modal Body -->
-                           <div class="modal-body p-4">
-                              <form>
-                              <div class="mb-3">
-                           <label for="courseName" class="form-label fw-semibold">Experiment Name</label>
-                           <input type="text" id="courseName" class="form-control form-control-lg" value="" readonly>
-                        </div>
+                   {{-- Modal data fetch script --}}
 
                      <script>
                      document.addEventListener("DOMContentLoaded", function () {
@@ -273,7 +296,27 @@
                         });
                      });
                      </script>
-                              
+
+               <!--Assignment submission Modal -->
+                  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content border-0 shadow-lg rounded-4">
+                           
+                           <!-- Modal Header -->
+                           <div class="modal-header bg-primary text-white rounded-top-4">
+                              <h5 class="modal-title fw-bold" id="uploadModalLabel">
+                                 <i class="feather-icon icon-upload me-2"></i> Upload Assignment
+                              </h5>
+                              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           
+                           <!-- Modal Body -->
+                           <div class="modal-body p-4">
+                              <form>
+                              <div class="mb-3">
+                           <label for="courseName" class="form-label fw-semibold">Experiment Name</label>
+                           <input type="text" id="courseName" class="form-control form-control-lg" value="" readonly>
+                        </div>                              
                              <div class="mb-3">
                               <label for="dateTime" class="form-label fw-semibold">Date & Time</label>
                               <input type="text" id="dateTime" class="form-control form-control-lg" value="" readonly>
@@ -299,6 +342,10 @@
                   </div>
               </tbody>
           </table>
+          {{-- Emty message --}}
+<div id="empty-message" class="text-center fw-bold text-danger mt-3" style="display:none;">
+    Assignment not given. You are lucky !
+</div>
        </div>
    </section>
 </div>

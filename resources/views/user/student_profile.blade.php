@@ -57,7 +57,7 @@
                            Quiz Attempts</span></a>
                   </li>
                             <li>
-                    <a class="nav-link" href="instructor-assignments.html"><i
+                    <a class="nav-link" href="{{ route('assigned') }}"><i
                         class="feather-icon icon-briefcase"></i><span>Assignments</span></a>
                   </li>
                   <li><a class="nav-link" href="{{ route('orderlist') }}"><i
