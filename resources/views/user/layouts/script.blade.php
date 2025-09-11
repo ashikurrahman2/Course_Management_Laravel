@@ -192,3 +192,152 @@
 <script>
     preset_change("preset-1");
 </script>
+
+             {{-- Course Filtering Script --}}
+                     <script>
+                     document.getElementById('select-course').addEventListener('change', function() {
+                        let selectedCourse = this.value.trim().toLowerCase();
+                        let rows = document.querySelectorAll('#assignment-table tbody tr');
+
+                        rows.forEach(row => {
+                           let course = row.getAttribute('data-course').trim().toLowerCase();
+
+                           if (selectedCourse === 'all' || course === selectedCourse) {
+                              row.style.display = ''; // show
+                           } else {
+                              row.style.display = 'none'; // hide
+                           }
+                        });
+                     });
+                  </script>
+
+                        {{-- Short by filter script --}}
+                     <script>
+                     window.onload = function() {
+                        const select = document.getElementById('product-select');
+                        const tableBody = document.querySelector('#assignment-table tbody');
+                        const table = document.getElementById('assignment-table');
+                        const emptyMsg = document.getElementById('empty-message');
+
+                        // Save original HTML
+                        const originalRowsHTML = tableBody.innerHTML;
+
+                        select.addEventListener('change', function() {
+                           const value = this.value;
+
+                           if(value === 'default') {
+                                 // Restore original HTML
+                                 tableBody.innerHTML = originalRowsHTML;
+                                 table.style.display = "table";
+                                 emptyMsg.style.display = "none";
+                                 return;
+                           }
+
+                           // Get rows as array
+                           let rows = Array.from(tableBody.querySelectorAll('.assignment-row'));
+
+                           // Sort rows by timestamp
+                           rows.sort((a,b) => {
+                                 let aTime = parseInt(a.dataset.timestamp);
+                                 let bTime = parseInt(b.dataset.timestamp);
+                                 return value === 'latest' ? bTime - aTime : aTime - bTime;
+                           });
+
+                           // Clear table and append sorted rows
+                           tableBody.innerHTML = '';
+                           if(rows.length === 0){
+                                 table.style.display = "none";
+                                 emptyMsg.style.display = "block";
+                           } else {
+                                 rows.forEach(row => tableBody.appendChild(row));
+                                 table.style.display = "table";
+                                 emptyMsg.style.display = "none";
+                           }
+                        });
+                     };
+                     </script>
+
+                        {{--Assignment Deadline Countdown script --}}
+                     <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                           function startCountdown(element, deadline, button) {
+                              let countDownDate = new Date(deadline).getTime();
+
+                              let timer = setInterval(function () {
+                                 let now = new Date().getTime();
+                                 let distance = countDownDate - now;
+
+                                 if (distance <= 0) {
+                                    clearInterval(timer);
+                                    element.textContent = "Deadline Over";
+                                    element.classList.remove("text-success");
+                                    element.classList.add("text-danger");
+
+                                    // disable button instead of hiding
+                                    button.disabled = true;
+                                    button.textContent = "Deadline Over";
+                                    button.removeAttribute("data-bs-toggle"); 
+                                    button.removeAttribute("data-bs-target"); 
+                                 } else {
+                                    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                                    element.textContent = 
+                                       (days > 0 ? days + "d " : "") + 
+                                       hours + "h " + 
+                                       minutes + "m " + 
+                                       seconds + "s ";
+                                 }
+                              }, 1000);
+                           }
+
+                           // initialize all timers
+                           document.querySelectorAll(".deadline-timer").forEach(function (el) {
+                              let deadline = el.getAttribute("data-deadline");
+                              let id = el.id.split("-")[1]; // get assignment id
+                              let button = document.getElementById("submit-" + id);
+
+                              startCountdown(el, deadline, button);
+                           });
+                        });
+                   </script>
+
+
+      {{-- Modal data fetch script --}}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var uploadModal = document.getElementById('uploadModal');
+    uploadModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Clicked button
+
+        // Student Name
+        var studentName = button.getAttribute('data-student'); 
+        var studentInput = uploadModal.querySelector('#studentName');
+        if (studentInput) {
+            studentInput.value = studentName;
+        }
+
+        // Experiment Name
+        var expName = button.getAttribute('data-expname'); 
+        var expInput = uploadModal.querySelector('#experimentName');
+        if (expInput) {
+            expInput.value = expName;
+        }
+
+        // Current Date & Time
+        var now = new Date();
+        var options = { year: 'numeric', month: 'short', day: 'numeric' };
+        var dateStr = now.toLocaleDateString('en-US', options);
+        var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        
+        var dateTimeInput = uploadModal.querySelector('#dateTime');
+        if (dateTimeInput) {
+            dateTimeInput.value = dateStr + " - " + timeStr;
+        }
+    });
+});
+</script>
+

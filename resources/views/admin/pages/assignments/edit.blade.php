@@ -17,6 +17,12 @@
                     <small id="emailHelp" class="form-text text-muted">Company Title</small>
                 </div>
 
+                       <div class="form-group">
+                  <label for="earned_marks" class="col-form-label pt-0">Earned Marks<sup class="text-size-20 top-1 text-danger">*</sup></label>
+                    <input type="text" class="form-control" id="earned_marks" name="earned_marks" value="{{ $assignment->earned_marks }}" required>
+                    <small id="emailHelp" class="form-text text-muted">Company Title</small>
+                </div>
+
                      <div class="form-group">
             <label for="deadline" class="col-form-label pt-0">
                 Deadline <sup class="text-size-20 top-1"></sup>
@@ -37,3 +43,5 @@
         <button type="submit" class="btn btn-primary"> <span class="d-none"> loading ......</span> Update</button>
       </div>
   </form>
+
+  

@@ -5,10 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Assignment;
+use App\Models\Category;
+use App\Models\Assignmentdetails;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,27 +27,32 @@ class UserController extends Controller
     public function index()
     {
         $user = auth()->user(); // Get the logged-in user
-        return view('user.student_profile', compact('user'));
+           $categories = Category::all();
+        return view('user.student_profile', compact('user','categories'));
     }
 
     public function enroll()
     {
-        return view('user.course_enroll');
+            $categories = Category::all();
+        return view('user.course_enroll', compact('categories'));
     }
 
     public function Wishlist()
     {
-        return view('user.student_whislist');
+          $categories = Category::all();
+        return view('user.student_whislist', compact('categories'));
     }
 
     public function Review()
     {
-        return view('user.student_reviews');
+         $categories = Category::all();
+        return view('user.student_reviews', compact('categories'));
     }
 
     public function Anounce()
     {
-        return view('user.anouncement');
+         $categories = Category::all();
+        return view('user.anouncement', compact('categories'));
     }
 
     // Assignment
@@ -54,18 +62,41 @@ class UserController extends Controller
           $courses = Assignment::select('exp_name')->distinct()->get();
           $experiments = Assignment::select('course_name')->distinct()->get();
           $assignments = Assignment::all();
-        return view('user.assignment', compact('assignments','courses','experiments'));
+           $categories = Category::all();
+        return view('user.assignment', compact('assignments','courses','experiments','categories'));
+    }
+
+       public function store(Request $request)
+    {
+       // Validation
+        $request->validate([
+            'name'            => 'required|string|max:255',
+            'course_name'        => 'required|string|max:255',
+            // 'user_id'         => 'required|integer',
+            'submission_date' => 'required|string', // আসবে modal থেকে (Sep 11, 2025 - 12:49 PM)
+            'assignment_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:2048',
+        ]);
+
+   // Save assignment
+        Assignmentdetails::newAssignment($request);
+
+        // Response / redirect
+        $this->toastr->success('Assignment submitted successfully!');
+
+        return back();
     }
 
     public function Orderlist()
     {
-        return view('user.student_order');
+          $categories = Category::all();
+        return view('user.student_order', compact('categories'));
     }
 
     public function Usetting()
     {
         $user = auth()->user();
-        return view('user.student_settings', compact('user'));
+             $categories = Category::all();
+        return view('user.student_settings', compact('user', 'categories'));
     }
 
     public function updateProfile(Request $request)

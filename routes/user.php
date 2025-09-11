@@ -17,4 +17,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile-edit', [UserController::class, 'Usetting'])->name('profile.edit');
     Route::patch('/profile-update', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::patch('/update-password', [UserController::class, 'updatePassword'])->name('password.update');
+    Route::post('/assignments/store', [UserController::class, 'store'])->name('assignments.store');
 });

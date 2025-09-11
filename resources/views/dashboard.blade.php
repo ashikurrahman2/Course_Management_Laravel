@@ -118,7 +118,7 @@
                      <div class="stat-counter d-flex align-items-center shadow-1 rounded-3">
                         <div class="stat-info">
                            <h4 class="display-4 fw-bold mb-0"><span data-purecounter-start="0"
-                                 data-purecounter-end="27" class="purecounter">27</span>+</h4>
+                                 data-purecounter-end="{{ $assignmentCount }}" class="{{ $assignmentCount }}">{{ $assignmentCount }}</span></h4>
                            <p>Assignments</p>
                         </div>
                         <span class="icon-lg shadow-sm ms-auto rounded-circle"><img src="images/icons/learning.png"

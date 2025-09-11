@@ -3,6 +3,8 @@
 @section('title', 'Assignment')
 
 @section('user_content')
+@include('user.layouts.script')
+@include('user.layouts.style')
 <div class="dashbaord-promo position-relative"></div>
    <!-- Dashboard Cover Start -->
    <div class="dashbaord-cover bg-shade sec-padding">
@@ -116,6 +118,7 @@
                                  <th>Date</th>
                                  <th>Assignment Name</th>
                                  <th> Total Marks</th>
+                                 <th> Earn Marks</th>
                                  <th>Deadline</th>
                                  <th>Action</th>
                               </tr>
@@ -137,6 +140,7 @@
                               <p class="mb-0 small">Course: {{ $assignment->exp_name }}</p>
                            </td>
                            <td>{{ $assignment->total_marks }}</td>
+                           <td>{{ $assignment->earned_marks }}</td>
                           <td>
                                  <span class="deadline-timer text-success" 
                                        data-deadline="{{ $assignment->deadline }}" 
@@ -147,155 +151,26 @@
                               <!-- Submit Button -->
                               <div class="d-flex justify-content-between">
                               
-                                 <button type="button" 
-                                    class="btn btn-primary shadow submit-btn" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#uploadModal" 
-                                    data-id="{{ $assignment->id }}" 
-                                    data-expname="{{ $assignment->course_name }}"  
-                                    id="submit-{{ $assignment->id }}">
-                                 <i class="feather-icon icon-send"></i> Submit
-                                 </button>
+                           <button type="button" 
+   class="btn btn-primary shadow submit-btn" 
+   data-bs-toggle="modal" 
+   data-bs-target="#uploadModal" 
+   data-expname="{{ $assignment->course_name }}"
+   data-student="{{ Auth::user()->name }}">
+   Submit
+</button>
+
                               </div>
                            </td>
                         </tr>
                      @endforeach
-                          {{-- Course Filtering Script --}}
-                     <script>
-                     document.getElementById('select-course').addEventListener('change', function() {
-                        let selectedCourse = this.value.trim().toLowerCase();
-                        let rows = document.querySelectorAll('#assignment-table tr');
 
-                        rows.forEach(row => {
-                           let course = row.getAttribute('data-course').trim().toLowerCase();
 
-                           if (selectedCourse === 'all' || course === selectedCourse) {
-                                 row.style.display = ''; // show
-                           } else {
-                                 row.style.display = 'none'; // hide
-                           }
-                        });
-                     });
-               </script>
-                     {{-- Short by filter script --}}
-                     <script>
-                     window.onload = function() {
-                        const select = document.getElementById('product-select');
-                        const tableBody = document.querySelector('#assignment-table tbody');
-                        const table = document.getElementById('assignment-table');
-                        const emptyMsg = document.getElementById('empty-message');
-
-                        // Save original HTML
-                        const originalRowsHTML = tableBody.innerHTML;
-
-                        select.addEventListener('change', function() {
-                           const value = this.value;
-
-                           if(value === 'default') {
-                                 // Restore original HTML
-                                 tableBody.innerHTML = originalRowsHTML;
-                                 table.style.display = "table";
-                                 emptyMsg.style.display = "none";
-                                 return;
-                           }
-
-                           // Get rows as array
-                           let rows = Array.from(tableBody.querySelectorAll('.assignment-row'));
-
-                           // Sort rows by timestamp
-                           rows.sort((a,b) => {
-                                 let aTime = parseInt(a.dataset.timestamp);
-                                 let bTime = parseInt(b.dataset.timestamp);
-                                 return value === 'latest' ? bTime - aTime : aTime - bTime;
-                           });
-
-                           // Clear table and append sorted rows
-                           tableBody.innerHTML = '';
-                           if(rows.length === 0){
-                                 table.style.display = "none";
-                                 emptyMsg.style.display = "block";
-                           } else {
-                                 rows.forEach(row => tableBody.appendChild(row));
-                                 table.style.display = "table";
-                                 emptyMsg.style.display = "none";
-                           }
-                        });
-                     };
-                     </script>
-
-                     {{--Assignment Deadline Countdown script --}}
-                     <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                           function startCountdown(element, deadline, button) {
-                              let countDownDate = new Date(deadline).getTime();
-
-                              let timer = setInterval(function () {
-                                 let now = new Date().getTime();
-                                 let distance = countDownDate - now;
-
-                                 if (distance <= 0) {
-                                    clearInterval(timer);
-                                    element.textContent = "Deadline Over";
-                                    element.classList.remove("text-success");
-                                    element.classList.add("text-danger");
-
-                                    // disable button instead of hiding
-                                    button.disabled = true;
-                                    button.textContent = "Deadline Over";
-                                    button.removeAttribute("data-bs-toggle"); 
-                                    button.removeAttribute("data-bs-target"); 
-                                 } else {
-                                    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                                    element.textContent = 
-                                       (days > 0 ? days + "d " : "") + 
-                                       hours + "h " + 
-                                       minutes + "m " + 
-                                       seconds + "s ";
-                                 }
-                              }, 1000);
-                           }
-
-                           // initialize all timers
-                           document.querySelectorAll(".deadline-timer").forEach(function (el) {
-                              let deadline = el.getAttribute("data-deadline");
-                              let id = el.id.split("-")[1]; // get assignment id
-                              let button = document.getElementById("submit-" + id);
-
-                              startCountdown(el, deadline, button);
-                           });
-                        });
-                   </script>
+                 
 
                    {{-- Modal data fetch script --}}
 
-                     <script>
-                     document.addEventListener("DOMContentLoaded", function () {
-                        var uploadModal = document.getElementById('uploadModal');
-                        uploadModal.addEventListener('show.bs.modal', function (event) {
-                           var button = event.relatedTarget; // Click the button when I do
-
-                           // Experiment Name
-                           var expName = button.getAttribute('data-expname'); 
-                           var input = uploadModal.querySelector('#courseName');
-                           input.value = expName;
-
-                           // Current Date & Time
-                           var now = new Date();
-                           var options = { year: 'numeric', month: 'short', day: 'numeric' };
-                           var dateStr = now.toLocaleDateString('en-US', options);
-                           var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                           
-                           var dateTimeInput = uploadModal.querySelector('#dateTime');
-                           if (dateTimeInput) {
-                                 dateTimeInput.value = dateStr + " - " + timeStr;
-                           }
-                        });
-                     });
-                     </script>
+                    
 
                <!--Assignment submission Modal -->
                   <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -312,31 +187,39 @@
                            
                            <!-- Modal Body -->
                            <div class="modal-body p-4">
-                              <form>
-                              <div class="mb-3">
-                           <label for="courseName" class="form-label fw-semibold">Experiment Name</label>
-                           <input type="text" id="courseName" class="form-control form-control-lg" value="" readonly>
-                        </div>                              
-                             <div class="mb-3">
-                              <label for="dateTime" class="form-label fw-semibold">Date & Time</label>
-                              <input type="text" id="dateTime" class="form-control form-control-lg" value="" readonly>
-                           </div>
+                              <form id="assignmentForm" action="{{ route('assignments.store') }}" method="POST" enctype="multipart/form-data">
+                               @csrf
 
-                            <div class="mb-3">
-                              <label for="fileUpload" class="form-label fw-semibold">Choose File</label>
-                              <input class="form-control form-control-lg" type="file" id="fileUpload">
-                              <small class="text-muted">Accepted formats: PDF, JPG, Png</small>
-                           </div>
-                        </form>
+                        <div class="mb-3">
+                           <label for="studentName" class="form-label fw-semibold">Student Name</label>
+                           <input type="text" id="studentName" name="name" class="form-control form-control-lg" value="{{ Auth::user()->name }}" readonly>
+                        </div>  
+
+                        <div class="mb-3">
+                           <label for="experimentName" class="form-label fw-semibold">Experiment Name</label>
+                           <input type="text" id="experimentName" name="course_name" class="form-control form-control-lg" value="" readonly>
+                        </div>                                                          
+
+                        <div class="mb-3">
+                           <label for="dateTime" class="form-label fw-semibold">Date & Time</label>
+                           <input type="text" id="dateTime" name="submission_date" class="form-control form-control-lg" value="" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                           <label for="fileUpload" class="form-label fw-semibold">Choose File</label>
+                           <input class="form-control form-control-lg" type="file" id="fileUpload" name="assignment_file" required>
+                           <small class="text-muted">Accepted formats: PDF, JPG, PNG, WEBP</small>
+                        </div>
+                     </form>
                      </div>
                            
-                           <!-- Modal Footer -->
-                           <div class="modal-footer bg-light rounded-bottom-4">
-                              <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-                              <button type="button" class="btn btn-success px-4 shadow">
-                                 <i class="feather-icon icon-check-circle me-2"></i> Upload
-                              </button>
-                           </div>
+                      <!-- Modal Footer -->
+<div class="modal-footer bg-light rounded-bottom-4">
+   <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+   <button type="submit" form="assignmentForm" class="btn btn-success px-4 shadow">
+      <i class="feather-icon icon-check-circle me-2"></i> Upload
+   </button>
+</div>
                         </div>
                      </div>
                   </div>

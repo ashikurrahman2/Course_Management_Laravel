@@ -7,23 +7,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
-class Assignment extends Model
+class Assignmentdetails extends Model
 {
     use HasFactory;
 
     private static $file, $fileName, $directory, $fileUrl;
 
-    protected $fillable = [
+        protected $fillable = [
+        'user_id', 
         'course_name', 
-        'exp_name', 
-        'total_marks', 
-        'earned_marks', 
-        'deadline', 
-        'assigned_date',
+        'name',  
+        'submission_date',
         'assignment_file',
     ];
 
-    /**
+      /**
      * Upload file (image or PDF)
      */
     private static function getFileUrl($request)
@@ -51,7 +49,7 @@ class Assignment extends Model
         return null;
     }
 
-    /**
+        /**
      * Create new Assignment
      */
     public static function newAssignment($request)
@@ -61,49 +59,22 @@ class Assignment extends Model
         self::saveBasicInfo($assignment, $request, self::$fileUrl);
     }
 
-    /**
-     * Update Assignment
-     */
-    public static function updateAssignment($request, $id)
-    {
-        $assignment = self::findOrFail($id);
-
-        if ($request->file('assignment_file')) {
-            if (file_exists($assignment->assignment_file)) {
-                unlink($assignment->assignment_file);
-            }
-            self::$fileUrl = self::getFileUrl($request);
-        } else {
-            self::$fileUrl = $assignment->assignment_file;
-        }
-
-        self::saveBasicInfo($assignment, $request, self::$fileUrl);
-    }
-
-    /**
+        /**
      * Save or update basic info
      */
     private static function saveBasicInfo($assignment, $request, $fileUrl)
     {
         $assignment->assignment_file   = $fileUrl;
-        $assignment->course_name       = $request->course_name;
-        $assignment->exp_name          = $request->exp_name;
-        $assignment->total_marks       = $request->total_marks;
-        $assignment->earned_marks       = $request->earned_marks;
-        $assignment->deadline          = $request->deadline;
-        $assignment->assigned_date     = $request->assigned_date;
+        $assignment->name              = $request->name;
+        $assignment->course_name          = $request->course_name;
+        $assignment->user_id           = $request->user_id;
+            // Convert submission_date into proper MySQL datetime format
+        $assignment->submission_date = date('Y-m-d H:i:s', strtotime($request->submission_date));
         $assignment->save();
     }
 
-    /**
-     * Delete Assignment
-     */
-    public static function deleteAssignment($assignment)
+     public function user()
     {
-        if (file_exists($assignment->assignment_file)) {
-            unlink($assignment->assignment_file);
-        }
-        $assignment->delete();
+        return $this->belongsTo(User::class, 'user_id');
     }
-   
 }

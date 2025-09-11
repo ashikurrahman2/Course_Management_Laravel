@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\User\SellController;
 use App\Models\Course;
+use App\Models\Category;
+use App\Models\Assignment;
 use Illuminate\Support\Facades\Route;
 
 // Website route
@@ -24,8 +26,10 @@ Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name
 
 // User dashboard route
 Route::get('/dashboard', function () {
-    $courseCount = Course::count(); // Total registration 
-    return view('dashboard', compact('courseCount'));
+    $courseCount = Course::count();// Total registration 
+    $assignmentCount = Assignment::count();// Total registration 
+      $categories = Category::all(); 
+    return view('dashboard', compact('courseCount', 'categories','assignmentCount'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 

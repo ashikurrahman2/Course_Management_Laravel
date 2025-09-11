@@ -95,6 +95,7 @@ class AssignmentController extends Controller
             'course_name' => 'required|string|max:500',
             'exp_name' => 'required|string|max:500',
             'total_marks' => 'required|integer',
+            'earned_marks' => 'required|integer',
             'deadline' => 'nullable|string|max:255',
             'assigned_date' => 'required|date',
             // 'assignment_file' => 'nullable|file|mimes:jpg,jpeg,png,webp,pdf|max:5242880',

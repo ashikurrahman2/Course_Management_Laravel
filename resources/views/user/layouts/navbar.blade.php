@@ -6,20 +6,18 @@
     <div class="header-nav-wrapper header-sticky">
       <nav class="navbar navbar-expand-xl border-bottom">
         <div class="container-fluid px-lg-5 px-3">
-          <a class="navbar-brand" href="index.html"><img src="{{ asset('/') }}frontend/assets/images/logo.png" alt="Logo" /></a>
+          <a class="navbar-brand" href="/"><img src="{{ asset('/') }}frontend/assets/images/logo.png" alt="Logo" /></a>
           <div
             class="header-actions d-none d-sm-flex position-relative order-xl-3 d-flex align-items-center justify-content-between">
             <div class="category-search d-none d-md-block">
               <form action="#" class="d-flex">
                 <div class="d-flex align-items-center">
-                  <span class="ms-2"><img src="{{ asset('/') }}frontend/assets/images/icons/list.svg" alt="List" /></span>
+                  <span class="ms-2">
+                    <img src="{{ asset('/') }}frontend/assets/images/icons/list.svg" alt="List" /></span>
                   <select name="category-search" id="select-category">
-                    <option value="1">Lifestyle & Beauty</option>
-                    <option value="2">Finance & Accounting</option>
-                    <option value="3">Health & Fitness</option>
-                    <option value="4">Digital Marketing</option>
-                    <option value="5">Office Productivity</option>
-                    <option value="6">Design</option>
+                     @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                         @endforeach
                   </select>
                 </div>
                 <div class="search-group position-relative">
@@ -56,29 +54,29 @@
                         class="feather-icon icon-home"></i><span>Dashboard</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-profile.html"><i class="feather-icon icon-user"></i><span>My
+                    <a class="nav-link" href="{{ route('profile') }}"><i class="feather-icon icon-user"></i><span>My
                         Profile</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-enrolled-courses.html"><i
+                    <a class="nav-link" href="{{ route('enrolled') }}"><i
                         class="feather-icon icon-book-open"></i><span>Enrolled Courses</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-wishlist.html"><i
+                    <a class="nav-link" href="{{ route('whishlists') }}"><i
                         class="feather-icon icon-gift"></i><span>Wishlist</span></a>
                   </li>
 
                   <li>
-                    <a class="nav-link" href="instructor-reviews.html"><i
+                    <a class="nav-link" href="{{ route('streview') }}"><i
                         class="feather-icon icon-star"></i><span>Reviews</span></a>
                   </li>
 
                   <li>
-                    <a class="nav-link" href="instructor-my-quiz-attempts.html"><i
+                    <a class="nav-link" href="{{ route('anounced') }}"><i
                         class="feather-icon icon-box"></i><span>My Quiz Attempts</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-order-history.html"><i
+                    <a class="nav-link" href="{{ route('orderlist') }}"><i
                         class="feather-icon icon-shopping-bag"></i><span>Order History</span></a>
                   </li>
                   <li class="border-bottom"></li>
@@ -86,21 +84,15 @@
                     <a class="nav-link active" href="instructor-courses.html"><i
                         class="feather-icon icon-book"></i><span>My Courses</span></a>
                   </li>
+             
+               
                   <li>
-                    <a class="nav-link" href="instructor-assignments.html"><i
-                        class="feather-icon icon-briefcase"></i><span>Assignments</span></a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="instructor-quiz-attemps.html"><i
-                        class="feather-icon icon-cpu"></i><span>Quiz Attempts</span></a>
-                  </li>
-                  <li>
-                    <a class="nav-link" href="instructor-announcements.html"><i
+                    <a class="nav-link" href="{{ route('anounced') }}"><i
                         class="feather-icon icon-bell"></i><span>Announcements</span></a>
                   </li>
                   <li class="border-bottom"></li>
                   <li>
-                    <a class="nav-link" href="instructor-settings.html"><i
+                    <a class="nav-link" href="{{ route('stusettings') }}"><i
                         class="feather-icon icon-settings"></i><span>Settings</span></a>
                   </li>
                   <li>
