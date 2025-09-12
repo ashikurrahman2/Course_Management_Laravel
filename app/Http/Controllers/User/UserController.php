@@ -65,15 +65,14 @@ class UserController extends Controller
            $categories = Category::all();
         return view('user.assignment', compact('assignments','courses','experiments','categories'));
     }
-
+        // Assignment data store from frontend to database
        public function store(Request $request)
     {
        // Validation
         $request->validate([
             'name'            => 'required|string|max:255',
             'course_name'        => 'required|string|max:255',
-            // 'user_id'         => 'required|integer',
-            'submission_date' => 'required|string', // আসবে modal থেকে (Sep 11, 2025 - 12:49 PM)
+            'submission_date' => 'required|string', 
             'assignment_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:2048',
         ]);
 

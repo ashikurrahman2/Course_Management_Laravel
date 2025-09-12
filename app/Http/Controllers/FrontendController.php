@@ -60,6 +60,7 @@ class FrontendController extends Controller
            $courses = Course::paginate(6);
          //   $categories = Category::all();
            $categories = Category::all();
+        //    $categories = Category::withCount('courses')->get();
         return view('frontend.pages.courses', compact('courses','categories'));
      }
 

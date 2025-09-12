@@ -126,7 +126,7 @@
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Courses</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('courses.index') }}">All Courses</a></li>
+                    <li><a class="dropdown-item" href="{{ route('course') }}">All Courses</a></li>
                     <li><a class="dropdown-item" href="{{ route('courses.lession') }}">Course Lesson</a></li>
                   </ul>
                 </li>
@@ -135,34 +135,34 @@
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Pages</a>
                   <div class="dropdown-menu">
-                    <div class="row row-cols-xl-4 row-cols-1">
+                    <div class="row row-cols-xl-2 row-cols-1">
+                 {{-- <div class="row row-cols-xl-2 row-cols-1 w-75 mx-auto"> --}}
+
                       <div class="col">
                         <div>
                           <div>
                             <div class="dropdown-header">Get Started</div>
                             <a class="dropdown-item" href="about.html">About Us</a>
-                            <a class="dropdown-item" href="event-grid.html">Event Grid</a>
+                            {{-- <a class="dropdown-item" href="event-grid.html">Event Grid</a>
                             <a class="dropdown-item" href="event-list.html">Event List</a>
                             <a class="dropdown-item" href="event-sidebar.html">Event Sidebar</a>
-                            <a class="dropdown-item" href="single-event.html">Event Details</a>
+                            <a class="dropdown-item" href="single-event.html">Event Details</a> --}}
                             <a class="dropdown-item" href="pricing.html">Pricing Plan</a>
+                            <a class="dropdown-item" href="pricing.html">Buy Course</a>
                             <a class="dropdown-item" href="admission-guide.html">Admision Guide</a>
+                            <a class="dropdown-item" href="contact.html">Contact</a>
                           </div>
                         </div>
                       </div>
                       <div class="col">
                         <div>
                           <div class="dropdown-header">Get Started</div>
-                          <a class="dropdown-item" href="contact.html">Contact Us</a>
                           <a class="dropdown-item" href="instructors.html">Instructors</a>
-                          <a class="dropdown-item" href="profile.html">Profile</a>
                           <a class="dropdown-item" href="become-instructor.html">Become a instructor</a>
                           <a class="dropdown-item" href="faq.html">FAQ</a>
-                          <a class="dropdown-item" href="404.html">404 error</a>
-                          <a class="dropdown-item" href="comming-soon.html">Maintenance</a>
                         </div>
                       </div>
-                      <div class="col">
+                      {{-- <div class="col">
                         <div class="mt-3 mt-lg-0">
                           <div>
                             <div class="dropdown-header">Shop Pages</div>
@@ -175,8 +175,8 @@
                             <a class="dropdown-item" href="signup.html">Register</a>
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
+                      </div> --}}
+                      {{-- <div class="col">
                         <div class="mt-3 mt-lg-0">
                           <a href="login.html" class="banner-ads d-flex justify-content-between">
                             <div class="b-content">
@@ -186,11 +186,11 @@
                             <img src="images/banner-ads.png" alt="" class="img-fluid banner-img" />
                           </a>
                         </div>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
                 </li>
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Blog</a>
                   <ul class="dropdown-menu">
@@ -201,7 +201,7 @@
                     <li><a class="dropdown-item" href="single-post.html">Single Post</a></li>
                     <li><a class="dropdown-item" href="single-post-fullwidth.html">Single Post FullWidth</a></li>
                   </ul>
-                </li>
+                </li> --}}
               </ul>
             </div>
           </div>

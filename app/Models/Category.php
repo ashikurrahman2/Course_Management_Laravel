@@ -38,4 +38,10 @@ class Category extends Model
     {
         $category->delete();
     }
+
+//     public function courses()
+// {
+//     return $this->hasMany(Course::class);
+// }
+
 }

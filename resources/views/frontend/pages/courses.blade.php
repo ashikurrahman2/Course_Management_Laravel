@@ -51,6 +51,7 @@
                                  </label>
 
                                  <span class="count">({{ $category->courses_count }})</span>
+                                    {{-- <span class="count">({{ $category->courses_count }})</span> --}}
                            </li>
                         @endforeach
                      </ul>

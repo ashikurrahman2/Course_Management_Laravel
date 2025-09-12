@@ -119,7 +119,7 @@
 
                 <div class="form-group">
                   <label for="pass_parcentage" class="col-form-label pt-0">Pass Parcentage<sup class="text-size-20 top-1">*</sup></label>
-                    <input type="number" class="form-control" id="pass_parcentage" name="pass_parcentage" required>
+                    <input type="text" class="form-control" id="pass_parcentage" name="pass_parcentage" required>
                     <small id="emailHelp" class="form-text text-muted">This is your course catagory</small>
                 </div>
 

@@ -90,18 +90,12 @@
                                                 @else
                                                     <span>No File</span>
                                                 @endif
-                                            </td>
-
-                                           
+                                            </td>  
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- Pagination links -->
-                            {{-- <div class="d-flex justify-content-center mt-3">
-                                {{ $applications->links('pagination::bootstrap-4') }}
-                            </div> --}}
                         @endif
                     </div>
                 </div>

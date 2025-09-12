@@ -135,7 +135,7 @@
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">Courses</a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('courses.index') }}">All Courses</a></li>
+                    <li><a class="dropdown-item" href="{{ route('course') }}">All Courses</a></li>
                     <li><a class="dropdown-item" href="lesson.html">Course Lesson</a></li>
                   </ul>
                 </li>

@@ -14,7 +14,7 @@ class Course extends Model
     private static $image, $imageName, $directory, $imageUrl;
         // Fillable fields to allow mass assignment
         protected $fillable = [
-            'course_title', 'course_price', 'course_teacher', 'course_image',
+            'course_title', 'course_price', 'course_teacher', 'course_image', 'courses_count',
         ];
         
     // Function to upload and resize image
@@ -70,8 +70,12 @@ class Course extends Model
         {
             $courses->course_image                         = $imageUrl;
             $courses->course_title                         = $request->course_title;
+         
             $courses->course_price                         = $request->course_price;
             $courses->course_teacher                       = $request->course_teacher;
+            // Auto generate course count (total number of courses)
+                $courses->courses_count  = self::count() + 1;
+
             $courses->save();
         }
 

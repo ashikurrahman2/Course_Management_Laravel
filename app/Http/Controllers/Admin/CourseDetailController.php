@@ -74,7 +74,7 @@ class CourseDetailController extends Controller
             'course_subcontent'         => 'required|string|max:500',
             'course_teacherintro'       => 'required|string|max:500',
             'course_teacherdesignation' => 'required|string|max:500',
-            'pass_parcentage'           => 'required|integer|max:255',
+            'pass_parcentage'           => 'required|string|max:255',
             'course_level'              => 'required|string|max:255',
             'course_teacherphoto'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -121,7 +121,7 @@ class CourseDetailController extends Controller
             'course_subcontent'                 => 'required|string|max:500',
             'course_teacherintro'               => 'required|string|max:500',
             'course_teacherdesignation'         => 'required|string|max:500',
-            'pass_parcentage'                   => 'required|integer|max:255',
+            'pass_parcentage'                   => 'required|string|max:255',
             'course_level'                      => 'required|string|max:255',
             'course_teacherphoto'               => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

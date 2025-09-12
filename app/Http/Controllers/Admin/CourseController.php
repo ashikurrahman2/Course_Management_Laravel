@@ -71,6 +71,7 @@ public function index(Request $request)
         //  Validation check
         $request->validate([
             'course_title' => 'required|string|max:500',
+            // 'courses_count' => 'required|integer|max:255',
             'course_price' => 'required|string|max:500',
             'course_teacher' => 'required|string|max:500',
             'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -107,6 +108,7 @@ public function index(Request $request)
        //  Validation check
         $request->validate([
             'course_title' => 'required|string|max:500',
+            //  'courses_count' => 'required|integer|max:255',
             'course_price' => 'required|string|max:500',
             'course_teacher' => 'required|string|max:500',
             'course_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

@@ -38,6 +38,7 @@
                         <th>SL</th>
                         <th>Course Title</th>
                         <th>Course Image</th>
+                        {{-- <th>Course Count</th> --}}
                         <th>Course Price</th>
                         <th>Course Teacher</th>
                         <th>Action</th>
@@ -51,6 +52,7 @@
                         <th>SL</th>
                         <th>Course Title</th>
                         <th>Course Image</th>
+                        {{-- <th>Course Count</th> --}}
                         <th>Course Price</th>
                         <th>Course Teacher</th>
                         <th>Action</th>
@@ -89,6 +91,12 @@
                     <input type="file" class="dropify" data-height="200" name="course_image"  required />
                     <small id="imageHelp" class="form-text text-muted">Maximum image size 2 MB</small>
                 </div>
+
+                   {{-- <div class="form-group">
+                    <label for="courses_count" class="col-form-label pt-0">Course Count<sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="courses_count" name="courses_count" required>
+                      <small id="emailHelp" class="form-text text-muted">This is your course name</small>
+                  </div> --}}
                 
                 <div class="form-group">
                   <label for="course_price" class="col-form-label pt-0">Course Price<sup class="text-size-20 top-1">*</sup></label>
@@ -137,6 +145,7 @@
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'course_title', name: 'course_title' },
                 { data: 'course_image', name: 'course_image' },
+            
                 { data: 'course_price', name: 'course_price' },
                 { data: 'course_teacher', name: 'course_teacher' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }

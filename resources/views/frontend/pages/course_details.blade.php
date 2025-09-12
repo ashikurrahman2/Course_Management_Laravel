@@ -575,14 +575,14 @@
 					<aside class="sidebar sticky-top widget-top">
 						<div class="widget price-widget bg-white border p-3 rounded-3">
 							<div class="course-preview mb-3">
-								<img src="images/course2.jpg" alt="Course preview" class="img-fluid">
-								<div class="video-block-sm">
+								{{-- <img src="images/course2.jpg" alt="Course preview" class="img-fluid"> --}}
+								{{-- <div class="video-block-sm">
 									<div class="waves wave-1"></div>
 									<div class="waves wave-2"></div>
 									<div class="waves wave-3"></div>
 									<a class="cover-video" href="https://www.youtube.com/watch?v=tUP5S4YdEJo"><img
 											src="images/icons/play.png" alt=""></a>
-								</div>
+								</div> --}}
 							</div>
 							<div class="d-flex justify-content-between align-items-center">
 								<h3 class="display-4">$19.99 <del>$36.99</del></h3>
