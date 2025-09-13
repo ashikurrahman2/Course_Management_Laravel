@@ -1,6 +1,7 @@
-<form action="{{route('about.update', $$about->id)}}" method="post" id="add-form" enctype="multipart/form-data">
+<form action="{{route('about.update', $about->id)}}" method="post" id="add-form" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+     <div class="modal-body">
       <div class="form-group">
         <label for="title" class="col-form-label pt-0">Title<sup class="text-size-20 top-1">*</sup></label>
           <input type="text" class="form-control" id="title" name="title" value="{{ $about->title }}" required>
@@ -34,6 +35,7 @@
                     <input type="text" class="form-control" id="our_vision" name="our_vision" value="{{ $about->our_vision }}" required>
                     <small id="emailHelp" class="form-text text-muted">Company Title</small>
                 </div>
+     </div>
 
         
  

@@ -7,84 +7,104 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
-class coursedetail extends Model
+class CourseDetail extends Model
 {
-      use HasFactory;
-    
-      private static $image, $imageName, $directory, $imageUrl;
+    use HasFactory;
 
-          // Fillable fields to allow mass assignment
-        protected $fillable = [
-            'course_overview', 'course_content', 'course_subcontent', 'course_teacherphoto', 'course_teacherintro',
-            'course_teacherdesignation',
-        ];
+    private static $file, $fileName, $directory, $fileUrl;
+    protected $table = 'course_details';
 
-        // Function to upload and resize image
-        private static function getImageUrl($request)
+    protected $fillable = [
+        'course_overview',
+        'course_content',
+        'course_subcontent',
+        'course_teacherphoto',
+        'course_teacherintro',
+        'course_teacherdesignation',
+        'pass_parcentage',
+        'course_level',
+    ];
+
+    /**
+     * Upload teacher photo
+     */
+    private static function getFileUrl($request)
     {
-        self::$image = $request->file('course_teacherphoto');
-        if (self::$image) {
-            self::$imageName = time() . '_' . self::$image->getClientOriginalName(); // Unique image name
-            self::$directory = "upload/courseteacher-images/";
-            self::$image->move(self::$directory, self::$imageName);
+        self::$file = $request->file('course_teacherphoto');
+        if (self::$file) {
+            self::$fileName = time() . '_' . self::$file->getClientOriginalName();
+            self::$directory = "upload/course-teachers/";
+            self::$file->move(self::$directory, self::$fileName);
 
-            // Resize the image using Intervention Image
-            $imageManager = new ImageManager(new Driver());
-            $image = $imageManager->read(self::$directory . self::$imageName);
-            $image->resize(600, 600); // Resize to required dimensions
-            $image->save(self::$directory . self::$imageName);
+            $ext = strtolower(self::$file->getClientOriginalExtension());
 
-            self::$imageUrl = self::$directory . self::$imageName;
-            return self::$imageUrl;
+            // Resize if image
+            if (in_array($ext, ['jpg', 'jpeg', 'png', 'webp'])) {
+                $imageManager = new ImageManager(new Driver());
+                $image = $imageManager->read(self::$directory . self::$fileName);
+                $image->resize(400, 400); // Teacher photo fixed size
+                $image->save(self::$directory . self::$fileName);
+            }
+
+            self::$fileUrl = self::$directory . self::$fileName;
+            return self::$fileUrl;
         }
         return null;
     }
 
-        // Create a new Course details entry
+    /**
+     * Create new CourseDetail
+     */
     public static function newCourseDetail($request)
     {
-        self::$imageUrl = $request->file('course_teacherphoto') ? self::getImageUrl($request) : '';
-
-        $courses_details = new self();
-        self::saveBasicInfo($courses_details, $request, self::$imageUrl);
+        self::$fileUrl = $request->file('course_teacherphoto') ? self::getFileUrl($request) : '';
+        $courseDetail = new self();
+        self::saveBasicInfo($courseDetail, $request, self::$fileUrl);
     }
 
-           // Update an existing Course Details entry
-        public static function updateCourseDetail($request, $id)
-        {
-        // Fetch the team record using the ID
-        $courses_details = self::findOrFail($id);
+    /**
+     * Update CourseDetail
+     */
+    public static function updateCourseDetail($request, $id)
+    {
+        $courseDetail = self::findOrFail($id);
 
-            if ($request->file('course_teacherphoto')) {
-                if (file_exists($courses_details->course_teacherphoto)) {
-                    unlink($courses_details->course_teacherphoto);
-                }
-                self::$imageUrl = self::getImageUrl($request);
-            } else {
-                self::$imageUrl = $courses_details->course_teacherphoto;
+        if ($request->file('course_teacherphoto')) {
+            if (file_exists($courseDetail->course_teacherphoto)) {
+                unlink($courseDetail->course_teacherphoto);
             }
-
-            self::saveBasicInfo($courses_details, $request, self::$imageUrl);
-     }
-
-               // Save or update basic info in the database
-        private static function saveBasicInfo($courses_details, $request, $imageUrl)
-        {
-            $courses_details->course_teacherphoto                     = $imageUrl;
-            $courses_details->course_overview                         = $request->course_overview;
-            $courses_details->course_content                          = $request->course_content;
-            $courses_details->course_subcontent                       = $request->course_subcontent;
-            $courses_details->course_teacherintro                     = $request->course_teacherintro;
-            $courses_details->save();
+            self::$fileUrl = self::getFileUrl($request);
+        } else {
+            self::$fileUrl = $courseDetail->course_teacherphoto;
         }
 
-              // Delete an course Details entry
-        public static function deleteCourseDetail($courses_details)
-        {
-            if (file_exists($courses_details->course_teacherphoto)) {
-                unlink($courses_details->course_teacherphoto);
-            }
-            
-            $courses_details->delete();
+        self::saveBasicInfo($courseDetail, $request, self::$fileUrl);
+    }
+
+    /**
+     * Save or update basic info
+     */
+    private static function saveBasicInfo($courseDetail, $request, $fileUrl)
+    {
+        $courseDetail->course_overview        = $request->course_overview;
+        $courseDetail->course_content         = $request->course_content;
+        $courseDetail->course_subcontent      = $request->course_subcontent;
+        $courseDetail->course_teacherphoto    = $fileUrl;
+        $courseDetail->course_teacherintro    = $request->course_teacherintro;
+        $courseDetail->course_teacherdesignation = $request->course_teacherdesignation;
+        $courseDetail->pass_parcentage        = $request->pass_parcentage;
+        $courseDetail->course_level           = $request->course_level;
+        $courseDetail->save();
+    }
+
+    /**
+     * Delete CourseDetail
+     */
+    public static function deleteCourseDetail($courseDetail)
+    {
+        if (file_exists($courseDetail->course_teacherphoto)) {
+            unlink($courseDetail->course_teacherphoto);
         }
+        $courseDetail->delete();
+    }
 }

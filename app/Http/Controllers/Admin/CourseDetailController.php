@@ -1,146 +1,126 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\coursedetail;
+use App\Models\CourseDetail;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class CourseDetailController extends Controller
 {
-
-        protected $toastr;
+    protected $toastr;
 
     public function __construct(ToastrInterface $toastr)
     {
         $this->toastr = $toastr;
     }
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of course details.
      */
     public function index(Request $request)
-{
-    if ($request->ajax()) {
-        $courses_details = coursedetail::all();
-
-        return DataTables::of($courses_details)
-            ->addIndexColumn() 
-            ->addColumn('course_teacherphoto', function ($row) {
-                if ($row->course_teacherphoto) {
-                    return '<img src="' . asset($row->course_teacherphoto) . '" alt="news image" class="img-fluid center-image" style="max-width: 40px; display: block; margin: 0 auto;">';
-                } else {
-                    return 'No logo uploaded';
-                }
-            })
-            ->addColumn('action', function ($row) {
-                $actionbtn = '<a href="javascript:void(0)" class="btn btn-primary btn-sm me-1 edit" data-id="' . $row->id . '" data-bs-toggle="modal" data-bs-target="#editModal">
-                                <i class="fa fa-edit"></i>
-                              </a>
-                              <button class="btn btn-danger btn-sm delete" data-id="' . $row->id . '">
-                                  <i class="fa fa-trash"></i>
-                              </button>
-                              <form id="delete-form-' . $row->id . '" action="' . route('details.destroy', $row->id) . '" method="POST" style="display: none;">
-                                  ' . csrf_field() . '
-                                  ' . method_field('DELETE') . '
-                              </form>';
-                return $actionbtn;
-            })
-            ->rawColumns(['course_teacherphoto', 'action'])
-            ->make(true);
-    }
-
-    return view('admin.pages.coursedetails.index');
-}
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
-        //
+        if ($request->ajax()) {
+            $courseDetails = CourseDetail::all();
+
+            return DataTables::of($courseDetails)
+                ->addIndexColumn()
+                ->addColumn('course_teacherphoto', function ($row) {
+                    if ($row->course_teacherphoto) {
+                        return '<img src="' . asset($row->course_teacherphoto) . '" style="max-width:40px;border-radius:50%;">';
+                    } else {
+                        return 'No photo';
+                    }
+                })
+                ->addColumn('action', function ($row) {
+                    $btn = '
+                        <a href="javascript:void(0)" class="btn btn-primary btn-sm edit" data-id="'.$row->id.'" data-bs-toggle="modal" data-bs-target="#editModal">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <button class="btn btn-danger btn-sm delete" data-id="'.$row->id.'">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <form id="delete-form-'.$row->id.'" action="'.route('details.destroy', $row->id).'" method="POST" style="display:none;">
+                            '.csrf_field().'
+                            '.method_field('DELETE').'
+                        </form>';
+                    return $btn;
+                })
+                ->rawColumns(['course_teacherphoto','action'])
+                ->make(true);
+        }
+
+        return view('admin.pages.coursedetails.index');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created course detail.
      */
-      public function store(Request $request)
+    public function store(Request $request)
     {
-        // Validation check
         $request->validate([
-            'course_overview'           => 'required|string|max:500',
-            'course_content'            => 'required|string|max:500',
-            'course_subcontent'         => 'required|string|max:500',
-            'course_teacherintro'       => 'required|string|max:500',
-            'course_teacherdesignation' => 'required|string|max:500',
-            'pass_parcentage'           => 'required|string|max:255',
-            'course_level'              => 'required|string|max:255',
-            'course_teacherphoto'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'course_overview'        => 'nullable|string|max:255',
+            'course_content'         => 'nullable|string',
+            'course_subcontent'      => 'nullable|string|max:255',
+            'course_teacherphoto'    => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
+            'course_teacherintro'    => 'nullable|string|max:255',
+            'course_teacherdesignation' => 'nullable|string|max:255',
+            'pass_parcentage'        => 'nullable|string|max:255',
+            'course_level'           => 'nullable|string|max:255',
         ]);
 
-        // Remove HTML tags from specific fields
-        $request->merge([
+            //  Remove HTML tag
+            $request->merge([
             'course_overview'    => strip_tags($request->course_overview),
             'course_teacherintro'=> strip_tags($request->course_teacherintro),
-        ]);
 
-        // Save to database
-        coursedetail::newCourseDetail($request);
+            ]);
 
-        $this->toastr->success('Course Details created successfully!');
+        CourseDetail::newCourseDetail($request);
+        $this->toastr->success('Course Detail created successfully!');
         return back();
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(coursedetail $courses_details)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a course detail.
      */
     public function edit($id)
     {
-          $courses_details = coursedetail::findOrFail($id);
-        return view('admin.pages.coursedetails.edit', compact('courses_details'));
+        $courseDetail = CourseDetail::findOrFail($id);
+        return view('admin.pages.coursedetails.edit', compact('courseDetail'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update a course detail.
      */
     public function update(Request $request, $id)
     {
-              // Update Validation check
         $request->validate([
-            'course_overview'                   => 'required|string|max:500',
-            'course_content'                    => 'required|string|max:500',
-            'course_subcontent'                 => 'required|string|max:500',
-            'course_teacherintro'               => 'required|string|max:500',
-            'course_teacherdesignation'         => 'required|string|max:500',
-            'pass_parcentage'                   => 'required|string|max:255',
-            'course_level'                      => 'required|string|max:255',
-            'course_teacherphoto'               => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'course_overview'        => 'nullable|string|max:255',
+            'course_content'         => 'nullable|string',
+            'course_subcontent'      => 'nullable|string|max:255',
+            'course_teacherphoto'    => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
+            'course_teacherintro'    => 'nullable|string|max:255',
+            'course_teacherdesignation' => 'nullable|string|max:255',
+            'pass_parcentage'        => 'nullable|string|max:255',
+            'course_level'           => 'nullable|string|max:255',
         ]);
 
-          // Fetch Data 
-        coursedetail::updateCourseDetail($request, $id);
-        // Success Message
-        $this->toastr->success('Course Details updated successfully!');
+        CourseDetail::updateCourseDetail($request, $id);
+        $this->toastr->success('Course Detail updated successfully!');
         return back();
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a course detail.
      */
     public function destroy($id)
     {
-        $courses_details = coursedetail::findOrFail($id);
-        $courses_details->delete();
-        $this->toastr->success('Course Details Deleted successfully!');
+        $courseDetail = CourseDetail::findOrFail($id);
+        CourseDetail::deleteCourseDetail($courseDetail);
+        $this->toastr->success('Course Detail deleted successfully!');
         return back();
     }
 }

@@ -128,6 +128,25 @@
   </div>
 </div>
   <!-- Script -->
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function about(){
+      var table=$('.ytable').DataTable({
+        processing: true,
+            serverSide: true,
+            ajax: "{{ route('about.index') }}",
+            columns: [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                { data: 'title', name: 'title' },
+                { data: 'photo', name: 'photo' },
+                { data: 'our_mission', name: 'our_mission' },
+                { data: 'our_vision', name: 'our_vision' },
+                { data: 'action', name: 'action', orderable: false, searchable: false }
+            ]
+      });
+    }); --}}
+
+      <!-- Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script type="text/javascript">
     $(function about(){
@@ -145,7 +164,7 @@
             ]
       });
     });
-// For Edit About 
+  // For Edit About 
     $('body').on('click', '.edit', function() {
         let id = $(this).data('id');
         $.get("about/" + id + "/edit", function(data) {

@@ -133,7 +133,7 @@
           
                 <li class="nav-item dropdown dropdown-fullwidth">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Pages</a>
+                    aria-expanded="false">More</a>
                   <div class="dropdown-menu">
                     <div class="row row-cols-xl-2 row-cols-1">
                  {{-- <div class="row row-cols-xl-2 row-cols-1 w-75 mx-auto"> --}}
@@ -142,7 +142,7 @@
                         <div>
                           <div>
                             <div class="dropdown-header">Get Started</div>
-                            <a class="dropdown-item" href="about.html">About Us</a>
+                            <a class="dropdown-item" href="{{route('courses.about')}}">About Us</a>
                             {{-- <a class="dropdown-item" href="event-grid.html">Event Grid</a>
                             <a class="dropdown-item" href="event-list.html">Event List</a>
                             <a class="dropdown-item" href="event-sidebar.html">Event Sidebar</a>

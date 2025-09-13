@@ -52,13 +52,15 @@ class FrontendController extends Controller
 
 
 
-
+  public function managementAbout(){
+             $categories = Category::all();
+        return view('frontend.pages.about', compact('categories'));
+     }
 
 
 
      public function allCourse(){
            $courses = Course::paginate(6);
-         //   $categories = Category::all();
            $categories = Category::all();
         //    $categories = Category::withCount('courses')->get();
         return view('frontend.pages.courses', compact('courses','categories'));
