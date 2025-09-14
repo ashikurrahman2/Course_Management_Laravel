@@ -58,32 +58,53 @@
             <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
             <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your address" required></textarea>
           </div>
-
+     <!-- Division -->
 <div class="mb-3">
-  <label for="district" class="form-label">District <span class="text-danger">*</span></label>
-<select class="form-select" id="district" name="district" required>
-    <option value="" selected disabled>Loading districts...</option>
+    <label for="division" class="form-label">Division <span class="text-danger">*</span></label>
+  <select id="division" class="form-select">
+    <option selected disabled>Select Division</option>
+</select>
+
+</div>
+
+<!-- District -->
+<div class="mb-3">
+    <label for="district" class="form-label">District <span class="text-danger">*</span></label>
+  <select id="district" class="form-select">
+    <option selected disabled>Select District</option>
 </select>
 </div>
 
-<script>
+   <script>
 document.addEventListener("DOMContentLoaded", function() {
-    fetch("{{ url('/districts') }}")
+    // Load divisions
+    fetch("/divisions")
     .then(res => res.json())
     .then(data => {
-        let select = document.getElementById("district");
-        select.innerHTML = '<option value="" disabled selected>Select your district</option>';
-        data.districts.forEach(d => {
+        const divSelect = document.getElementById("division");
+        data.divisions.forEach(d => {
             let opt = document.createElement("option");
-            opt.value = d.toLowerCase();
+            opt.value = d;
             opt.textContent = d;
-            select.appendChild(opt);
+            divSelect.appendChild(opt);
         });
-    })
-    .catch(err => {
-        console.error("Failed to load districts:", err);
-        let select = document.getElementById("district");
-        select.innerHTML = '<option value="" disabled selected>Failed to load districts</option>';
+    });
+
+    // Load districts based on division
+    document.getElementById("division").addEventListener("change", function() {
+        let division = this.value;
+        fetch(`/districts/${division}`)
+        .then(res => res.json())
+        .then(data => {
+            const districtSelect = document.getElementById("district");
+            districtSelect.innerHTML = '<option selected disabled>Select District</option>';
+            data.districts.forEach(d => {
+                let opt = document.createElement("option");
+                opt.value = d;
+                opt.textContent = d;
+                districtSelect.appendChild(opt);
+            });
+        });
     });
 });
 </script>

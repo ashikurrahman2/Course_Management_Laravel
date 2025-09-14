@@ -6,23 +6,29 @@ use App\Http\Controllers\Controller;
 
 class DistrictController extends Controller
 {
-    public function Data()
-    {
-        $districts = [
-            "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogra", 
-            "Brahmanbaria", "Chandpur", "Chattogram", "Cumilla", "Cox's Bazar", 
-            "Dhaka", "Dinajpur", "Faridpur", "Feni", "Gaibandha", "Gazipur", 
-            "Gopalganj", "Habiganj", "Jamalpur", "Jashore", "Jhalokati", 
-            "Jhenaidah", "Joypurhat", "Khagrachari", "Khulna", "Kishoreganj", 
-            "Kurigram", "Kushtia", "Lakshmipur", "Lalmonirhat", "Madaripur", 
-            "Magura", "Manikganj", "Meherpur", "Moulvibazar", "Munshiganj", 
-            "Mymensingh", "Naogaon", "Narail", "Narayanganj", "Narsingdi", 
-            "Natore", "Netrokona", "Nilphamari", "Noakhali", "Pabna", 
-            "Panchagarh", "Patuakhali", "Pirojpur", "Rajbari", "Rajshahi", 
-            "Rangamati", "Rangpur", "Satkhira", "Shariatpur", "Sherpur", 
-            "Sirajganj", "Sunamganj", "Sylhet", "Tangail", "Thakurgaon"
-        ];
+    // All divisions and them corresponding districts
+    private $allDistricts = [
+        "Dhaka" => ["Dhaka", "Gazipur", "Narsingdi", "Manikganj", "Munshiganj", "Tangail", "Faridpur", "Madaripur", "Gopalganj", "Shariatpur"],
+        "Chattogram" => ["Chattogram", "Cox's Bazar", "Bandarban", "Rangamati", "Khagrachhari", "Noakhali", "Feni", "Brahmanbaria", "Cumilla", "Lakshmipur"],
+        "Barishal" => ["Barishal", "Barguna", "Bhola", "Jhalokathi", "Patuakhali", "Pirojpur"],
+        "Khulna" => ["Khulna", "Bagerhat", "Chuadanga", "Jashore", "Jhenaidah", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira"],
+        "Mymensingh" => ["Mymensingh", "Jamalpur", "Netrokona", "Sherpur"],
+        "Rajshahi" => ["Rajshahi", "Bogra", "Joypurhat", "Naogaon", "Natore", "Chapai Nawabganj", "Pabna", "Sirajganj"],
+        "Rangpur" => ["Rangpur", "Dinajpur", "Kurigram", "Lalmonirhat", "Nilphamari", "Gaibandha", "Thakurgaon", "Panchagarh"],
+        "Sylhet" => ["Sylhet", "Habiganj", "Moulvibazar", "Sunamganj"]
+    ];
 
+    // Fetch division
+    public function divisions()
+    {
+        $divisions = array_keys($this->allDistricts);
+        return response()->json(['divisions' => $divisions]);
+    }
+
+    // Unique Division according to do fetch Districts 
+    public function districts($division)
+    {
+        $districts = $this->allDistricts[$division] ?? [];
         return response()->json(['districts' => $districts]);
     }
 }
