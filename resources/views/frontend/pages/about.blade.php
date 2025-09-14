@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
    <!-- Promo Section Start -->
-   <section class="promo-sec" style="background: url('images/promo-bg.jpg')no-repeat center center / cover;">
+   <section class="promo-sec" style="background: url({{asset('/')}}'frontend/assets/images/promo-bg.jpg')no-repeat center center / cover;">
       <img src="images/promo-left.png" alt="" class="anim-img">
       <img src="images/promo-right.png" alt="" class="anim-img anim-right">
       <div class="container">
@@ -25,6 +25,7 @@
       <div class="anim-img anim-right"><img src="{{asset('/')}}frontend/assets/images/icons/shape-plate.png" alt=""></div>
       <div class="container">
          <div class="row">
+            @foreach($abouts as $about)
             <div class="col-xl-6 col-md-8">
                <div class="about-media overly">
                   <div class="category-entry active d-flex p-3 p-xl-4 align-items-center">
@@ -38,22 +39,22 @@
                      </div>
                   </div>
                   <div class="d-flex align-items-baseline justify-content-between">
-                     <img class="img-fluid me-3" src="{{asset('/')}}frontend/assets/images/about-lg.jpg" alt="About Image">
-                     {{-- <img class="img-fluid d-none d-sm-block" src="{{asset('/')}}frontend/assets/images/about-sm.jpg" alt="About Image"> --}}
+                     <img class="img-fluid me-3" src="{{asset($about->photo)}}" alt="About Image">
                   </div>
                </div>
             </div>
             <div class="col-xl-5 offset-xl-1 col-md-8">
                <div class="about-txt">
                   <span class="badge-lg bg-primary rounded-5">About Us</span>
-                  <h2 class="sec-title">We Makes a Door to <span class="color">Bright Future</span></h2>
+                   {{-- Dynamic Title (with HTML inside title field) --}}
+                  <h2 class="sec-title">{!! $about->title !!}</h2>
                   <div class="about-lists mt-5">
                      <div class="d-flex about-item">
                         <span class="icon icon-sm bg-light rounded-circle "><img src="{{asset('/')}}frontend/assets/images/icons/pencil.png"
                               alt="pencil"></span>
                         <div class="ms-3">
                            <h3 class="display-5">Education is Power</h3>
-                           <p>The cost of ignorance exceed that of education teaches us how to achieve success</p>
+                            <p>{{ $about->our_mission }}</p>
                         </div>
                      </div>
                      <div class="d-flex about-item">
@@ -61,14 +62,13 @@
                               alt="pencil"></span>
                         <div class="ms-3">
                            <h3 class="display-5">Knowledge for Life</h3>
-                           <p>Education is smart enough to change the human mind positively your Door to The Future</p>
+                            <p>{{ $about->our_vision }}</p>
                         </div>
                      </div>
-                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic doloremque sapiente reiciendis
-                        consequuntur.</p> --}}
                   </div>
                </div>
             </div>
+            @endforeach
          </div>
       </div>
    </section>

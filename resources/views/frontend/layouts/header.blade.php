@@ -6,7 +6,9 @@
     <div class="header-nav-wrapper header-sticky">
       <nav class="navbar navbar-expand-xl border-bottom">
         <div class="container-fluid px-lg-5 px-3">
-          <a class="navbar-brand" href="/"><img src="{{ asset('/') }}frontend/assets/images/logo.png" alt="Logo" /></a>
+          <a class="navbar-brand" href="/">
+            <img src="{{ asset('/') }}frontend/assets/images/logo.png" alt="Logo" />
+          </a>
           <div
             class="header-actions d-none d-sm-flex position-relative order-xl-3 d-flex align-items-center justify-content-between">
             <div class="category-search d-none d-md-block">
@@ -149,7 +151,7 @@
                             <a class="dropdown-item" href="single-event.html">Event Details</a> --}}
                             <a class="dropdown-item" href="pricing.html">Pricing Plan</a>
                             <a class="dropdown-item" href="pricing.html">Buy Course</a>
-                            <a class="dropdown-item" href="admission-guide.html">Admision Guide</a>
+                            <a class="dropdown-item" href="{{ route('admission') }}">Online Admision</a>
                             <a class="dropdown-item" href="contact.html">Contact</a>
                           </div>
                         </div>

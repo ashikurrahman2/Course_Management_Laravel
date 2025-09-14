@@ -23,6 +23,7 @@ Route::get('/course/details/{id}', [FrontendController::class, 'details'])->name
 Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name('courses.filter');
 Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
 Route::get('/about', [FrontendController::class, 'managementAbout'])->name('courses.about');
+Route::get('/Admission', [FrontendController::class, 'Admissionreq'])->name('admission');
 
 
 // User dashboard route

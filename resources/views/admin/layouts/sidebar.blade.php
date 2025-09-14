@@ -56,6 +56,24 @@
                     </ul>
                 </li>
 
+                     <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-settings"></i></span>
+                            <span class="pc-mtext">Admission</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link"
+                            href="{{route('admissionguides.index')}}">Admission Guide</a>
+                        </li>
+
+                           <li class="pc-item"><a class="pc-link"
+                            href="{{route('assignments.index')}}">Admission info</a>
+                        </li>
+                    </ul>
+                </li>
+
                        <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-settings"></i></span>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AdmissionguideController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\AssignmentdetailsController;
@@ -45,6 +46,7 @@ Route::patch('/password/update', [AdminUserController::class, 'passwordUpdate'])
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     //Website route
     Route::resource('about',AboutController::class);
+    Route::resource('admissionguides',AdmissionguideController::class);
     Route::resource('assignment',AssignmentController::class);
     Route::resource('assignments',AssignmentdetailsController::class);
     Route::resource('banner', BannerController::class);
