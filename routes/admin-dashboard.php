@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdmissionguideController;
+use App\Http\Controllers\Admin\AdmissionrequirementController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\AssignmentdetailsController;
@@ -47,6 +48,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     //Website route
     Route::resource('about',AboutController::class);
     Route::resource('admissionguides',AdmissionguideController::class);
+    Route::resource('admissionrequirement',AdmissionrequirementController::class);
     Route::resource('assignment',AssignmentController::class);
     Route::resource('assignments',AssignmentdetailsController::class);
     Route::resource('banner', BannerController::class);

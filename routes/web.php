@@ -24,6 +24,7 @@ Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name(
 Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
 Route::get('/about', [FrontendController::class, 'managementAbout'])->name('courses.about');
 Route::get('/Admission', [FrontendController::class, 'Admissionreq'])->name('admission');
+Route::get('/online-admission', [FrontendController::class, 'Admitform'])->name('admission.form');
 
 
 // User dashboard route
@@ -44,3 +45,4 @@ require __DIR__.'/auth.php';
 require __DIR__.'/admin-auth.php';
 require __DIR__.'/admin-dashboard.php';
 require __DIR__.'/user.php';
+require __DIR__.'/api.php';

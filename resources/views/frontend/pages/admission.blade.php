@@ -69,17 +69,11 @@
                <div class="apply-stat">
                   <h3 class="display-4 fw-bold mb-5">The Application Requirements</h3>
                   <ul>
-                     <li>SSC/Equivalent and HSC/Equivalent minimum GPA 4</li>
-                     <li>Candidates applying for EEE, ECE, CSE, APE and Physics</li>
-                     <li>Candidates for BSc in Computer Science and BSc in Mathematics</li>
-                     <li>Candidates who have qualified in HSC/A levels or recognized equivalent examination in current
-                        year
-                     </li>
-                     <li>Candidates for BSc in Electronic & Communication Engineering and Electrical & Electronic
-                        Engineering who had Physics and
-                        Mathematics but not Chemistry in HSC/A-level/Equivalent</li>
+                   @foreach($requirements as $requirement)
+                        <li>{{ $requirement->requirement_name }}</li>
+                     @endforeach
                   </ul>
-                  <a href="#" class="btn btn-primary rounded-5 mt-5">Apply for Graduation</a>
+                  <a href="{{ route('admission.form') }}" class="btn btn-primary rounded-5 mt-5">Apply for Admission</a>
                </div>
             </div>
             <div class="col-lg-6 ps-5">

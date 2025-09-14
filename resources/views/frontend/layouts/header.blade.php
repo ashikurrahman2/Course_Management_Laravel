@@ -149,7 +149,7 @@
                             <a class="dropdown-item" href="event-list.html">Event List</a>
                             <a class="dropdown-item" href="event-sidebar.html">Event Sidebar</a>
                             <a class="dropdown-item" href="single-event.html">Event Details</a> --}}
-                            <a class="dropdown-item" href="pricing.html">Pricing Plan</a>
+                            {{-- <a class="dropdown-item" href="pricing.html">Pricing Plan</a> --}}
                             <a class="dropdown-item" href="pricing.html">Buy Course</a>
                             <a class="dropdown-item" href="{{ route('admission') }}">Online Admision</a>
                             <a class="dropdown-item" href="contact.html">Contact</a>

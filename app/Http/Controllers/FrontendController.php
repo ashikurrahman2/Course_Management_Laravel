@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Admissionrequirement;
 use App\Models\Banner;
 use App\Models\Course;
 use App\Models\Category;
@@ -60,9 +61,14 @@ class FrontendController extends Controller
 
        public function Admissionreq(){
              $categories = Category::all();
-            //  $abouts = About::all();
-            //  $abouts = About::all();
-        return view('frontend.pages.admission', compact('categories'));
+           $requirements = Admissionrequirement::all();
+        return view('frontend.pages.admission', compact('categories', 'requirements'));
+     }
+
+          public function Admitform(){
+             $categories = Category::all();
+           
+        return view('frontend.pages.admission_form', compact('categories'));
      }
 
      public function allCourse(){
