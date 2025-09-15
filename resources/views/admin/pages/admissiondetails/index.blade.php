@@ -40,6 +40,8 @@
                                             <th>Address</th>
                                             <th>Division</th>
                                             <th>District</th>
+                                            <th>Paymant Mathod</th>
+                                            <th>Paymant Number</th>
                                             <th>Photo</th>
                                             <th>Actions</th>
                                         </tr>
@@ -56,6 +58,8 @@
                                             <td>{{ $admission->stu_address }}</td>
                                             <td>{{ $admission->stu_division }}</td>
                                             <td>{{ $admission->stu_distict }}</td>
+                                            <td>{{ $admission->payment_method }}</td>
+                                            <td>{{ $admission->payment_number }}</td>
                                             <td>
                                                 @if($admission->stu_photo)
                                                     <!-- Thumbnail -->
@@ -82,16 +86,13 @@
                                                     <span>No Photo</span>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <!-- Actions -->
-                                                <a href="{{ route('admission.show', $admission->id) }}" class="btn btn-sm btn-info">View</a>
-                                                <a href="{{ route('admission.edit', $admission->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="{{ route('admission.destroy', $admission->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                                </form>
-                                            </td>
+                                         <td>
+                                            <!-- Download Button -->
+                                            <a href="{{ route('admitdata.download', $admission->id) }}" class="btn btn-sm btn-success">
+                                                Download
+                                            </a>
+                                        </td>
+
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdmissionguideController;
 use App\Http\Controllers\Admin\AdmissionrequirementController;
+use App\Http\Controllers\Admin\AdmissiondetailsController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\AssignmentdetailsController;
@@ -49,6 +50,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::resource('about',AboutController::class);
     Route::resource('admissionguides',AdmissionguideController::class);
     Route::resource('admissionrequirement',AdmissionrequirementController::class);
+    Route::resource('admitdata',AdmissiondetailsController::class);
     Route::resource('assignment',AssignmentController::class);
     Route::resource('assignments',AssignmentdetailsController::class);
     Route::resource('banner', BannerController::class);
@@ -57,6 +59,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::patch('sell-applications/{id}/approve', [SellformController::class, 'approve'])->name('sell.approve');
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');
+    Route::get('admin/admission/download/{id}', [AdmissiondetailsController::class, 'download'])->name('admitdata.download');
+
    
 });
 

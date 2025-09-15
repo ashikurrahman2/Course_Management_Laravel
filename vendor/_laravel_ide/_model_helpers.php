@@ -908,6 +908,8 @@ namespace App\Models {
      *
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
+     * @property string|null $payment_number
+     * @property string|null $payment_method
      * @property string|null $stu_photo
      * @property string|null $stu_distict
      * @property string|null $stu_division
@@ -928,6 +930,8 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata whereStuDivision($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata whereStuDistict($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata whereStuPhoto($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata wherePaymentMethod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata wherePaymentNumber($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Admissiondata>|Admissiondata newModelQuery()

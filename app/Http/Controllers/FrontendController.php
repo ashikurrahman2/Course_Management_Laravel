@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Admissionrequirement;
 use App\Models\Banner;
+use App\Models\Admissiondata;
 use App\Models\Course;
 use App\Models\Category;
 use Flasher\Toastr\Prime\ToastrInterface;
@@ -65,10 +66,32 @@ class FrontendController extends Controller
         return view('frontend.pages.admission', compact('categories', 'requirements'));
      }
 
-          public function Admitform(){
+          public function AdmissionForm(){
              $categories = Category::all();
-           
         return view('frontend.pages.admission_form', compact('categories'));
+     }
+            // Admission form submission
+             public function Submitform(Request $request){
+                 // Validation
+        $request->validate([
+            'stu_name'     => 'required|string|max:255',
+            'stu_email'    => 'required|email|string|max:255',
+            'stu_phone'    => 'required|string|max:20',
+            'stu_gender'   => 'required|string',
+            'stu_course'   => 'required|string',
+            'stu_address'  => 'required|string',
+            'stu_division' => 'required|string',
+            'payment_method' => 'required|string',
+            'payment_number' => 'required|string',
+            'stu_distict'  => 'required|string',
+            'stu_photo'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+          // Save assignment
+        Admissiondata::newAdmission($request);
+       // Response / redirect
+        $this->toastr->success('Admission data submitted successfully!');
+         return back();
      }
 
      public function allCourse(){

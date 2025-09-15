@@ -73,7 +73,7 @@
                         </li>
 
                            <li class="pc-item"><a class="pc-link"
-                            href="{{route('assignments.index')}}">Admission info</a>
+                            href="{{route('admitdata.index')}}">Admission info</a>
                         </li>
                     </ul>
                 </li>

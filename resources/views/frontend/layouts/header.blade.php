@@ -15,7 +15,7 @@
               <form action="#" class="d-flex">
                 <div class="d-flex align-items-center">
                   <span class="ms-2"><img src="{{ asset('/') }}frontend/assets/images/icons/list.svg" alt="List" /></span>
-                  <select name="category-search" id="select-category">
+                  <select name="course-search" id="select-course">
                   @foreach ($categories as $category)
                   <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                 @endforeach

@@ -24,9 +24,21 @@ Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name(
 Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
 Route::get('/about', [FrontendController::class, 'managementAbout'])->name('courses.about');
 Route::get('/Admission', [FrontendController::class, 'Admissionreq'])->name('admission');
-Route::get('/online-admission', [FrontendController::class, 'Admitform'])->name('admission.form');
+Route::get('/online-admission', [FrontendController::class, 'AdmissionForm'])->name('admission.form');
+Route::post('/submission-form', [FrontendController::class, 'Submitform'])->name('submit.form');
 
 
+    // SSLCommerz Callback Routes (No auth middleware)
+    Route::controller(SslcommerzController::class)
+        ->prefix('sslcommerz')
+        ->name('sslc.')
+        ->group(function () {
+            Route::post('success', 'success')->name('success');
+            Route::post('failure', 'failure')->name('failure');
+            Route::post('cancel', 'cancel')->name('cancel');
+            Route::post('ipn', 'ipn')->name('ipn');
+        });
+        
 // User dashboard route
 Route::get('/dashboard', function () {
     $courseCount = Course::count();// Total registration 

@@ -21,6 +21,8 @@ class Admissiondata extends Model
         'stu_address',
         'stu_division',
         'stu_distict',
+        'payment_number',
+        'payment_method',
         'stu_photo',
     ];
 
@@ -40,6 +42,8 @@ class Admissiondata extends Model
         $admission->stu_address  = $request->stu_address;
         $admission->stu_division = $request->stu_division;
         $admission->stu_distict  = $request->stu_distict;
+        $admission->payment_number  = $request->payment_number;
+        $admission->payment_method  = $request->payment_method;
         $admission->stu_photo    = $photoUrl;
         $admission->save();
     }
