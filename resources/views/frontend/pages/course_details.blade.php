@@ -589,8 +589,18 @@
 								<span class="badge bg-danger"><i class="feather-icon icon-clock me-1"></i>5 days left!</span>
 							</div>
 							<div class="btn-cta mt-4">
-								<a href="#" class="btn btn-primary rounded-2 w-100">Add to Cart</a>
-								<a href="#" class="mt-3 btn btn-outline-primary rounded-2 w-100">Enroll Now</a>
+								{{-- <a href="{{ route('carts') }}" class="btn btn-primary rounded-2 w-100">Add to Cart</a> --}}
+					<a href="{{ auth()->check() ? route('add.to.cart', $courses->id) : route('login') }}"
+						class="btn btn-primary mt-3 w-100">
+							Add to Cart
+						</a>
+								<a href="{{ auth()->check() ? route('checkout', $courses->id) : route('login') }}"
+								class="mt-3 btn btn-outline-primary rounded-2 w-100">
+									Enroll Now
+								</a>
+
+
+
 							</div>
 							<div class="price-widget-inner">
 								<ul>

@@ -285,9 +285,10 @@
                              <del>${{ $course->original_price }}</del>
                            @endif
                          </div>
-                         <a href="{{ route('course.details', $course->id) }}">
-                           Enroll Now <i class="feather-icon icon-arrow-right"></i>
-                         </a>
+                     <a href="{{ auth()->check() ? route('course.details', $course->id) : route('login') }}">
+    Enroll Now <i class="feather-icon icon-arrow-right"></i>
+</a>
+
                        </div>
                      </div>
                    </div>

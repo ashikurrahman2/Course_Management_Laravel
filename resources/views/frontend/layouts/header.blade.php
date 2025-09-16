@@ -29,10 +29,15 @@
                 </div>
               </form>
             </div>
-            <a href="cart.html" class="text-reset position-relative icon">
-              <i class="feather-icon icon-shopping-bag"></i>
-              <div class="cart-num">3</div>
-           </a>
+            {{-- Add to cart --}}
+  {{-- @php
+    $cart = app(\Anayarojo\Shoppingcart\ShoppingcartService::class);
+@endphp --}}
+
+         <a href="{{ route('carts') }}" class="text-reset position-relative icon">
+    <i class="feather-icon icon-shopping-bag"></i>
+    <div class="cart-num">3</div>
+</a>
             <!-- Category Search End -->
             @auth
             <a class="text-reset icon border rounded-2 admin-user" data-bs-toggle="collapse" href="#collapseAdminMenu"
@@ -152,7 +157,7 @@
                             {{-- <a class="dropdown-item" href="pricing.html">Pricing Plan</a> --}}
                             <a class="dropdown-item" href="pricing.html">Buy Course</a>
                             <a class="dropdown-item" href="{{ route('admission') }}">Online Admision</a>
-                            <a class="dropdown-item" href="contact.html">Contact</a>
+                            <a class="dropdown-item" href="{{ route('contacts') }}">Contact</a>
                           </div>
                         </div>
                       </div>

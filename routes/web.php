@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\User\SellController;
 use App\Models\Course;
 use App\Models\Category;
@@ -26,6 +27,11 @@ Route::get('/about', [FrontendController::class, 'managementAbout'])->name('cour
 Route::get('/Admission', [FrontendController::class, 'Admissionreq'])->name('admission');
 Route::get('/online-admission', [FrontendController::class, 'AdmissionForm'])->name('admission.form');
 Route::post('/submission-form', [FrontendController::class, 'Submitform'])->name('submit.form');
+Route::get('/contact', [FrontendController::class, 'Commu'])->name('contacts');
+Route::get('/checkout/{id}', [FrontendController::class, 'Cartto'])->name('checkout');
+Route::get('/add-to-cart/{id}', [CartController::class, 'add'])->name('add.to.cart');
+Route::get('/carts', [CartController::class, 'index'])->name('carts');
+Route::get('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
 
 
     // SSLCommerz Callback Routes (No auth middleware)

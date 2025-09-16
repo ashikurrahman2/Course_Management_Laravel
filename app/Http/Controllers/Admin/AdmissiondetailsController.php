@@ -18,7 +18,7 @@ class AdmissiondetailsController extends Controller
         return view('admin.pages.admissiondetails.index', compact('admissions'));
     }
 
-
+        // Statement Download
         public function download($id)
     {
         $admission = Admissiondata::findOrFail($id);

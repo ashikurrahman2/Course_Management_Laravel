@@ -134,4 +134,17 @@ public function LessonCourse(){
 }
 
 
+    public function Commu(){
+
+      $categories = Category::all();
+      return view('frontend.pages.contact', compact('categories'));
+    }
+
+    public function Cartto($id){
+
+      $categories = Category::all();
+      $courses = Course::findOrFail($id);
+      return view('frontend.pages.checkout', compact('categories', 'courses'));
+    }
+
 }
