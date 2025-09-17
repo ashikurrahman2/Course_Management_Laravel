@@ -585,15 +585,33 @@
 								</div> --}}
 							</div>
 							<div class="d-flex justify-content-between align-items-center">
-								<h3 class="display-4">$19.99 <del>$36.99</del></h3>
+							    <h3 class="display-4">
+								{{ $setting->currency }}{{ number_format($courses->course_price, 2) }}
+								@if($courses->old_price && $courses->old_price > $courses->course_price)
+									<del>${{ number_format($courses->old_price, 2) }}</del>
+								@endif
+							</h3>
 								<span class="badge bg-danger"><i class="feather-icon icon-clock me-1"></i>5 days left!</span>
 							</div>
 							<div class="btn-cta mt-4">
 								{{-- <a href="{{ route('carts') }}" class="btn btn-primary rounded-2 w-100">Add to Cart</a> --}}
-					<a href="{{ auth()->check() ? route('add.to.cart', $courses->id) : route('login') }}"
+					{{-- <a href="{{ auth()->check() ? route('carts', $courses->id) : route('login') }}"
 						class="btn btn-primary mt-3 w-100">
 							Add to Cart
-						</a>
+						</a> --}}
+
+<a href="{{ auth()->check() ? route('carts.store', $courses->id) : route('login') }}"
+   class="btn btn-primary mt-3 w-100"
+   onclick="event.preventDefault(); document.getElementById('cart-form-{{ $courses->id }}').submit();">
+   Add to Cart
+</a>
+
+<form id="cart-form-{{ $courses->id }}" 
+      action="{{ route('carts.store', $courses->id) }}" 
+      method="POST" style="display:none;">
+    @csrf
+</form>
+
 								<a href="{{ auth()->check() ? route('checkout', $courses->id) : route('login') }}"
 								class="mt-3 btn btn-outline-primary rounded-2 w-100">
 									Enroll Now

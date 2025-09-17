@@ -146,5 +146,4 @@ public function LessonCourse(){
       $courses = Course::findOrFail($id);
       return view('frontend.pages.checkout', compact('categories', 'courses'));
     }
-
 }

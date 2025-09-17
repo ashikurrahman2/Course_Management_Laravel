@@ -29,9 +29,10 @@ Route::get('/online-admission', [FrontendController::class, 'AdmissionForm'])->n
 Route::post('/submission-form', [FrontendController::class, 'Submitform'])->name('submit.form');
 Route::get('/contact', [FrontendController::class, 'Commu'])->name('contacts');
 Route::get('/checkout/{id}', [FrontendController::class, 'Cartto'])->name('checkout');
-Route::get('/add-to-cart/{id}', [CartController::class, 'add'])->name('add.to.cart');
 Route::get('/carts', [CartController::class, 'index'])->name('carts');
-Route::get('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
+Route::post('/carts/{id}', [CartController::class, 'store'])->name('carts.store');
+Route::get('/carts/remove/{rowId}', [CartController::class, 'remove'])->name('carts.remove');
+
 
 
     // SSLCommerz Callback Routes (No auth middleware)

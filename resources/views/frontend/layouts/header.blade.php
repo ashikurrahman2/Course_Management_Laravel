@@ -30,13 +30,9 @@
               </form>
             </div>
             {{-- Add to cart --}}
-  {{-- @php
-    $cart = app(\Anayarojo\Shoppingcart\ShoppingcartService::class);
-@endphp --}}
-
          <a href="{{ route('carts') }}" class="text-reset position-relative icon">
     <i class="feather-icon icon-shopping-bag"></i>
-    <div class="cart-num">3</div>
+      <div class="cart-num">{{ Cart::count() }}</div>
 </a>
             <!-- Category Search End -->
             @auth
