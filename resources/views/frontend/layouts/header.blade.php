@@ -72,7 +72,7 @@
                   </li>
 
                   <li>
-                    <a class="nav-link" href="instructor-order-history.html"><i
+                    <a class="nav-link" href="{{ route('orderlist') }}"><i
                         class="feather-icon icon-shopping-bag"></i><span>Order History</span></a>
                   </li>
                   <li class="border-bottom"></li>
@@ -81,7 +81,7 @@
                         class="feather-icon icon-book"></i><span>My Courses</span></a>
                   </li>
                   <li>
-                    <a class="nav-link" href="instructor-announcements.html"><i
+                    <a class="nav-link" href="{{ route('anounced') }}"><i
                         class="feather-icon icon-bell"></i><span>Announcements</span></a>
                   </li>
                   <li class="border-bottom"></li>
@@ -102,7 +102,6 @@
               </nav>
             </div>
             @endauth
-            {{-- <a href="{{ route('login') }}" class="btn d-none d-sm-block btn-primary shadow border-0 rounded-2">Enroll Now</a> --}}
             @guest
           <a href="{{ route('login') }}" class="btn d-none d-sm-block btn-primary shadow border-0 rounded-2">Enroll Now</a>
           @endguest
@@ -151,7 +150,6 @@
                             <a class="dropdown-item" href="event-sidebar.html">Event Sidebar</a>
                             <a class="dropdown-item" href="single-event.html">Event Details</a> --}}
                             {{-- <a class="dropdown-item" href="pricing.html">Pricing Plan</a> --}}
-                            <a class="dropdown-item" href="pricing.html">Buy Course</a>
                             <a class="dropdown-item" href="{{ route('admission') }}">Online Admision</a>
                             <a class="dropdown-item" href="{{ route('contacts') }}">Contact</a>
                           </div>
@@ -165,46 +163,9 @@
                           <a class="dropdown-item" href="faq.html">FAQ</a>
                         </div>
                       </div>
-                      {{-- <div class="col">
-                        <div class="mt-3 mt-lg-0">
-                          <div>
-                            <div class="dropdown-header">Shop Pages</div>
-                            <a class="dropdown-item" href="shop.html">Shop</a>
-                            <a class="dropdown-item" href="single-product.html">Single Product</a>
-                            <a class="dropdown-item" href="cart.html">Cart</a>
-                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                            <a class="dropdown-item" href="my-account.html">My Account</a>
-                            <a class="dropdown-item" href="login.html">Login</a>
-                            <a class="dropdown-item" href="signup.html">Register</a>
-                          </div>
-                        </div>
-                      </div> --}}
-                      {{-- <div class="col">
-                        <div class="mt-3 mt-lg-0">
-                          <a href="login.html" class="banner-ads d-flex justify-content-between">
-                            <div class="b-content">
-                              <h5>Online Learning Platform</h5>
-                              <span class="badge-lg bg-primary text-small mt-2">All Courses</span>
-                            </div>
-                            <img src="images/banner-ads.png" alt="" class="img-fluid banner-img" />
-                          </a>
-                        </div>
-                      </div> --}}
                     </div>
                   </div>
                 </li>
-                {{-- <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Blog</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                    <li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-                    <li><a class="dropdown-item" href="blog-list-sidebar.html">Blog List</a></li>
-                    <li><a class="dropdown-item" href="blog-standard.html">Blog Standard</a></li>
-                    <li><a class="dropdown-item" href="single-post.html">Single Post</a></li>
-                    <li><a class="dropdown-item" href="single-post-fullwidth.html">Single Post FullWidth</a></li>
-                  </ul>
-                </li> --}}
               </ul>
             </div>
           </div>

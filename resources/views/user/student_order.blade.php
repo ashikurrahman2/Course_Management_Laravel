@@ -96,177 +96,27 @@
                      </tr>
                   </thead>
                   <tbody>
+                         @forelse($orders as $order)
                      <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-secondary">Processing</div>
+                        <td>{{ $order->order_id }}</td>
+                        <td>{{ $order->course_name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($order->order_date)->format('F d, Y') }}</td>
+                        <td>${{ number_format($order->price, 2) }}</td>
+                            <td>
+                            @if($order->status == 'Processing')
+                                <div class="badge bg-secondary">Processing</div>
+                            @elseif($order->status == 'Success')
+                                <div class="badge bg-success">Success</div>
+                            @elseif($order->status == 'Hold')
+                                <div class="badge bg-danger">Hold</div>
+                            @endif
                         </td>
                      </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-secondary">Processing</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-success">Success</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-secondary">Processing</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-success">Success</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-secondary">Processing</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-danger">Hold</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-success">Success</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-secondary">Processing</div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           #1002
-                        </td>
-                        <td>
-                           PHP Beginners to Advance
-                        </td>
-                        <td>
-                           March 31, 2024
-                        </td>
-                        <td>
-                          $29.00
-                        </td>
-                        <td>
-                           <div class="badge bg-success">Success</div>
-                        </td>
-                     </tr>
-                     
+                   @empty
+                        <tr>
+                        <td colspan="5" class="text-center">No orders found.</td>
+                    </tr>
+                @endforelse
                   </tbody>
                </table>
             </section>

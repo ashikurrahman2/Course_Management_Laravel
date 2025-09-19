@@ -60,6 +60,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::patch('sell-applications/{id}/approve', [SellformController::class, 'approve'])->name('sell.approve');
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');
     Route::get('admin/admission/download/{id}', [AdmissiondetailsController::class, 'download'])->name('admitdata.download');
+    Route::resource('orders', OrderController::class);
 
    
 });

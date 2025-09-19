@@ -35,6 +35,9 @@
             </a>
 
             <div class="admin-menu pt-3 bg-white collapse" id="collapseAdminMenu">
+              @php
+                use Illuminate\Support\Facades\Auth;
+             @endphp
               @auth
               <div class="d-flex avatar border-bottom pb-3">
                 <img src="{{ asset(Auth::user()->user_image) }}" width="50" class="img-fluid border rounded-circle" alt="avatar">
@@ -123,7 +126,7 @@
               <button type="button" class="btn-close bg-primary" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body pt-0 align-items-center">
+             <div class="offcanvas-body pt-0 align-items-center">
               {{-- Home page --}}
               <ul class="navbar-nav mx-auto align-items-lg-center">
                 <li class="nav-item dropdown">
@@ -136,79 +139,42 @@
                     aria-expanded="false">Courses</a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('course') }}">All Courses</a></li>
-                    <li><a class="dropdown-item" href="lesson.html">Course Lesson</a></li>
+                    <li><a class="dropdown-item" href="{{ route('courses.lession') }}">Course Lesson</a></li>
                   </ul>
                 </li>
+          
                 <li class="nav-item dropdown dropdown-fullwidth">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Pages</a>
+                    aria-expanded="false">More</a>
                   <div class="dropdown-menu">
-                    <div class="row row-cols-xl-4 row-cols-1">
+                    <div class="row row-cols-xl-2 row-cols-1">
+                 {{-- <div class="row row-cols-xl-2 row-cols-1 w-75 mx-auto"> --}}
+
                       <div class="col">
                         <div>
                           <div>
                             <div class="dropdown-header">Get Started</div>
-                            <a class="dropdown-item" href="about.html">About Us</a>
-                            <a class="dropdown-item" href="event-grid.html">Event Grid</a>
+                            <a class="dropdown-item" href="{{route('courses.about')}}">About Us</a>
+                            {{-- <a class="dropdown-item" href="event-grid.html">Event Grid</a>
                             <a class="dropdown-item" href="event-list.html">Event List</a>
                             <a class="dropdown-item" href="event-sidebar.html">Event Sidebar</a>
-                            <a class="dropdown-item" href="single-event.html">Event Details</a>
-                            <a class="dropdown-item" href="pricing.html">Pricing Plan</a>
-                            <a class="dropdown-item" href="admission-guide.html">Admision Guide</a>
+                            <a class="dropdown-item" href="single-event.html">Event Details</a> --}}
+                            {{-- <a class="dropdown-item" href="pricing.html">Pricing Plan</a> --}}
+                            <a class="dropdown-item" href="{{ route('admission') }}">Online Admision</a>
+                            <a class="dropdown-item" href="{{ route('contacts') }}">Contact</a>
                           </div>
                         </div>
                       </div>
                       <div class="col">
                         <div>
                           <div class="dropdown-header">Get Started</div>
-                          <a class="dropdown-item" href="contact.html">Contact Us</a>
                           <a class="dropdown-item" href="instructors.html">Instructors</a>
-                          <a class="dropdown-item" href="profile.html">Profile</a>
                           <a class="dropdown-item" href="become-instructor.html">Become a instructor</a>
                           <a class="dropdown-item" href="faq.html">FAQ</a>
-                          <a class="dropdown-item" href="404.html">404 error</a>
-                          <a class="dropdown-item" href="comming-soon.html">Maintenance</a>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="mt-3 mt-lg-0">
-                          <div>
-                            <div class="dropdown-header">Shop Pages</div>
-                            <a class="dropdown-item" href="shop.html">Shop</a>
-                            <a class="dropdown-item" href="single-product.html">Single Product</a>
-                            <a class="dropdown-item" href="cart.html">Cart</a>
-                            <a class="dropdown-item" href="checkout.html">Checkout</a>
-                            <a class="dropdown-item" href="my-account.html">My Account</a>
-                            <a class="dropdown-item" href="login.html">Login</a>
-                            <a class="dropdown-item" href="signup.html">Register</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="mt-3 mt-lg-0">
-                          <a href="login.html" class="banner-ads d-flex justify-content-between">
-                            <div class="b-content">
-                              <h5>Online Learning Platform</h5>
-                              <span class="badge-lg bg-primary text-small mt-2">All Courses</span>
-                            </div>
-                            <img src="images/banner-ads.png" alt="" class="img-fluid banner-img" />
-                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Blog</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                    <li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-                    <li><a class="dropdown-item" href="blog-list-sidebar.html">Blog List</a></li>
-                    <li><a class="dropdown-item" href="blog-standard.html">Blog Standard</a></li>
-                    <li><a class="dropdown-item" href="single-post.html">Single Post</a></li>
-                    <li><a class="dropdown-item" href="single-post-fullwidth.html">Single Post FullWidth</a></li>
-                  </ul>
                 </li>
               </ul>
             </div>

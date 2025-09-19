@@ -1,3 +1,6 @@
+@php
+use Illuminate\Support\Facades\Auth;
+@endphp
 <nav class="pc-header">
     <div class="header-wrapper">
         <!-- [Mobile Media Block] start -->

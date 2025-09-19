@@ -32,6 +32,7 @@ Route::get('/checkout/{id}', [FrontendController::class, 'Cartto'])->name('check
 Route::get('/carts', [CartController::class, 'index'])->name('carts');
 Route::post('/carts/{id}', [CartController::class, 'store'])->name('carts.store');
 Route::get('/carts/remove/{rowId}', [CartController::class, 'remove'])->name('carts.remove');
+// Route::get('/order-history', [FrontendController::class, 'Ohistory'])->name('orders');
 
 
 

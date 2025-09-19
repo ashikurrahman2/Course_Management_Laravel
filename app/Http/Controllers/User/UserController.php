@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Assignment;
+use App\Models\Order;
 use App\Models\Category;
 use App\Models\Assignmentdetails;
 use Illuminate\Support\Facades\Hash;
@@ -62,7 +63,7 @@ class UserController extends Controller
           $courses = Assignment::select('exp_name')->distinct()->get();
           $experiments = Assignment::select('course_name')->distinct()->get();
           $assignments = Assignment::all();
-           $categories = Category::all();
+          $categories = Category::all();
         return view('user.assignment', compact('assignments','courses','experiments','categories'));
     }
         // Assignment data store from frontend to database
@@ -88,13 +89,14 @@ class UserController extends Controller
     public function Orderlist()
     {
           $categories = Category::all();
-        return view('user.student_order', compact('categories'));
+          $orders = Order::where('user_id', auth()->id())->latest()->get();
+        return view('user.student_order', compact('categories', 'orders'));
     }
 
     public function Usetting()
     {
         $user = auth()->user();
-             $categories = Category::all();
+        $categories = Category::all();
         return view('user.student_settings', compact('user', 'categories'));
     }
 
