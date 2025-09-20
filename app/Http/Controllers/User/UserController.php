@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Assignment;
 use App\Models\Order;
+use App\Models\Notice;
 use App\Models\Category;
 use App\Models\Assignmentdetails;
 use Illuminate\Support\Facades\Hash;
@@ -53,7 +54,16 @@ class UserController extends Controller
     public function Anounce()
     {
          $categories = Category::all();
-        return view('user.anouncement', compact('categories'));
+         $notices= Notice::all();
+        return view('user.anouncement', compact('categories', 'notices'));
+    }
+
+    
+    public function AnounceD()
+    {
+         $categories = Category::all();
+         $notices= Notice::all();
+        return view('user.notice_details', compact('categories', 'notices'));
     }
 
     // Assignment

@@ -51,8 +51,8 @@
                         </li>
                             
                         <li><a class="nav-link" href="{{ route('anounced') }}"><i
-                                 class="feather-icon icon-box"></i><span>My
-                                 Quiz Attempts</span></a>
+                                 class="feather-icon icon-box"></i><span>Notices
+                                 </span></a>
                         </li>
                            <li>
                     <a class="nav-link" href="{{ route('assigned') }}"><i

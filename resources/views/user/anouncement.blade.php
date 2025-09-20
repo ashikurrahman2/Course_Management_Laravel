@@ -85,18 +85,16 @@
                      </nav>
                   </div><!--  Widget End -->
                </aside>
+
+            
             </div>
-            <div class="col-lg-9 ps-lg-4">
+            {{-- <div class="col-lg-9 ps-lg-4">
                <section class="dashboard-sec">
                   <h2 class="display-5 border-bottom pb-3 mb-4">My Quiz Attempts</h2>
                   <table class="table table-responsive">
                      <thead>
                         <tr>
-                           <th>Quiz</th>
-                           <th>Qus</th>
-                           <th>TM</th>
-                           <th>CA</th>
-                           <th>Result</th>
+                           <th>Notice Heading</th>
                            <th>&nbsp;</th>
                         </tr>
                      </thead>
@@ -254,7 +252,45 @@
                      </tbody>
                   </table>
                </section>
-            </div>
+            </div> --}}
+
+            <div class="col-lg-9 ps-lg-4">
+   <section class="dashboard-sec">
+      <h2 class="display-5 border-bottom pb-3 mb-4">Notice Board</h2>
+      
+      <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle mb-0">
+               <thead class="table-primary">
+                  <tr>
+                        <th scope="col">Notice Heading</th>
+                        <th scope="col" class="text-end">Date</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  @forelse($notices as $notice)
+                  <tr>
+                        <td>
+                           <a href="{{ route('anouncedD', $notice->id) }}" class="fw-semibold text-decoration-none text-dark">
+                              {{ $notice->notice_heading }}
+                           </a>
+                        </td>
+                        <td class="text-end">
+                           <span class="badge bg-light text-dark border">
+                              <i class="bi bi-calendar-event me-1"></i> {{ date('d M, Y', strtotime($notice->notice_date)) }}
+                           </span>
+                        </td>
+                  </tr>
+                  @empty
+                  <tr>
+                     <td colspan="2" class="text-center text-muted">No notices found.</td>
+                  </tr>
+                  @endforelse
+               </tbody>
+            </table>
+      </div>
+   </section>
+</div>
+
          </div>
       </div>
    </div>

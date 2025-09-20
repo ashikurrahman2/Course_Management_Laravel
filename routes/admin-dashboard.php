@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdmissionguideController;
 use App\Http\Controllers\Admin\AdmissionrequirementController;
 use App\Http\Controllers\Admin\AdmissiondetailsController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\AssignmentdetailsController;
 use App\Http\Controllers\Admin\CourseDetailController;
@@ -61,6 +62,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::patch('loan-applications/{id}/reject', [SellformController::class, 'reject'])->name('sell.reject');
     Route::get('admin/admission/download/{id}', [AdmissiondetailsController::class, 'download'])->name('admitdata.download');
     Route::resource('orders', OrderController::class);
+    Route::resource('notice', NoticeController::class);
 
    
 });

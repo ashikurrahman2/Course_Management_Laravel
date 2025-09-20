@@ -3532,6 +3532,18 @@ namespace App\Models {
     /**
      * App\Models\Notice
      *
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property string|null $notice_details
+     * @property string|null $notice_date
+     * @property string|null $notice_heading
+     * @property int $id
+     * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice whereNoticeHeading($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice whereNoticeDate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice whereNoticeDetails($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Notice>|Notice query()

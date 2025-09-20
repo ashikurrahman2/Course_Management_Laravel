@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
+            $table->string('notice_heading')->nullable();
+            $table->date('notice_date')->nullable();
+            $table->string('notice_details')->nullable();
             $table->timestamps();
         });
     }

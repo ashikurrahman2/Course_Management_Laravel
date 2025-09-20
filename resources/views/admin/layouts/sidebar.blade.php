@@ -15,7 +15,8 @@
             <div class="card-body">
                 <div class="nav-user-image">
                     <a data-bs-toggle="collapse" href="#navuserlink">
-                        <img src="{{ asset('admin/assets/images/user/avatar-1.jpg') }}" alt="user-image" class="user-avtar rounded-circle">
+                        <img src="{{ asset(auth()->user()->user_image ?? 'admin/assets/images/user/avatar-1.jpg') }}" 
+                             alt="user-image" class="user-avtar rounded-circle">
                     </a>
                 </div>
 
@@ -37,11 +38,10 @@
                 <li class="pc-item pc-caption"><label>Navigation</label></li>
 
                 <!-- Dashboard -->
-                <li class="pc-item pc-hasmenu">
+                <li class="pc-item">
                     <a href="{{ route('admin.dashboard') }}" class="pc-link">
                         <span class="pc-micon"><i class="ph-duotone ph-gauge"></i></span>
                         <span class="pc-mtext">Dashboard</span>
-                        <span class="pc-arrow"></span>
                     </a>
                 </li>
 
@@ -110,20 +110,20 @@
                     </ul>
                 </li>
 
-                    <!-- Notice -->
+                <!-- Notice -->
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-alarm"></i></span>
+                        <span class="pc-micon"><i class="ti ti-bell"></i></span>
                         <span class="pc-mtext">Notice</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="{{ route('assignment.index') }}">Create Notice</a></li
+                        <li class="pc-item"><a class="pc-link" href="{{ route('notice.index') }}">Create Notice</a></li>
                     </ul>
                 </li>
 
                 <!-- Roles & Permissions -->
-                <li class="pc-item pc-hasmenu">
+                <li class="pc-item">
                     <a href="{{ route('permissions.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="fa fa-users-cog"></i></span>
                         <span class="pc-mtext">Roles & Permissions</span>
