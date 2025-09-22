@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Models\Admissiondata;
 use App\Models\Course;
 use App\Models\Instractor;
+use App\Models\InstractorDetail;
 use App\Models\Category;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
@@ -153,4 +154,19 @@ public function LessonCourse(){
         $instractor = Instractor::all();
       return view('frontend.pages.instructor', compact('categories', 'instractor'));
     }
+public function ItructorDetail($id)  // $id এখানে থাকতে হবে
+{
+    $categories = Category::all();
+
+    // Instractor কে details সহ লোড করা
+    $instructor = Instractor::with('details')->find($id);
+
+    // যদি instructor না থাকে
+    if (!$instructor) {
+        abort(404, 'Instructor not found');
+    }
+
+    return view('frontend.pages.instructor_details', compact('categories', 'instructor'));
+}
+
 }

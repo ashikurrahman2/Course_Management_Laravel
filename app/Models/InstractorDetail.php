@@ -9,7 +9,7 @@ class InstractorDetail extends Model
 {
     use HasFactory;
 
-       protected $fillable = [
+    protected $fillable = [
         'instructor_id',
         'about_me',
         'email',
@@ -20,41 +20,44 @@ class InstractorDetail extends Model
         'twitter',
     ];
 
-       // Create a new instructor details entry
+    // Create a new instructor details entry
     public static function newDetail($request)
     {
-        $banner = new self();
-        self::saveBasicInfo($banner, $request);
+        $detail = new self();
+        self::saveBasicInfo($detail, $request);
     }
 
-       // Update an existing Banner entry
+    // Update an existing instructor detail
     public static function updateDetail($request, $id)
     {
-        $banner = self::findOrFail($id);
-        self::saveBasicInfo($banner, $request);
+        $detail = self::findOrFail($id);
+        self::saveBasicInfo($detail, $request);
     }
 
-      // Save or update basic info in the database
-    private static function saveBasicInfo($banner, $request)
+    // Save or update basic info in the database
+    private static function saveBasicInfo($detail, $request)
     {
-        $banner->about_me          = $request->about_me;
-        $banner->email             = $request->email;
-        $banner->phone             = $request->phone;
-        $banner->address           = $request->address;
-        $banner->facebook          = $request->facebook;
-        $banner->linkedin          = $request->linkedin;
-        $banner->twitter           = $request->twitter;
-        $banner->save();
+        $detail->instructor_id     = $request->instructor_id; // ✅ Must assign
+        $detail->about_me          = $request->about_me;
+        $detail->email             = $request->email;
+        $detail->phone             = $request->phone;
+        $detail->address           = $request->address;
+        $detail->facebook          = $request->facebook;
+        $detail->linkedin          = $request->linkedin;
+        $detail->twitter           = $request->twitter;
+        $detail->save();
     }
 
-      // Delete a Banner entry
-    public static function deleteDetail($banner)
+    // Delete a detail entry
+    public static function deleteDetail($detail)
     {
-        $banner->delete();
+        $detail->delete();
     }
 
-      public function instructor()
+    // Relationship to instructor
+    public function instructor()
     {
-        return $this->belongsTo(Instractor::class);
+        
+        return $this->belongsTo(Instractor::class, 'instructor_id');
     }
 }

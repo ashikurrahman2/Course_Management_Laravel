@@ -132,9 +132,9 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item"><a class="pc-link" href="{{ route('instructors.index') }}">Create Instractor</a></li>
+                        <li class="pc-item"><a class="pc-link" href="{{ route('instructor-details.index') }}">Instractor Details</a></li>
                     </ul>
                 </li>
-
                 <!-- Roles & Permissions -->
                 <li class="pc-item">
                     <a href="{{ route('permissions.index') }}" class="pc-link">

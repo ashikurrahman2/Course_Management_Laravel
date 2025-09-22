@@ -97,6 +97,6 @@ class Instractor extends Model
 
         public function details()
     {
-        return $this->hasOne(InstructorDetail::class);
+          return $this->hasMany(InstractorDetail::class, 'instructor_id');
     }
 }

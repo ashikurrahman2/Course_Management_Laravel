@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AssignmentdetailsController;
 use App\Http\Controllers\Admin\CourseDetailController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\InstructorDetailController;
 use App\Http\Controllers\Admin\SellformController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -60,6 +61,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::resource('details', CourseDetailController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('instructors', InstructorController::class);
+    Route::resource('instructor-details', InstructorDetailController::class);
     Route::get('admin/admission/download/{id}', [AdmissiondetailsController::class, 'download'])->name('admitdata.download');
     Route::resource('orders', OrderController::class);
     Route::resource('notice', NoticeController::class);

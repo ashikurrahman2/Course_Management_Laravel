@@ -32,20 +32,25 @@
    <!-- Promo Section End -->
 
    <!-- Instructor details Start -->
-   <section class="single-instructor sec-padding pb-0">
+   {{-- <section class="single-instructor sec-padding pb-0">
       <div class="container">
+           @foreach($instructors as $instructor)
+          @foreach($instructor->details as $detail)
          <div class="row">
             <div class="col-lg-4">
-               <figure class="ins-image">
-                  <img src="{{ asset('/') }}frontend/assets/images/instructor.jpg" alt="Maria Bennet" class="img-fluid">
-               </figure>
+                          <figure class="ins-image">
+                      <img src="{{ asset($instructor->instructor_image ?? 'frontend/assets/images/instructor.jpg') }}" 
+                           alt="{{ $instructor->instructor_name }}" 
+                           class="img-fluid">
+                  </figure>
+
             </div>
             <div class="col-lg-8">
                <div class="instructor-details ps-lg-4">
                   <div class="ins-intro d-sm-flex justify-content-between align-items-baseline mb-4">
                      <div class="ins-intro">
-                        <h2 class="display-3">Joanna Doe</h2>
-                        <p>Project Manager</p>
+                        <h2 class="display-3">{{ $instructor->instructor_name }}</h2>
+                        <p>{{ $instructor->instructor_designation }}</p>
                      </div>
                      <div class="d-flex align-items-center">
                         <div class="ratings me-2">
@@ -59,13 +64,7 @@
                      </div>
                   </div>
                   <h3 class="display-5 mb-4">About Me</h3>
-                  <p>One notable trend is the incorporation of recycled and locally sourced materials, reducing the
-                     carbon footprint of
-                     construction projects. From repurposed steel to reclaimed wood, builders are finding creative ways
-                     to balance
-                     functionality with environmental responsibility. Energy-efficient designs are also gaining
-                     momentum, with architects and
-                     engineers integrating.</p>
+                  <p>{{ $detail->about_me }}</p>
                   <div class="author-footer d-sm-flex justify-content-between my-5">
                      <div class="author-info">
                         <h3 class="display-5 mb-4">Get In Touch</h3>
@@ -97,39 +96,48 @@
                                  <p>Instructor Rating</p>
                               </div>
                            </div>
-                           <div class="award-stat text-center border p-4">
-                              <div class="stat-info">
-                                 <div class="display-3">
-                                    <span data-purecounter-start="0" data-purecounter-end="15"
-                                       class="purecounter">15</span>
-                                 </div>
-                                 <p>Enrolled Courses</p>
-                              </div>
-                           </div>
-                           <div class="award-stat text-center border p-4">
-                              <div class="stat-info">
-                                 <div class="display-3">
-                                    <span data-purecounter-start="0" data-purecounter-end="40"
-                                       class="purecounter">40</span>K
-                                 </div>
-                                 <p>Total Students</p>
-                              </div>
-                           </div>
-
-                           <div class="award-stat text-center border p-4">
-                              <div class="stat-info">
-                                 <div class="display-3"><span data-purecounter-start="0" data-purecounter-end="248"
-                                       class="purecounter">248</span>+</div>
-                                 <p>Total Reviews</p>
-                              </div>
-                           </div>
+               
                         </div>
                      </div> <!-- Author Award -->
                   </div>
                </div>
 
             </div>
+            @endforeach
+               @endforeach
          </div>
-   </section>
+        
+   </section> --}}
+
+   <section class="single-instructor sec-padding pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <figure class="ins-image">
+          <img src="{{ asset($instructor->instructor_image ?? 'frontend/assets/images/instructor.jpg') }}" 
+               alt="{{ $instructor->instructor_name }}" 
+               class="img-fluid">
+        </figure>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="instructor-details ps-lg-4">
+          <div class="ins-intro d-sm-flex justify-content-between align-items-baseline mb-4">
+            <div class="ins-intro">
+              <h2 class="display-3">{{ $instructor->instructor_name }}</h2>
+              <p>{{ $instructor->instructor_designation }}</p>
+            </div>
+          </div>
+
+          <h3 class="display-5 mb-4">About Me</h3>
+          @foreach($instructor->details as $detail)
+            <p>{{ $detail->about_me }}</p>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
    <!-- Instructor Details End -->
 @endsection

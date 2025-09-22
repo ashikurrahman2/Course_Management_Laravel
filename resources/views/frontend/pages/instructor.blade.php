@@ -42,7 +42,7 @@
                   <div class="teacher-entry position-relative active" style="background-image: url('{{ asset($instructor->instructor_image) }}');">
                   <div class="teacher-info position-absolute p-3">
                      <div class="teacher-intro p-4 text-center">
-                        <h3 class="display-4 mb-1"><a class="text-reset" href="single-instructor.html">{{ $instructor->instructor_name }}
+                        <h3 class="display-4 mb-1"><a class="text-reset" href="{{ route('i.tructor.details', $instructor->id) }}">{{ $instructor->instructor_name }}
                               </a></h3>
                         <span class="designation">{{ $instructor->instructor_designation }}</span>
                      </div>
