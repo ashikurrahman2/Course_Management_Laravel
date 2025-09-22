@@ -116,24 +116,8 @@
   </div>
 </div>
 
-<!-- Script -->
+<!-- Script Ajax code-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-{{-- <script type="text/javascript">
-  $(function () {
-    var table = $('.ytable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('instructors.index') }}",
-        columns: [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-            { data: 'instructor_name', name: 'instructor_name' },
-            { data: 'instructor_designation', name: 'instructor_designation' },
-            { data: 'instructor_image', name: 'instructor_image' },
-            { data: 'action', name: 'action', orderable: false, searchable: false }
-        ]
-    });
-  }); --}}
-
    <script type="text/javascript">
     $(function instructors(){
       var table=$('.ytable').DataTable({
@@ -150,16 +134,7 @@
       });
     });
 
-  // For Edit Instructor
-//   $('body').on('click', '.edit', function() {
-//       let id = $(this).data('id');
-//       $.get("instructors/" + id + "/edit", function(data) {
-//           $('#editModal .modal-body').html(data);
-//       });
-//   });
-
-
-
+// Edit Instructor
     $('body').on('click', '.edit', function() {
         let id = $(this).data('id');
         $.get("instructors/" + id + "/edit", function(data) {

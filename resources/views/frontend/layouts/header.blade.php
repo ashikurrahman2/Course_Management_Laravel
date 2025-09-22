@@ -158,7 +158,7 @@
                       <div class="col">
                         <div>
                           <div class="dropdown-header">Get Started</div>
-                          <a class="dropdown-item" href="instructors.html">Instructors</a>
+                          <a class="dropdown-item" href="{{ route('i.tructor') }}">Instructors</a>
                           <a class="dropdown-item" href="become-instructor.html">Become a instructor</a>
                           <a class="dropdown-item" href="faq.html">FAQ</a>
                         </div>

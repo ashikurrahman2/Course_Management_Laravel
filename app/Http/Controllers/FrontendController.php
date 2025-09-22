@@ -7,6 +7,7 @@ use App\Models\Admissionrequirement;
 use App\Models\Banner;
 use App\Models\Admissiondata;
 use App\Models\Course;
+use App\Models\Instractor;
 use App\Models\Category;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
@@ -146,9 +147,10 @@ public function LessonCourse(){
       $courses = Course::findOrFail($id);
       return view('frontend.pages.checkout', compact('categories', 'courses'));
     }
-      // Order history  
-    //     public function Ohistory(){
-    //     $categories = Category::all();
-    //   return view('frontend.pages.order_history', compact('categories'));
-    // }
+      // Instructor  
+        public function Itructor(){
+        $categories = Category::all();
+        $instractor = Instractor::all();
+      return view('frontend.pages.instructor', compact('categories', 'instractor'));
+    }
 }

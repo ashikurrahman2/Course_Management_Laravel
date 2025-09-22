@@ -94,4 +94,9 @@ class Instractor extends Model
 
         $instractor->delete();
     }
+
+        public function details()
+    {
+        return $this->hasOne(InstructorDetail::class);
+    }
 }

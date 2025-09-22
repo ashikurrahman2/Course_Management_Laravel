@@ -21,6 +21,7 @@ Route::get('/', [FrontendController:: class, 'index'])->name('index');
 //  Route::get('/course-details', [FrontendController:: class, 'CourseDetail'])->name('details');
 //  Route::get('/courses/category/{id}', [FrontendController::class, 'coursesByCategory'])->name('courses.byCategory');
 Route::get('/course/details/{id}', [FrontendController::class, 'details'])->name('course.details');
+Route::get('/instructor', [FrontendController::class, 'Itructor'])->name('i.tructor');
 Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name('courses.filter');
 Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
 Route::get('/about', [FrontendController::class, 'managementAbout'])->name('courses.about');
