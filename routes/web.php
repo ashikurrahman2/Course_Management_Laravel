@@ -25,6 +25,7 @@ Route::get('/instructor', [FrontendController::class, 'Itructor'])->name('i.truc
 Route::get('/instructor/{id}', [FrontendController::class, 'ItructorDetail'])->name('i.tructor.details');
 Route::get('/filter-courses', [CourseController::class, 'filterCourses'])->name('courses.filter');
 Route::get('/Course-leasson', [FrontendController::class, 'LessonCourse'])->name('courses.lession');
+Route::get('/faq', [FrontendController::class, 'frontFaq'])->name('faq');
 Route::get('/about', [FrontendController::class, 'managementAbout'])->name('courses.about');
 Route::get('/Admission', [FrontendController::class, 'Admissionreq'])->name('admission');
 Route::get('/online-admission', [FrontendController::class, 'AdmissionForm'])->name('admission.form');

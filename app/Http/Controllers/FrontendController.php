@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Admissionrequirement;
 use App\Models\Banner;
+use App\Models\Faq;
 use App\Models\Admissiondata;
 use App\Models\Course;
 use App\Models\Instractor;
@@ -168,5 +169,13 @@ public function ItructorDetail($id)  // $id এখানে থাকতে হ�
 
     return view('frontend.pages.instructor_details', compact('categories', 'instructor'));
 }
+
+public function frontFaq()
+{
+    $categories = Category::all();
+    $faqs = Faq::all(); 
+    return view('frontend.pages.faq', compact('faqs', 'categories'));
+}
+
 
 }

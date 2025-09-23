@@ -32,10 +32,8 @@
    <!-- Promo Section End -->
 
    <!-- Instructor details Start -->
-   {{-- <section class="single-instructor sec-padding pb-0">
+    <section class="single-instructor sec-padding pb-0">
       <div class="container">
-           @foreach($instructors as $instructor)
-          @foreach($instructor->details as $detail)
          <div class="row">
             <div class="col-lg-4">
                           <figure class="ins-image">
@@ -43,7 +41,6 @@
                            alt="{{ $instructor->instructor_name }}" 
                            class="img-fluid">
                   </figure>
-
             </div>
             <div class="col-lg-8">
                <div class="instructor-details ps-lg-4">
@@ -64,80 +61,62 @@
                      </div>
                   </div>
                   <h3 class="display-5 mb-4">About Me</h3>
-                  <p>{{ $detail->about_me }}</p>
-                  <div class="author-footer d-sm-flex justify-content-between my-5">
-                     <div class="author-info">
-                        <h3 class="display-5 mb-4">Get In Touch</h3>
-                        <div class="contact-lists">
-                           <ul class="list-unstyled">
-                              <li><span><i class="feather-icon icon-mail"></i></span><a class="text-reset" href="https://html.theme-village.com/cdn-cgi/l/email-protection#92fbfcf4fdd2ebfde7e0f6fdfff3fbfcbcf1fdff"><span class="__cf_email__" data-cfemail="026b6c646d427b6d7770666d6f636b6c2c616d6f">[email&#160;protected]</span></a></li>
-                              <li><span><i class="feather-icon icon-phone"></i></span><a class="text-reset"
-                                    href="tel:120034509">(+68)
-                                    120034509</a></li>
-                              <li><span><i class="feather-icon icon-map-pin"></i></span>123 Evergreen Street, Maplewood
-                                 City,Greenland 56789
-                              </li>
-                           </ul>
-                        </div>
-                        <div class="social-share white mt-3">
-                           <a href="#"><i class="feather-icon icon-twitter"></i></a>
-                           <a href="#"><i class="feather-icon icon-facebook"></i></a>
-                           <a href="#"><i class="feather-icon icon-linkedin"></i></a>
-                        </div>
-                     </div>
-                     <div class="author-awards">
-                        <div class="row row-cols-sm-4 justify-content-center">
-                           <div class="award-stat text-center border p-4">
-                              <div class="stat-info">
-                                 <div class="display-3">
-                                    <span data-purecounter-start="0" data-purecounter-end="5"
-                                       class="purecounter">5</span>
-                                 </div>
-                                 <p>Instructor Rating</p>
-                              </div>
-                           </div>
-               
-                        </div>
-                     </div> <!-- Author Award -->
-                  </div>
+                    @foreach($instructor->details as $detail)
+                    <p>{{ $detail->about_me }}</p>
+                  @endforeach
+                  {{-- Instructor info --}}
+              <div class="author-footer d-sm-flex justify-content-between my-5">
+          <div class="author-info">
+        <h3 class="display-5 mb-4">Get In Touch</h3>
+        <div class="contact-lists">
+            <ul class="list-unstyled">
+                @foreach($instructor->details as $detail)
+                    <li>
+                        <span><i class="feather-icon icon-mail"></i></span>
+                        <a class="text-reset" href="mailto:{{ $detail->email }}">
+                            {{ $detail->email }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <span><i class="feather-icon icon-phone"></i></span>
+                        <a class="text-reset" href="tel:{{ $detail->phone }}">
+                            {{ $detail->phone }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <span><i class="feather-icon icon-map-pin"></i></span>
+                        {{ $detail->address }}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+            {{-- Social profile --}}
+            <div class="social-share white mt-3">
+            @foreach($instructor->details as $detail)
+               @if(!empty($detail->twitter))
+                     <a href="{{ $detail->twitter }}" target="_blank"><i class="feather-icon icon-twitter"></i></a>
+               @endif
+               @if(!empty($detail->facebook))
+                     <a href="{{ $detail->facebook }}" target="_blank"><i class="feather-icon icon-facebook"></i></a>
+               @endif
+               @if(!empty($detail->linkedin))
+                     <a href="{{ $detail->linkedin }}" target="_blank"><i class="feather-icon icon-linkedin"></i></a>
+               @endif
+            @endforeach
+         </div>
+
+    </div>
+
+</div>
+
                </div>
 
             </div>
-            @endforeach
-               @endforeach
+           
          </div>
         
-   </section> --}}
-
-   <section class="single-instructor sec-padding pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <figure class="ins-image">
-          <img src="{{ asset($instructor->instructor_image ?? 'frontend/assets/images/instructor.jpg') }}" 
-               alt="{{ $instructor->instructor_name }}" 
-               class="img-fluid">
-        </figure>
-      </div>
-
-      <div class="col-lg-8">
-        <div class="instructor-details ps-lg-4">
-          <div class="ins-intro d-sm-flex justify-content-between align-items-baseline mb-4">
-            <div class="ins-intro">
-              <h2 class="display-3">{{ $instructor->instructor_name }}</h2>
-              <p>{{ $instructor->instructor_designation }}</p>
-            </div>
-          </div>
-
-          <h3 class="display-5 mb-4">About Me</h3>
-          @foreach($instructor->details as $detail)
-            <p>{{ $detail->about_me }}</p>
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+   </section> 
    <!-- Instructor Details End -->
 @endsection

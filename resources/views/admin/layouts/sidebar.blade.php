@@ -135,6 +135,18 @@
                         <li class="pc-item"><a class="pc-link" href="{{ route('instructor-details.index') }}">Instractor Details</a></li>
                     </ul>
                 </li>
+
+                    <!-- FAQ Management -->
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-bell"></i></span>
+                        <span class="pc-mtext">FAQ</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link" href="{{ route('faq.index') }}">Create FAQ</a></li>
+                    </ul>
+                </li>
                 <!-- Roles & Permissions -->
                 <li class="pc-item">
                     <a href="{{ route('permissions.index') }}" class="pc-link">
