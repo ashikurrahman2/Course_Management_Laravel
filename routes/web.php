@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\InstructorAuthController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\User\SellController;
@@ -36,6 +37,7 @@ Route::get('/carts', [CartController::class, 'index'])->name('carts');
 Route::post('/carts/{id}', [CartController::class, 'store'])->name('carts.store');
 Route::get('/carts/remove/{rowId}', [CartController::class, 'remove'])->name('carts.remove');
 // Route::get('/order-history', [FrontendController::class, 'Ohistory'])->name('orders');
+// Route::get('/register-instructor', [FrontendController::class, 'showRegisterForm'])->name('instructor.register');
 
 
 
@@ -62,6 +64,22 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+// Instructor login registration route
+// Route::prefix('instructor')->group(function () {
+//     Route::get('/register', [InstructorAuthController::class, 'showRegisterForm'])->name('instructor.register');
+//     Route::post('/register', [InstructorAuthController::class, 'register'])->name('instructor.register.submit');
+
+//     Route::get('/login', [InstructorAuthController::class, 'showLoginForm'])->name('instructor.login');
+//     Route::post('/login', [InstructorAuthController::class, 'login'])->name('instructor.login.submit');
+
+//     Route::get('/dashboard', function () {
+//         return "Welcome Instructor Dashboard!";
+//     })->name('instructor.dashboard')->middleware('auth:instructor');
+
+//     Route::post('/logout', [InstructorAuthController::class, 'logout'])->name('instructor.logout');
+// });
 
 require __DIR__.'/auth.php';
 

@@ -67,7 +67,7 @@
                   </li>
 
                   <li>
-                    <a class="nav-link" href="instructor-reviews.html"><i
+                    <a class="nav-link" href="{{ route('streview') }}"><i
                         class="feather-icon icon-star"></i><span>Reviews</span></a>
                   </li>
 
@@ -159,7 +159,7 @@
                         <div>
                           <div class="dropdown-header">Get Started</div>
                           <a class="dropdown-item" href="{{ route('i.tructor') }}">Instructors</a>
-                          <a class="dropdown-item" href="become-instructor.html">Become a instructor</a>
+                          <a class="dropdown-item" href="#">Become a instructor</a>
                           <a class="dropdown-item" href="{{ route('faq') }}">FAQ</a>
                         </div>
                       </div>

@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Auth;
                                 class="ph-duotone ph-lock-key"></i> <span>Lock Screen</span> </a><a href="#!"
                             class="dropdown-item"><i class="ph-duotone ph-power"></i> <span>Logout</span></a></div>
                 </li>
-                <li class="dropdown pc-h-item"><a class="pc-head-link dropdown-toggle arrow-none me-0"
+                {{-- <li class="dropdown pc-h-item"><a class="pc-head-link dropdown-toggle arrow-none me-0"
                         data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                         aria-expanded="false"><i class="ph-duotone ph-bell"></i> <span
                             class="badge bg-danger pc-h-badge">3</span></a>
@@ -213,7 +213,56 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                         </div>
                     </div>
+                </li> --}}
+                
+                {{-- Notifications --}}
+                @php
+                 $notifications = auth()->guard('admin')->user()->unreadNotifications;
+            @endphp
+
+                <li class="dropdown pc-h-item">
+                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="ph-duotone ph-bell"></i>
+                        <span class="badge bg-danger pc-h-badge">{{ $notifications->count() }}</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
+                        <div class="dropdown-header d-flex align-items-center justify-content-between">
+                            <h4 class="m-0">Notifications</h4>
+                        </div>
+                        <div class="dropdown-body header-notification-scroll" style="max-height: calc(100vh - 235px)">
+                            <ul class="list-group list-group-flush">
+                                @forelse($notifications as $notification)
+                                <li class="list-group-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <div class="avtar avtar-s bg-light-primary"><i class="ph-duotone ph-bell f-18"></i></div>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="mb-0 text-truncate">{{ $notification->data['title'] }}</h5>
+                                                <span class="text-sm text-muted">{{ $notification->created_at->diffForHumans() }}</span>
+                                            </div>
+                                            <p class="text-muted mb-0">{{ $notification->data['message'] }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                @empty
+                                <li class="list-group-item text-center text-muted">No notifications</li>
+                                @endforelse
+                            </ul>
+                        </div>
+                        <div class="dropdown-footer">
+                            <div class="d-grid">
+                                <form method="POST" action="{{ route('admin.notifications.markAllRead') }}">
+                                    @csrf
+                                    <button class="btn btn-outline-secondary">Mark all as read</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </li>
+
                 <li class="dropdown pc-h-item header-user-profile"><a
                         class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false"><img

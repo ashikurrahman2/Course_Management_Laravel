@@ -177,5 +177,12 @@ public function frontFaq()
     return view('frontend.pages.faq', compact('faqs', 'categories'));
 }
 
+   // Registration form
+    // public function showRegisterForm()
+    // {
+    //       $categories = Category::all();
+    //     return view('auth.instructor_register', compact('categories'));
+    // }
+
 
 }

@@ -29,9 +29,9 @@
               <div class="d-flex ms-lg-5 ms-0 mt-4 mt-lg-0 align-items-center">
                 <span class="icon-sm bg-secondary text-info rounded-circle me-3 shadow-alt"><img
                     src="{{ asset('/') }}frontend/assets/images/icons/phone.svg" alt="" /></span>
-                <a href="tel:9282872" class="text-reset">
+                <a href="tel:{{ $setting->phone_one }}" class="text-reset">
                   <h5>Call us Anytime</h5>
-                  +884 (009) 672 739
+                  {{ $setting->phone_one }}
                 </a>
               </div>
             </div>
@@ -180,7 +180,7 @@
                     src="images/icons/phone.svg" alt="" /></span>
                 <a href="tel:9282872" class="text-reset">
                   <h5>Call us Anytime</h5>
-                  +884 (009) 672 739
+                 +88{{ $setting->phone_one }}
                 </a>
               </div>
             </div>

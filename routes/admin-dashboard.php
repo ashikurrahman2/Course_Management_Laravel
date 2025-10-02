@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SeoController;
+use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdmissionguideController;
 use App\Http\Controllers\Admin\AdmissionrequirementController;
@@ -36,8 +37,12 @@ Route::prefix('admin')->middleware('auth:admin', 'role:super-admin|admin')->grou
 
     Route::resource('users',AdminUserController::class);
      Route::get('/profile', [AdminUserController::class, 'show'])->name('admin.profile');
-     Route::get('/profile/edit', [AdminUserController::class, 'edit'])->name('admin.profile.edit');
-    Route::put('/profile/update', [AdminUserController::class, 'update'])->name('admin.profile.update');
+    //  Route::get('/profile/edit', [AdminUserController::class, 'edit'])->name('admin.profile.edit');
+    // Route::put('/profile/update', [AdminUserController::class, 'update'])->name('admin.profile.update');
+
+    Route::get('/profile/edit', [AdminUserController::class, 'edit'])->name('admin.profile.edit');
+Route::put('/profile/update', [AdminUserController::class, 'update'])->name('admin.profile.update');
+
         Route::get('/password/change', [AdminUserController::class, 'passwordChange'])->name('password.change');
 
 // Expect PATCH method for update
@@ -47,6 +52,8 @@ Route::patch('/password/update', [AdminUserController::class, 'passwordUpdate'])
 
     Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('admin.dashboard');
     Route::get('logout', [LoginController::class, 'destroy'])->name('admin.logout');
+    Route::post('/admin/notifications/mark-all-read', [AdminNotificationController::class, 'markAllRead'])->name('admin.notifications.markAllRead');
+
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {

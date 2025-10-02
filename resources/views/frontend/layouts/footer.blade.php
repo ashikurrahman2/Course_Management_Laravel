@@ -26,11 +26,11 @@
           <div class="footer-widget">
             <h3 class="widget-title">Quick Links</h3>
             <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#">Instructors</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="{{ route('i.tructor') }}">Instructors</a></li>
               <li><a href="#">Careers</a></li>
               <li><a href="#">Services</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="{{ route('contacts') }}">Contact us</a></li>
             </ul>
           </div>
         </div>

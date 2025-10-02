@@ -81,44 +81,76 @@ class AdminUserController extends BaseController
         return redirect()->route('users.index');
     }
     
-    public function edit($id)
-    {
-        // Fetch the user by ID
-        $user = Admin::findOrFail($id);
+    // public function edit($id)
+    // {
+    //     // Fetch the user by ID
+    //     $user = Admin::findOrFail($id);
     
-        // Fetch all available roles
-        $roles = Role::all();
+    //     // Fetch all available roles
+    //     $roles = Role::all();
     
-        // Pass the user and roles to the view
-        return view('admin.role-permission.user.edit', compact('user', 'roles'));
-    }
+    //     // Pass the user and roles to the view
+    //     return view('admin.role-permission.user.edit', compact('user', 'roles'));
+    // }
     
-    public function update(Request $request, $id)
-    {
-        // Validate the input data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:admins,email,' . $id,
-            'roles' => 'required|array', // Ensure roles are selected
-            'roles.*' => 'exists:roles,name,guard_name,admin', // Validate that each role exists and has the correct guard_name
-        ]);
+    // public function update(Request $request, $id)
+    // {
+    //     // Validate the input data
+    //     $validatedData = $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:admins,email,' . $id,
+    //         'roles' => 'required|array', // Ensure roles are selected
+    //         'roles.*' => 'exists:roles,name,guard_name,admin', // Validate that each role exists and has the correct guard_name
+    //     ]);
     
-        // Find the user by ID
-        $user = Admin::findOrFail($id);
+    //     // Find the user by ID
+    //     $user = Admin::findOrFail($id);
     
-        // Update the user details
-        $user->update([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-        ]);
+    //     // Update the user details
+    //     $user->update([
+    //         'name' => $validatedData['name'],
+    //         'email' => $validatedData['email'],
+    //     ]);
     
-        // Sync the selected roles to the user
-        $user->syncRoles($request->roles);
+    //     // Sync the selected roles to the user
+    //     $user->syncRoles($request->roles);
     
-        // Redirect with a success message
-        $this->toastr->success('User updated successfully!');
-        return redirect()->route('users.index');
-    }
+    //     // Redirect with a success message
+    //     $this->toastr->success('User updated successfully!');
+    //     return redirect()->route('users.index');
+    // }
+
+    // Controller
+public function edit()
+{
+    $user = auth()->guard('admin')->user(); // logged-in admin
+    $roles = Role::all();
+
+    return view('admin.role-permission.user.edit', compact('user', 'roles'));
+}
+
+public function update(Request $request)
+{
+    $user = auth()->guard('admin')->user(); // logged-in admin
+
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:admins,email,' . $user->id,
+        'roles' => 'required|array',
+        'roles.*' => 'exists:roles,name,guard_name,admin',
+    ]);
+
+    $user->update([
+        'name' => $validatedData['name'],
+        'email' => $validatedData['email'],
+    ]);
+
+    $user->syncRoles($request->roles);
+
+    $this->toastr->success('Profile updated successfully!');
+    return redirect()->route('admin.profile.edit');
+}
+
 
     public function destroy($id)
     {
